@@ -1,0 +1,24 @@
+Package: plutor
+Title: plot using ggplot
+Version: 0.0.1
+Authors@R: 
+    person("William", "Song", , "william_swl@163.com", role = c("aut", "cre"))
+Description: plot using ggplot
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Imports: 
+    dplyr,
+    ggplot2,
+    magrittr,
+    munsell
+Suggests: 
+    covr,
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Remotes: 
+    github::william-swl/baizer
+Depends: 
+    R (>= 2.10)
+LazyData: true

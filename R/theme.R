@@ -10,6 +10,8 @@ inch2cm <- function(x) {
   x * 2.54
 }
 
+in2cm <- inch2cm
+
 #' trans cm to inch
 #'
 #' @param x cm value
@@ -22,6 +24,7 @@ cm2inch <- function(x) {
   x / 2.54
 }
 
+cm2in <- cm2inch
 
 #' trans geom text point to the real point
 #'
@@ -85,7 +88,11 @@ scale_ele <- function(level, base, ele_scales) {
 #' @return theme object of ggplotusethis::use_version()
 #' @export
 #'
-#' @examples theme_pl()
+#' @examples ggplot(mini_diamond, aes(x=x, y=y, color=clarity)) +
+#'geom_point(size=2 + facet_grid(.~cut) +
+#'labs(title='title', tag='tag', caption='caption') +
+#'theme_pl()
+#'
 theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
                      base_lw = 1,
                      margin_factor = 0.5, plot_margin_factor = 1.2,
@@ -146,16 +153,16 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       ##################################
       # global line
       line = element_line(
-        color = "black", size = lpt(base_lw),
+        color = "black", linewidth = lpt(base_lw),
         linetype = 1, lineend = "butt"
       ),
       # grid in plot panel
       panel.grid = element_blank(),
       # axis line
-      axis.line = element_line(size = lpt(base_lw)),
+      axis.line = element_line(linewidth = lpt(base_lw)),
 
       # axis tick line width
-      axis.ticks = element_line(size = lpt(base_lw)),
+      axis.ticks = element_line(linewidth = lpt(base_lw)),
       # axis tick line length
       axis.ticks.length = unit(2 * base_lw, "pt"),
 
@@ -164,7 +171,7 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       ##################################
       #  global rect
       rect = element_rect(fill = NA, color = NA,
-                          size = lpt(base_lw), linetype = 1),
+                          linewidth = lpt(base_lw), linetype = 1),
       # backgrounds
       plot.background = element_blank(),
       panel.background = element_blank(),

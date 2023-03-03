@@ -8,7 +8,9 @@ theme_pl(
   base_size = 10,
   size_scales = c(5, 5, 6, 8, 10, 10),
   base_lw = 1,
-  margin_factor = 0.25,
+  margin_factor = 0.5,
+  plot_margin_factor = 1.2,
+  legend_spacing_factor = 1.2,
   font_family = "",
   ...
 )
@@ -29,6 +31,10 @@ theme_pl(
 \item{base_lw}{base line width}
 
 \item{margin_factor}{the factor of margin to size, default is 0.25}
+
+\item{plot_margin_factor}{factor to adjust the plot margins, default is 1.2}
+
+\item{legend_spacing_factor}{factor to adjust the space of legend items, default is 1.2}
 
 \item{font_family}{font family}
 

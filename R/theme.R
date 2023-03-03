@@ -77,6 +77,9 @@ scale_ele <- function(level, base, ele_scales) {
 #' @param base_lw base line width
 #' @param margin_factor the factor of margin to size, default is 0.25
 #' @param font_family font family
+#' @param plot_margin_factor factor to adjust the plot margins, default is 1.2
+#' @param legend_spacing_factor factor to adjust the space of legend items,
+#' default is 1.2
 #' @param ...
 #'
 #' @return theme object of ggplotusethis::use_version()
@@ -85,14 +88,16 @@ scale_ele <- function(level, base, ele_scales) {
 #' @examples theme_pl()
 theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
                      base_lw = 1,
-                     margin_factor = 0.25, font_family = "",
+                     margin_factor = 0.5, plot_margin_factor = 1.2,
+                     legend_spacing_factor = 1.2,
+                     font_family = "",
                      ...) {
   if (length(size_scales) != 6) {
     stop("the length of size_scales should be 6!")
   }
-  scale_size <- function(x) scale_ele(x, base_size, size_scales, base_lw = 1)
+  scale_size <- function(x) scale_ele(x, base_size, size_scales)
 
-  ggplot2::theme_classic(
+  ggplot2::theme_grey(
     base_size = base_size,
     base_family = font_family
   ) %+replace%
@@ -101,13 +106,13 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       ### text
       ##################################
 
-      # global text
+      # global text, margins in pt as default
       text = element_text(
         face = "plain", color = "black", size = base_size,
         hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(0, 0, 0, 0)
       ),
       # plot tag. e.g. A, B, C
-      plot.tag = element_text(face = "bold", size = scale_size(6), hjust = 0),
+      plot.tag = element_text(face = "bold", size = scale_size(6)),
       # plot title
       plot.title = element_text(
         face = "bold", size = scale_size(5), hjust = 0,
@@ -139,8 +144,64 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       ##################################
       ### line
       ##################################
-      # axis
-      axis.line = element_line(size = lpt(base_lw))
+      # global line
+      line = element_line(
+        color = "black", size = lpt(base_lw),
+        linetype = 1, lineend = "butt"
+      ),
+      # grid in plot panel
+      panel.grid = element_blank(),
+      # axis line
+      axis.line = element_line(size = lpt(base_lw)),
+
+      # axis tick line width
+      axis.ticks = element_line(size = lpt(base_lw)),
+      # axis tick line length
+      axis.ticks.length = unit(2 * base_lw, "pt"),
+
+      ##################################
+      ### rect
+      ##################################
+      #  global rect
+      rect = element_rect(fill = NA, color = NA,
+                          size = lpt(base_lw), linetype = 1),
+      # backgrounds
+      plot.background = element_blank(),
+      panel.background = element_blank(),
+      legend.background = element_blank(),
+      strip.background = element_blank(),
+      # the background of symbols in lenged
+      legend.key = element_blank(),
+
+      ##################################
+      ### Others
+      ##################################
+      # legend position
+      legend.position = "right",
+      legend.direction = "vertical",
+      legend.justification = c("left", "center"),
+      # width of legend key
+      legend.key.width = unit(scale_size(1), "pt"),
+      # height of legend key, same as space between items
+      legend.key.height = unit(scale_size(3) * legend_spacing_factor, "pt"),
+      # space between lenged title and items
+      legend.spacing.y = unit(scale_size(3) * legend_spacing_factor, "pt"),
+      # space between legend keys and items
+      legend.spacing.x = unit(scale_size(1) * margin_factor, "pt"),
+
+      # margin of whole lenged box
+      legend.margin = margin(0, 0, 0, 0),
+      # space between faect panels
+      panel.spacing = unit(scale_size(3) * margin_factor, "pt"),
+      # tag position
+      plot.tag.position = "topleft",
+      # plot margins
+      plot.margin = margin(
+        scale_size(5) * margin_factor,
+        scale_size(5) * margin_factor,
+        scale_size(5) * margin_factor,
+        scale_size(5) * margin_factor
+      )
     ) %+replace%
     # allow modification
     ggplot2::theme(...)

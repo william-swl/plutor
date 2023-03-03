@@ -8,50 +8,25 @@
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-## Features
+## installation
 
-- A template of R package
-- Imported `%>%`
-- `lintr` config
-- `.gitignore` template, `.Rbuildignore`
-
-## Use
-
-- Download and unzip this repository
-- Rename the directory as `newpkg/`
-- In `newpkg/`, use `bash preprocess.sh newpkg` to:
-  - remove `.git/` directory
-  - Remove `.gitignore`, and rename `.gitignore_template` to
-    `.gitignore`
-  - Replace package name from `rpkg.template` to `newpkg`
-- Remove `preprocess.sh`
-- Init a new local git repository, and link to a remote github
-  repository
-- Edit `DESCRIPTION`
-- Assign open source license, for MIT use `usethis::use_mit_license()`
-- Add code of conduct by `usethis::use_code_of_conduct('your@email')`
-- Add github actions
+You can install the development version of `plutor` like so:
 
 ``` r
-usethis::use_github_action("lint")
-usethis::use_tidy_github_actions()
-unlink('.github/workflows/pkgdown.yaml')
+devtools::install_github("william-swl/plutor")
 ```
 
-- Assign package logo by
+And load the package:
 
 ``` r
-usethis::use_logo("man/figures/logo.png", geometry='480x576')
+library(plutor)
 ```
 
-- Edit `README.Rmd`, and rebuild `README.md` by
+## color
+
+- select most distant colors among a color spectrum
 
 ``` r
-devtools::build_rmd('README.Rmd')
-```
-
-- Build website for this package by `pkgdown`, and add github actions
-
-``` r
-usethis::use_github_action("pkgdown")
+select_color(5)
+#> [1] "#AC6966" "#827E2B" "#308974" "#4981A1" "#9A6D8F"
 ```

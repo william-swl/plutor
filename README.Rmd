@@ -1,0 +1,42 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# plutor
+
+<!-- badges: start -->
+[![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
+<!-- badges: end -->
+
+## installation
+
+You can install the development version of `plutor` like so:
+
+``` r
+devtools::install_github("william-swl/plutor")
+```
+And load the package:
+```{r library}
+library(plutor)
+```
+
+## color
+
+- select most distant colors among a color spectrum
+```{r color-select_color}
+select_color(5)
+```
+
+
+

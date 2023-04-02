@@ -14,19 +14,22 @@
 #'
 #' @export
 #'
-#' @examples # pl_save(p, 'plot.pdf', width=14,
-#' height=10, canvas='A4', units='cm')
+#' @examples
+#' # pl_save(p, 'plot.pdf', width=14,
+#' #   height=10, canvas='A4', units='cm')
 pl_save <- function(plot, filename, width, height, units = "in", canvas = NULL,
                     canvas_pos_x = 0.5, canvas_pos_y = 0.1, ...) {
   if (units == "inch") units <- "in"
 
   if (is.null(canvas)) {
     # without canvas
-    ggplot2::ggsave(filename, plot, width = width,
-                    heigh = height, units = units, ...)
+    ggplot2::ggsave(filename, plot,
+      width = width,
+      heigh = height, units = units, ...
+    )
   } else {
     if (length(canvas) == 1 &&
-        (length(intersect(canvas, names(canvas_size[[1]]))) > 0)) {
+      (length(intersect(canvas, names(canvas_size[[1]]))) > 0)) {
       # use bulit-in canvas
       canvas_width <- canvas_size[[units]][[canvas]][1]
       canvas_height <- canvas_size[[units]][[canvas]][2]
@@ -48,7 +51,9 @@ pl_save <- function(plot, filename, width, height, units = "in", canvas = NULL,
     }
 
     plot <- plot + theme(plot.margin = margin(blank_margin, unit = units))
-    ggplot2::ggsave(filename, plot, width = canvas_width,
-                    heigh = canvas_height, units = units, ...)
+    ggplot2::ggsave(filename, plot,
+      width = canvas_width,
+      heigh = canvas_height, units = units, ...
+    )
   }
 }

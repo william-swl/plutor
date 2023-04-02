@@ -16,5 +16,5 @@ real point
 trans geom text point to the real point
 }
 \examples{
-tpt(5)
+tpt(1)
 }

@@ -5,9 +5,9 @@
 #' @return cm value
 #' @export
 #'
-#' @examples inch2cm(29.7)
+#' @examples inch2cm(1)
 inch2cm <- function(x) {
-  x * 2.54
+  grid::convertHeight(unit(1, "inch"), "cm")
 }
 
 in2cm <- inch2cm
@@ -19,12 +19,39 @@ in2cm <- inch2cm
 #' @return inch value
 #' @export
 #'
-#' @examples cm2inch(7)
+#' @examples cm2inch(1)
 cm2inch <- function(x) {
-  x / 2.54
+  grid::convertHeight(unit(1, "cm"), "inch")
 }
 
 cm2in <- cm2inch
+
+
+#' trans pt to mm
+#'
+#' @param x pt value
+#'
+#' @return mm value
+#' @export
+#'
+#' @examples pt2mm(1)
+pt2mm <- function(x) {
+  grid::convertHeight(unit(x, "pt"), "mm")
+}
+
+#' trans mm to pt
+#'
+#' @param x mm value
+#'
+#' @return pt value
+#' @export
+#'
+#' @examples mm2pt(1)
+mm2pt <- function(x) {
+  grid::convertHeight(unit(x, "mm"), "pt")
+}
+
+
 
 #' trans geom text point to the real point
 #'
@@ -33,7 +60,7 @@ cm2in <- cm2inch
 #' @return real point
 #' @export
 #'
-#' @examples tpt(5)
+#' @examples tpt(1)
 tpt <- function(x) {
   x / 2.84527559055118
 }
@@ -67,6 +94,7 @@ scale_ele <- function(level, base, ele_scales) {
 
 
 
+
 #' a new extensible theme
 #'
 #' @param base_size base size of fonts and margins
@@ -88,17 +116,17 @@ scale_ele <- function(level, base, ele_scales) {
 #' @return theme object of ggplotusethis::use_version()
 #' @export
 #'
-#' @examples ggplot(mini_diamond, aes(x=x, y=y, color=clarity)) +
-#'geom_point(size=2 + facet_grid(.~cut) +
-#'labs(title='title', tag='tag', caption='caption') +
-#'theme_pl()
-#'
+#' @examples
+#' ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
+#'   geom_point(size = 2) +
+#'   facet_grid(. ~ cut) +
+#'   labs(title = "title", tag = "tag", caption = "caption") +
+#'   theme_pl()
 theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
                      base_lw = 1,
                      margin_factor = 0.5, plot_margin_factor = 1.2,
                      legend_spacing_factor = 1.2,
-                     font_family = "",
-                     ...) {
+                     font_family = "", ...) {
   if (length(size_scales) != 6) {
     stop("the length of size_scales should be 6!")
   }
@@ -170,8 +198,10 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       ### rect
       ##################################
       #  global rect
-      rect = element_rect(fill = NA, color = NA,
-                          linewidth = lpt(base_lw), linetype = 1),
+      rect = element_rect(
+        fill = NA, color = NA,
+        linewidth = lpt(base_lw), linetype = 1
+      ),
       # backgrounds
       plot.background = element_blank(),
       panel.background = element_blank(),
@@ -208,7 +238,8 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
         scale_size(5) * margin_factor,
         scale_size(5) * margin_factor,
         scale_size(5) * margin_factor
-      )
+      ),
+      complete = TRUE
     ) %+replace%
     # allow modification
     ggplot2::theme(...)

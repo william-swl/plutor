@@ -16,5 +16,5 @@ cm value
 trans inch to cm
 }
 \examples{
-inch2cm(29.7)
+inch2cm(1)
 }

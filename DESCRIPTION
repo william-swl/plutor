@@ -1,6 +1,6 @@
 Package: plutor
 Title: plot using ggplot
-Version: 0.0.4
+Version: 0.0.5
 Authors@R: 
     person("William", "Song", , "william_swl@163.com", role = c("aut", "cre"))
 Description: plot using ggplot
@@ -9,11 +9,13 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.3
 Imports: 
+    baizer,
     dplyr,
     ggplot2,
     grid,
     magrittr,
-    munsell
+    munsell,
+    withr
 Suggests: 
     covr,
     testthat (>= 3.0.0)

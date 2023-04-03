@@ -7,9 +7,10 @@
 #'
 #' @examples inch2cm(1)
 inch2cm <- function(x) {
-  grid::convertHeight(unit(1, "inch"), "cm")
+  grid::convertUnit(unit(x, "inch"), "cm")
 }
 
+#' @export
 in2cm <- inch2cm
 
 #' trans cm to inch
@@ -21,10 +22,66 @@ in2cm <- inch2cm
 #'
 #' @examples cm2inch(1)
 cm2inch <- function(x) {
-  grid::convertHeight(unit(1, "cm"), "inch")
+  grid::convertUnit(unit(x, "cm"), "inch")
 }
 
+#' @export
 cm2in <- cm2inch
+
+#' trans inch to mm
+#'
+#' @param x inch value
+#'
+#' @return mm value
+#' @export
+#'
+#' @examples inch2mm(1)
+inch2mm <- function(x) {
+  grid::convertUnit(unit(x, "inch"), "mm")
+}
+
+#' @export
+in2mm <- inch2mm
+
+#' trans mm to inch
+#'
+#' @param x mm value
+#'
+#' @return inch value
+#' @export
+#'
+#' @examples mm2inch(1)
+mm2inch <- function(x) {
+  grid::convertUnit(unit(x, "mm"), "inch")
+}
+
+#' @export
+mm2in <- mm2inch
+
+
+#' trans pt to cm
+#'
+#' @param x pt value
+#'
+#' @return cm value
+#' @export
+#'
+#' @examples pt2cm(1)
+pt2cm <- function(x) {
+  grid::convertUnit(unit(x, "pt"), "cm")
+}
+
+#' trans cm to pt
+#'
+#' @param x cm value
+#'
+#' @return pt value
+#' @export
+#'
+#' @examples cm2pt(1)
+cm2pt <- function(x) {
+  grid::convertUnit(unit(x, "cm"), "pt")
+}
 
 
 #' trans pt to mm
@@ -36,7 +93,7 @@ cm2in <- cm2inch
 #'
 #' @examples pt2mm(1)
 pt2mm <- function(x) {
-  grid::convertHeight(unit(x, "pt"), "mm")
+  grid::convertUnit(unit(x, "pt"), "mm")
 }
 
 #' trans mm to pt
@@ -48,7 +105,7 @@ pt2mm <- function(x) {
 #'
 #' @examples mm2pt(1)
 mm2pt <- function(x) {
-  grid::convertHeight(unit(x, "mm"), "pt")
+  grid::convertUnit(unit(x, "mm"), "pt")
 }
 
 
@@ -62,7 +119,7 @@ mm2pt <- function(x) {
 #'
 #' @examples tpt(1)
 tpt <- function(x) {
-  x / 2.84527559055118
+    pt2mm(x)
 }
 
 #' trans geom line point and theme line point to the real point
@@ -100,11 +157,10 @@ scale_ele <- function(level, base, ele_scales) {
 #' @param base_size base size of fonts and margins
 #' @param size_scales a vector of element size scales, namely:
 #' 1. base size, used by legend text, axis text, caption
-#' 2. used by annotation labels
-#' 3. used by legend title, axis title, strip text
-#' 4. used by subtitle
-#' 5. used by title
-#' 6. used by tag
+#' 2. used by legend title, axis title, strip text (facet title)
+#' 3. used by subtitle
+#' 4. used by title
+#' 5. used by plot tag
 #' @param base_lw base line width
 #' @param margin_factor the factor of margin to size, default is 0.25
 #' @param font_family font family
@@ -122,14 +178,15 @@ scale_ele <- function(level, base, ele_scales) {
 #'   facet_grid(. ~ cut) +
 #'   labs(title = "title", tag = "tag", caption = "caption") +
 #'   theme_pl()
-theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
-                     base_lw = 1,
+theme_pl <- function(base_size = 6, size_scales = c(5, 6, 7, 8, 8),
+                     base_lw = 0.5,
                      margin_factor = 0.5, plot_margin_factor = 1.2,
                      legend_spacing_factor = 1.2,
                      font_family = "", ...) {
-  if (length(size_scales) != 6) {
-    stop("the length of size_scales should be 6!")
+  if (length(size_scales) != 5) {
+    stop("the length of size_scales should be 5!")
   }
+
   scale_size <- function(x) scale_ele(x, base_size, size_scales)
 
   ggplot2::theme_grey(
@@ -147,32 +204,32 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
         hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(0, 0, 0, 0)
       ),
       # plot tag. e.g. A, B, C
-      plot.tag = element_text(face = "bold", size = scale_size(6)),
+      plot.tag = element_text(face = "bold", size = scale_size(5)),
       # plot title
       plot.title = element_text(
-        face = "bold", size = scale_size(5), hjust = 0,
-        margin = margin(b = scale_size(5) * margin_factor)
+        face = "bold", size = scale_size(4), hjust = 0,
+        margin = margin(b = scale_size(4) * margin_factor)
       ),
       # plot subtitle, under the title
       plot.subtitle = element_text(
-        size = scale_size(4), hjust = 0,
-        margin = margin(b = scale_size(4) * margin_factor)
+        size = scale_size(3), hjust = 0,
+        margin = margin(b = scale_size(3) * margin_factor)
       ),
       # plot caption, bottom of the plot
       plot.caption = element_text(size = scale_size(1), hjust = 1),
       # plot legend title and text
-      legend.title = element_text(size = scale_size(3), hjust = 0),
+      legend.title = element_text(size = scale_size(2), hjust = 0),
       legend.text = element_text(size = scale_size(1), hjust = 0),
       # x, y axis title
-      axis.title = element_text(size = scale_size(3)),
+      axis.title = element_text(size = scale_size(2)),
       # x, y axis tick label
       axis.text = element_text(size = scale_size(1)),
       # facet title
       strip.text = element_text(
-        size = scale_size(3),
+        size = scale_size(2),
         margin = margin(
-          b = scale_size(3) * margin_factor,
-          t = scale_size(3) * margin_factor
+          b = scale_size(2) * margin_factor,
+          t = scale_size(2) * margin_factor
         )
       ),
 
@@ -192,7 +249,7 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       # axis tick line width
       axis.ticks = element_line(linewidth = lpt(base_lw)),
       # axis tick line length
-      axis.ticks.length = unit(2 * base_lw, "pt"),
+      axis.ticks.length = unit(4 * 0.5, "pt"),
 
       ##################################
       ### rect
@@ -220,24 +277,24 @@ theme_pl <- function(base_size = 10, size_scales = c(5, 5, 6, 8, 10, 10),
       # width of legend key
       legend.key.width = unit(scale_size(1), "pt"),
       # height of legend key, same as space between items
-      legend.key.height = unit(scale_size(3) * legend_spacing_factor, "pt"),
+      legend.key.height = unit(scale_size(2) * legend_spacing_factor, "pt"),
       # space between lenged title and items
-      legend.spacing.y = unit(scale_size(3) * legend_spacing_factor, "pt"),
+      legend.spacing.y = unit(scale_size(2) * legend_spacing_factor, "pt"),
       # space between legend keys and items
       legend.spacing.x = unit(scale_size(1) * margin_factor, "pt"),
 
       # margin of whole lenged box
       legend.margin = margin(0, 0, 0, 0),
-      # space between faect panels
-      panel.spacing = unit(scale_size(3) * margin_factor, "pt"),
+      # space between facet panels
+      panel.spacing = unit(scale_size(2) * margin_factor, "pt"),
       # tag position
       plot.tag.position = "topleft",
       # plot margins
       plot.margin = margin(
-        scale_size(5) * margin_factor,
-        scale_size(5) * margin_factor,
-        scale_size(5) * margin_factor,
-        scale_size(5) * margin_factor
+        scale_size(4) * plot_margin_factor,
+        scale_size(4) * plot_margin_factor,
+        scale_size(4) * plot_margin_factor,
+        scale_size(4) * plot_margin_factor
       ),
       complete = TRUE
     ) %+replace%

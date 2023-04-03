@@ -11,6 +11,8 @@ knitr::opts_chunk$set(
   fig.path = "man/figures/README-",
   out.width = "100%"
 )
+
+baizer::pkglib(tidyverse, baizer)
 ```
 
 # plutor
@@ -37,6 +39,51 @@ library(plutor)
 ```{r color-select_color}
 select_color(5)
 ```
+
+## theme
+
+- a custom flexible theme
+```{r theme-theme_pl, fig.width=5, fig.height=3, dpi=300 }
+ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
+  geom_point(size = 2) +
+  facet_grid(. ~ cut) +
+  labs(title = "title", tag = "tag", caption = "caption") +
+  theme_pl()
+```
+
+- a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
+```{r theme-pt}
+# for text and points
+# geom_point(..., size = tpt(5))
+# geom_text(..., size = tpt(5))
+
+# for lines
+# geom_line(..., linewidth = lpt(1))
+```
+
+- units transformation
+```{r theme-units}
+# inches <-> centimeters
+inch2cm(1)
+in2cm(1)
+cm2inch(1)
+cm2in(1)
+
+# inches <-> millimeters
+inch2mm(1)
+in2mm(1)
+mm2inch(1)
+mm2in(1)
+
+# points <-> centimeters
+pt2cm(1)
+cm2pt(1)
+
+# points <-> millimeters
+pt2mm(1)
+mm2pt(1)
+```
+
 
 ## IO
 - save a plot

@@ -5,9 +5,9 @@
 \title{a new extensible theme}
 \usage{
 theme_pl(
-  base_size = 10,
-  size_scales = c(5, 5, 6, 8, 10, 10),
-  base_lw = 1,
+  base_size = 6,
+  size_scales = c(5, 6, 7, 8, 8),
+  base_lw = 0.5,
   margin_factor = 0.5,
   plot_margin_factor = 1.2,
   legend_spacing_factor = 1.2,
@@ -21,11 +21,10 @@ theme_pl(
 \item{size_scales}{a vector of element size scales, namely:
 \enumerate{
 \item base size, used by legend text, axis text, caption
-\item used by annotation labels
-\item used by legend title, axis title, strip text
+\item used by legend title, axis title, strip text (facet title)
 \item used by subtitle
 \item used by title
-\item used by tag
+\item used by plot tag
 }}
 
 \item{base_lw}{base line width}
@@ -48,9 +47,9 @@ theme object of ggplotusethis::use_version()
 a new extensible theme
 }
 \examples{
-ggplot(mini_diamond, aes(x=x, y=y, color=clarity)) +
-geom_point(size=2 + facet_grid(.~cut) +
-labs(title='title', tag='tag', caption='caption') +
-theme_pl()
-
+ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
+  geom_point(size = 2) +
+  facet_grid(. ~ cut) +
+  labs(title = "title", tag = "tag", caption = "caption") +
+  theme_pl()
 }

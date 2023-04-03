@@ -7,7 +7,7 @@
 #'
 #' @examples inch2cm(1)
 inch2cm <- function(x) {
-  grid::convertUnit(unit(x, "inch"), "cm")
+  grid::convertUnit(unit(x, "inch"), "cm") %>% unclass()
 }
 
 #' @export
@@ -22,7 +22,7 @@ in2cm <- inch2cm
 #'
 #' @examples cm2inch(1)
 cm2inch <- function(x) {
-  grid::convertUnit(unit(x, "cm"), "inch")
+  grid::convertUnit(unit(x, "cm"), "inch") %>% unclass()
 }
 
 #' @export
@@ -37,7 +37,7 @@ cm2in <- cm2inch
 #'
 #' @examples inch2mm(1)
 inch2mm <- function(x) {
-  grid::convertUnit(unit(x, "inch"), "mm")
+  grid::convertUnit(unit(x, "inch"), "mm") %>% unclass()
 }
 
 #' @export
@@ -52,7 +52,7 @@ in2mm <- inch2mm
 #'
 #' @examples mm2inch(1)
 mm2inch <- function(x) {
-  grid::convertUnit(unit(x, "mm"), "inch")
+  grid::convertUnit(unit(x, "mm"), "inch") %>% unclass()
 }
 
 #' @export
@@ -68,7 +68,7 @@ mm2in <- mm2inch
 #'
 #' @examples pt2cm(1)
 pt2cm <- function(x) {
-  grid::convertUnit(unit(x, "pt"), "cm")
+  grid::convertUnit(unit(x, "pt"), "cm") %>% unclass()
 }
 
 #' trans cm to pt
@@ -80,7 +80,7 @@ pt2cm <- function(x) {
 #'
 #' @examples cm2pt(1)
 cm2pt <- function(x) {
-  grid::convertUnit(unit(x, "cm"), "pt")
+  grid::convertUnit(unit(x, "cm"), "pt") %>% unclass()
 }
 
 
@@ -93,7 +93,7 @@ cm2pt <- function(x) {
 #'
 #' @examples pt2mm(1)
 pt2mm <- function(x) {
-  grid::convertUnit(unit(x, "pt"), "mm")
+  grid::convertUnit(unit(x, "pt"), "mm") %>% unclass()
 }
 
 #' trans mm to pt
@@ -105,7 +105,7 @@ pt2mm <- function(x) {
 #'
 #' @examples mm2pt(1)
 mm2pt <- function(x) {
-  grid::convertUnit(unit(x, "mm"), "pt")
+  grid::convertUnit(unit(x, "mm"), "pt") %>% unclass()
 }
 
 
@@ -119,7 +119,7 @@ mm2pt <- function(x) {
 #'
 #' @examples tpt(1)
 tpt <- function(x) {
-    pt2mm(x)
+  pt2mm(x)
 }
 
 #' trans geom line point and theme line point to the real point

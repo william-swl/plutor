@@ -61,35 +61,59 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 ``` r
 # inches <-> centimeters
 inch2cm(1)
-#> [1] 2.54cm
+#> [1] 2.54
+#> attr(,"unit")
+#> [1] 1
 in2cm(1)
-#> [1] 2.54cm
+#> [1] 2.54
+#> attr(,"unit")
+#> [1] 1
 cm2inch(1)
-#> [1] 0.393700787401575inches
+#> [1] 0.3937008
+#> attr(,"unit")
+#> [1] 2
 cm2in(1)
-#> [1] 0.393700787401575inches
+#> [1] 0.3937008
+#> attr(,"unit")
+#> [1] 2
 
 # inches <-> millimeters
 inch2mm(1)
-#> [1] 25.4mm
+#> [1] 25.4
+#> attr(,"unit")
+#> [1] 7
 in2mm(1)
-#> [1] 25.4mm
+#> [1] 25.4
+#> attr(,"unit")
+#> [1] 7
 mm2inch(1)
-#> [1] 0.0393700787401575inches
+#> [1] 0.03937008
+#> attr(,"unit")
+#> [1] 2
 mm2in(1)
-#> [1] 0.0393700787401575inches
+#> [1] 0.03937008
+#> attr(,"unit")
+#> [1] 2
 
 # points <-> centimeters
 pt2cm(1)
-#> [1] 0.0351459803514598cm
+#> [1] 0.03514598
+#> attr(,"unit")
+#> [1] 1
 cm2pt(1)
-#> [1] 28.4527559055118points
+#> [1] 28.45276
+#> attr(,"unit")
+#> [1] 8
 
 # points <-> millimeters
 pt2mm(1)
-#> [1] 0.351459803514598mm
+#> [1] 0.3514598
+#> attr(,"unit")
+#> [1] 7
 mm2pt(1)
-#> [1] 2.84527559055118points
+#> [1] 2.845276
+#> attr(,"unit")
+#> [1] 8
 ```
 
 ## IO

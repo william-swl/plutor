@@ -40,16 +40,38 @@ library(plutor)
 select_color(5)
 ```
 
+- generate gradient colors
+```{r color-gradient_color}
+gradient_color(c("blue", "red"), 10)
+```
+
+- show colors
+```{r color-plot_col, fig.width=4, fig.height=3, dpi=300 }
+plot_col(gradient_color(c("blue", "red"), 10))
+```
+
+
+
 ## theme
 
 - a custom flexible theme
-```{r theme-theme_pl, fig.width=5, fig.height=3, dpi=300 }
+```{r theme-theme_pl, fig.width=4, fig.height=3, dpi=300 }
 ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
   geom_point(size = 2) +
   facet_grid(. ~ cut) +
   labs(title = "title", tag = "tag", caption = "caption") +
   theme_pl()
 ```
+
+- a blank theme
+```{r theme-theme_pl0, fig.width=4, fig.height=3, dpi=300 }
+ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
+  geom_point(size = 2) +
+  facet_grid(. ~ cut) +
+  labs(title = "title", tag = "tag", caption = "caption") +
+  theme_pl0()
+```
+
 
 - a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
 ```{r theme-pt}

@@ -57,3 +57,9 @@ pl_save <- function(plot, filename, width, height, units = "in", canvas = NULL,
     )
   }
 }
+
+
+# used by test
+pl_svg <- function(plot, file, title = "") {
+  pl_save(plot, file, width = 4, height = 3)
+}

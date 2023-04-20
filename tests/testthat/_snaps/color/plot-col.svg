@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' class='svglite' width='288.00pt' height='216.00pt' viewBox='0 0 288.00 216.00'>
+<defs>
+  <style type='text/css'><![CDATA[
+    .svglite line, .svglite polyline, .svglite polygon, .svglite path, .svglite rect, .svglite circle {
+      fill: none;
+      stroke: #000000;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-miterlimit: 10.00;
+    }
+    .svglite text {
+      white-space: pre;
+    }
+  ]]></style>
+</defs>
+<rect width='100%' height='100%' style='stroke: none; fill: none;'/>
+<defs>
+  <clipPath id='cpMC4wMHwyODguMDB8MC4wMHwyMTYuMDA='>
+    <rect x='0.00' y='0.00' width='288.00' height='216.00' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyMTYuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMC4wMHwyODguMDB8NzYuMjB8MTM5Ljgw'>
+    <rect x='0.00' y='76.20' width='288.00' height='63.61' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMC4wMHwyODguMDB8NzYuMjB8MTM5Ljgw)'>
+</g>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyMTYuMDA=)'>
+</g>
+<defs>
+  <clipPath id='cpMTAuMzZ8Mjc5LjYzfDg0LjU2fDEyOS40NA=='>
+    <rect x='10.36' y='84.56' width='269.27' height='44.88' />
+  </clipPath>
+</defs>
+<g clip-path='url(#cpMTAuMzZ8Mjc5LjYzfDg0LjU2fDEyOS40NA==)'>
+<rect x='22.60' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #AC6966;' />
+<rect x='63.40' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9D7338;' />
+<rect x='104.20' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #548752;' />
+<rect x='145.00' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #248982;' />
+<rect x='185.79' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #627CA4;' />
+<rect x='226.59' y='86.60' width='40.80' height='40.80' style='stroke-width: 1.07; stroke: none; stroke-linecap: butt; stroke-linejoin: miter; fill: #9A6D8F;' />
+<text x='43.00' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>1</text>
+<text x='83.80' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='124.60' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='165.40' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='206.19' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text x='246.99' y='108.83' text-anchor='middle' style='font-size: 5.00px; font-family: "Liberation Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'>6</text>
+</g>
+<g clip-path='url(#cpMC4wMHwyODguMDB8MC4wMHwyMTYuMDA=)'>
+</g>
+</svg>

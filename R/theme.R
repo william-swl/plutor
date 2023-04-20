@@ -157,19 +157,20 @@ scale_ele <- function(level, base, ele_scales) {
 #' @param base_size base size of fonts and margins
 #' @param size_scales a vector of element size scales, namely:
 #' 1. base size, used by legend text, axis text, caption
-#' 2. used by legend title, axis title, strip text (facet title)
-#' 3. used by subtitle
-#' 4. used by title
-#' 5. used by plot tag
+#' 2. used by legend title, axis title, strip text (facet title), subtitle
+#' 3. used by title, tag
 #' @param base_lw base line width
-#' @param margin_factor the factor of margin to size, default is 0.25
+#' @param margin_factor factor to adjust the element margins according to
+#' size_scales, default is 0.5
 #' @param font_family font family
-#' @param plot_margin_factor factor to adjust the plot margins, default is 1.2
-#' @param legend_spacing_factor factor to adjust the space of legend items,
+#' @param plot_margin_factor factor to adjust the plot margins according to
+#' size_scales[3], default is 1.2
+#' @param legend_spacing_factor factor to adjust the space of legend items
+#' according to size_scales[2],
 #' default is 1.2
 #' @param ...
 #'
-#' @return theme object of ggplotusethis::use_version()
+#' @return theme object of ggplot
 #' @export
 #'
 #' @examples
@@ -178,13 +179,13 @@ scale_ele <- function(level, base, ele_scales) {
 #'   facet_grid(. ~ cut) +
 #'   labs(title = "title", tag = "tag", caption = "caption") +
 #'   theme_pl()
-theme_pl <- function(base_size = 6, size_scales = c(5, 6, 7, 8, 8),
+theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
                      base_lw = 0.5,
                      margin_factor = 0.5, plot_margin_factor = 1.2,
                      legend_spacing_factor = 1.2,
                      font_family = "", ...) {
-  if (length(size_scales) != 5) {
-    stop("the length of size_scales should be 5!")
+  if (length(size_scales) != 3) {
+    stop("the length of size_scales should be 3!")
   }
 
   scale_size <- function(x) scale_ele(x, base_size, size_scales)
@@ -204,16 +205,16 @@ theme_pl <- function(base_size = 6, size_scales = c(5, 6, 7, 8, 8),
         hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(0, 0, 0, 0)
       ),
       # plot tag. e.g. A, B, C
-      plot.tag = element_text(face = "bold", size = scale_size(5)),
+      plot.tag = element_text(face = "bold", size = scale_size(3)),
       # plot title
       plot.title = element_text(
-        face = "bold", size = scale_size(4), hjust = 0,
-        margin = margin(b = scale_size(4) * margin_factor)
+        face = "bold", size = scale_size(3), hjust = 0,
+        margin = margin(b = scale_size(3) * margin_factor)
       ),
       # plot subtitle, under the title
       plot.subtitle = element_text(
-        size = scale_size(3), hjust = 0,
-        margin = margin(b = scale_size(3) * margin_factor)
+        size = scale_size(2), hjust = 0,
+        margin = margin(b = scale_size(2) * margin_factor)
       ),
       # plot caption, bottom of the plot
       plot.caption = element_text(size = scale_size(1), hjust = 1),
@@ -286,18 +287,37 @@ theme_pl <- function(base_size = 6, size_scales = c(5, 6, 7, 8, 8),
       # margin of whole lenged box
       legend.margin = margin(0, 0, 0, 0),
       # space between facet panels
-      panel.spacing = unit(scale_size(2) * margin_factor, "pt"),
+      panel.spacing = unit(scale_size(3) * 2 * margin_factor, "pt"),
       # tag position
       plot.tag.position = "topleft",
       # plot margins
       plot.margin = margin(
-        scale_size(4) * plot_margin_factor,
-        scale_size(4) * plot_margin_factor,
-        scale_size(4) * plot_margin_factor,
-        scale_size(4) * plot_margin_factor
+        scale_size(3) * plot_margin_factor,
+        scale_size(3) * plot_margin_factor,
+        scale_size(3) * plot_margin_factor,
+        scale_size(3) * plot_margin_factor
       ),
       complete = TRUE
     ) %+replace%
     # allow modification
+    ggplot2::theme(...)
+}
+
+
+
+#' a blank theme
+#'
+#' @param ... arguments of theme_pl()
+#'
+#' @return theme object of ggplot
+#' @export
+#'
+#' @examples
+theme_pl0 <- function(...) {
+  theme_pl(
+    legend.position = "none", title = element_blank(),
+    axis.line = element_blank(), axis.ticks = element_blank(),
+    axis.title = element_blank(), axis.text = element_blank()
+  ) %+replace%
     ggplot2::theme(...)
 }

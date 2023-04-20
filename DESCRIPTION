@@ -1,6 +1,6 @@
 Package: plutor
 Title: plot using ggplot
-Version: 0.0.6
+Version: 0.0.7
 Authors@R: 
     person("William", "Song", , "william_swl@163.com", role = c("aut", "cre"))
 Description: plot using ggplot
@@ -12,12 +12,17 @@ Imports:
     baizer,
     dplyr,
     ggplot2,
+    grDevices,
     grid,
     magrittr,
     munsell,
+    RColorBrewer,
+    rlang,
+    tibble,
     withr
 Suggests: 
     covr,
+    svglite,
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
 Remotes: 

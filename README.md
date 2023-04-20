@@ -31,6 +31,22 @@ select_color(5)
 #> [1] "#AC6966" "#90792C" "#308974" "#4981A1" "#9A6D8F"
 ```
 
+- generate gradient colors
+
+``` r
+gradient_color(c("blue", "red"), 10)
+#>  [1] "#0000FF" "#1C00E2" "#3800C6" "#5500AA" "#71008D" "#8D0071" "#AA0055"
+#>  [8] "#C60038" "#E2001C" "#FF0000"
+```
+
+- show colors
+
+``` r
+plot_col(gradient_color(c("blue", "red"), 10))
+```
+
+<img src="man/figures/README-color-plot_col-1.png" width="100%" />
+
 ## theme
 
 - a custom flexible theme
@@ -44,6 +60,18 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 ```
 
 <img src="man/figures/README-theme-theme_pl-1.png" width="100%" />
+
+- a blank theme
+
+``` r
+ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
+  geom_point(size = 2) +
+  facet_grid(. ~ cut) +
+  labs(title = "title", tag = "tag", caption = "caption") +
+  theme_pl0()
+```
+
+<img src="man/figures/README-theme-theme_pl0-1.png" width="100%" />
 
 - a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
 

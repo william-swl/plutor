@@ -5,8 +5,8 @@
 \title{a new extensible theme}
 \usage{
 theme_pl(
-  base_size = 6,
-  size_scales = c(5, 6, 7, 8, 8),
+  base_size = 5,
+  size_scales = c(5, 6, 7),
   base_lw = 0.5,
   margin_factor = 0.5,
   plot_margin_factor = 1.2,
@@ -21,19 +21,20 @@ theme_pl(
 \item{size_scales}{a vector of element size scales, namely:
 \enumerate{
 \item base size, used by legend text, axis text, caption
-\item used by legend title, axis title, strip text (facet title)
-\item used by subtitle
-\item used by title
-\item used by plot tag
+\item used by legend title, axis title, strip text (facet title), subtitle
+\item used by title, tag
 }}
 
 \item{base_lw}{base line width}
 
-\item{margin_factor}{the factor of margin to size, default is 0.25}
+\item{margin_factor}{factor to adjust the element margins according to
+size_scales, default is 0.5}
 
-\item{plot_margin_factor}{factor to adjust the plot margins, default is 1.2}
+\item{plot_margin_factor}{factor to adjust the plot margins according to
+size_scales\link{3}, default is 1.2}
 
-\item{legend_spacing_factor}{factor to adjust the space of legend items,
+\item{legend_spacing_factor}{factor to adjust the space of legend items
+according to size_scales\link{2},
 default is 1.2}
 
 \item{font_family}{font family}
@@ -41,7 +42,7 @@ default is 1.2}
 \item{...}{}
 }
 \value{
-theme object of ggplotusethis::use_version()
+theme object of ggplot
 }
 \description{
 a new extensible theme

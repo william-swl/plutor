@@ -36,11 +36,12 @@ gradient_color <- function(x, n) {
 #'
 #' @param x color values
 #' @param show_name use vector names as label
+#' @param ncol color number of each row
 #'
 #' @return ggplot object
 #' @export
 #'
-#' @examples
+#' @examples plot_col(gradient_color(c("blue", "red"), 10))
 plot_col <- function(x, ncol = 10, show_name = TRUE) {
   df <- as_tibble(x, rownames = "key") %>%
     dplyr::mutate(row = floor((seq_len(dplyr::n()) - 1) / ncol) + 1) %>%

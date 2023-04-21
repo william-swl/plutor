@@ -15,3 +15,6 @@ theme object of ggplot
 \description{
 a blank theme
 }
+\examples{
+theme_pl0()
+}

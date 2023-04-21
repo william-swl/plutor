@@ -9,6 +9,8 @@ plot_col(x, ncol = 10, show_name = TRUE)
 \arguments{
 \item{x}{color values}
 
+\item{ncol}{color number of each row}
+
 \item{show_name}{use vector names as label}
 }
 \value{
@@ -16,4 +18,7 @@ ggplot object
 }
 \description{
 show colors
+}
+\examples{
+plot_col(gradient_color(c("blue", "red"), 10))
 }

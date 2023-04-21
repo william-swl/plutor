@@ -33,6 +33,13 @@ And load the package:
 library(plutor)
 ```
 
+It is recommended to perform initialization, which adjusts the default plotting parameters in an interactive environment (such as jupyter notebook) and sets the theme to `theme_pl()`.
+
+```{r init}
+pl_init()
+```
+
+
 ## color
 
 - select most distant colors among a color spectrum

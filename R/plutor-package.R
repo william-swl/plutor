@@ -2,6 +2,7 @@
 "_PACKAGE"
 
 ## usethis namespace: start
+#' @importFrom baizer alias_arg
 #' @importFrom ggplot2 %+replace%
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 coord_fixed
@@ -19,6 +20,7 @@
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 scale_y_reverse
 #' @importFrom ggplot2 theme
+#' @importFrom ggplot2 theme_set
 #' @importFrom grid unit
 #' @importFrom rlang .data
 #' @importFrom rlang .env

@@ -1,3 +1,27 @@
+#' set pl_size of the
+#'
+#' @param width width
+#' @param height height
+#' @param res resolution, 300 as default
+#' @param w alias of width
+#' @param h alias of height
+#' @param theme default theme
+#'
+#' @export
+#'
+#' @examples pl_init()
+pl_init <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL,
+                    theme = theme_pl()) {
+  width <- alias_arg(width, w, with_default = width)
+  height <- alias_arg(height, h, with_default = height)
+  options(
+    repr.plot.width = width, repr.plot.height = height,
+    repr.plot.res = res
+  )
+  theme_set(theme)
+}
+
+
 #' trans inch to cm
 #'
 #' @param x inch value
@@ -168,17 +192,12 @@ scale_ele <- function(level, base, ele_scales) {
 #' @param legend_spacing_factor factor to adjust the space of legend items
 #' according to size_scales[2],
 #' default is 1.2
-#' @param ...
+#' @param ... arguments from ggplot::theme()
 #'
 #' @return theme object of ggplot
 #' @export
 #'
-#' @examples
-#' ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
-#'   geom_point(size = 2) +
-#'   facet_grid(. ~ cut) +
-#'   labs(title = "title", tag = "tag", caption = "caption") +
-#'   theme_pl()
+#' @examples theme_pl()
 theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
                      base_lw = 0.5,
                      margin_factor = 0.5, plot_margin_factor = 1.2,
@@ -312,7 +331,7 @@ theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
 #' @return theme object of ggplot
 #' @export
 #'
-#' @examples
+#' @examples theme_pl0()
 theme_pl0 <- function(...) {
   theme_pl(
     legend.position = "none", title = element_blank(),

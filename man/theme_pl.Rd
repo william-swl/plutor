@@ -39,7 +39,7 @@ default is 1.2}
 
 \item{font_family}{font family}
 
-\item{...}{}
+\item{...}{arguments from ggplot::theme()}
 }
 \value{
 theme object of ggplot
@@ -48,9 +48,5 @@ theme object of ggplot
 a new extensible theme
 }
 \examples{
-ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
-  geom_point(size = 2) +
-  facet_grid(. ~ cut) +
-  labs(title = "title", tag = "tag", caption = "caption") +
-  theme_pl()
+theme_pl()
 }

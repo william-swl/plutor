@@ -17,13 +17,15 @@ Imports:
     magrittr,
     munsell,
     RColorBrewer,
+    repr,
     rlang,
     tibble,
     withr
 Suggests: 
     covr,
     svglite,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    vdiffr
 Config/testthat/edition: 3
 Remotes: 
     github::william-swl/baizer

@@ -90,6 +90,12 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 # geom_line(..., linewidth = lpt(1))
 ```
 
+- set repr size and resolution
+```{r theme-pl_size}
+pl_size(width = 3, height = 2)
+```
+
+
 - units transformation
 ```{r theme-units}
 # inches <-> centimeters

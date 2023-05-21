@@ -22,6 +22,14 @@ And load the package:
 library(plutor)
 ```
 
+It is recommended to perform initialization, which adjusts the default
+plotting parameters in an interactive environment (such as jupyter
+notebook) and sets the theme to `theme_pl()`.
+
+``` r
+pl_init()
+```
+
 ## color
 
 - select most distant colors among a color spectrum
@@ -82,6 +90,12 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 
 # for lines
 # geom_line(..., linewidth = lpt(1))
+```
+
+- set repr size and resolution
+
+``` r
+pl_size(width = 3, height = 2)
 ```
 
 - units transformation

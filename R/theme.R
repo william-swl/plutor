@@ -1,4 +1,4 @@
-#' set pl_size of the
+#' set size, resolution and default theme
 #'
 #' @param width width
 #' @param height height
@@ -12,14 +12,35 @@
 #' @examples pl_init()
 pl_init <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL,
                     theme = theme_pl()) {
-  width <- alias_arg(width, w, with_default = width)
-  height <- alias_arg(height, h, with_default = height)
+  width <- alias_arg(width, w, default = width)
+  height <- alias_arg(height, h, default = height)
   options(
     repr.plot.width = width, repr.plot.height = height,
     repr.plot.res = res
   )
   theme_set(theme)
 }
+
+#' set repr size and resolution
+#'
+#' @param width width
+#' @param height height
+#' @param res resolution, 300 as default
+#' @param w alias of width
+#' @param h alias of height
+#'
+#' @export
+#'
+#' @examples pl_size(width = 3, height = 2)
+pl_size <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL) {
+  width <- alias_arg(width, w, default = width)
+  height <- alias_arg(height, h, default = height)
+  options(
+    repr.plot.width = width, repr.plot.height = height,
+    repr.plot.res = res
+  )
+}
+
 
 
 #' trans inch to cm

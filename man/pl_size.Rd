@@ -2,7 +2,7 @@
 % Please edit documentation in R/theme.R
 \name{pl_size}
 \alias{pl_size}
-\title{set size, resolution}
+\title{set repr size and resolution}
 \usage{
 pl_size(width = 3, height = 1.5, res = 300, w = NULL, h = NULL)
 }
@@ -18,8 +18,8 @@ pl_size(width = 3, height = 1.5, res = 300, w = NULL, h = NULL)
 \item{h}{alias of height}
 }
 \description{
-set size, resolution
+set repr size and resolution
 }
 \examples{
-pl_size(width=3, height=2)
+pl_size(width = 3, height = 2)
 }

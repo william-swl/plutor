@@ -1,6 +1,6 @@
 Package: plutor
 Title: plot using ggplot
-Version: 0.0.8
+Version: 0.0.9
 Authors@R: 
     person("William", "Song", , "william_swl@163.com", role = c("aut", "cre"))
 Description: plot using ggplot
@@ -11,11 +11,14 @@ RoxygenNote: 7.2.3
 Imports: 
     baizer,
     dplyr,
+    echarts4r,
     ggplot2,
     grDevices,
     grid,
+    jsonlite,
     magrittr,
     munsell,
+    purrr,
     RColorBrewer,
     repr,
     rlang,

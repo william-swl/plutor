@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # plutor
@@ -6,6 +5,7 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
 ## installation
@@ -22,9 +22,7 @@ And load the package:
 library(plutor)
 ```
 
-It is recommended to perform initialization, which adjusts the default
-plotting parameters in an interactive environment (such as jupyter
-notebook) and sets the theme to `theme_pl()`.
+It is recommended to perform initialization, which adjusts the default plotting parameters in an interactive environment (such as jupyter notebook) and sets the theme to `theme_pl()`.
 
 ``` r
 pl_init()
@@ -32,14 +30,14 @@ pl_init()
 
 ## color
 
-- select most distant colors among a color spectrum
+-   select most distant colors among a color spectrum
 
 ``` r
 select_color(5)
 #> [1] "#AC6966" "#90792C" "#308974" "#4981A1" "#9A6D8F"
 ```
 
-- generate gradient colors
+-   generate gradient colors
 
 ``` r
 gradient_color(c("blue", "red"), 10)
@@ -47,17 +45,17 @@ gradient_color(c("blue", "red"), 10)
 #>  [8] "#C60038" "#E2001C" "#FF0000"
 ```
 
-- show colors
+-   show colors
 
 ``` r
 plot_col(gradient_color(c("blue", "red"), 10))
 ```
 
-<img src="man/figures/README-color-plot_col-1.png" width="100%" />
+<img src="man/figures/README-color-plot_col-1.png" width="100%"/>
 
 ## theme
 
-- a custom flexible theme
+-   a custom flexible theme
 
 ``` r
 ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
@@ -67,9 +65,9 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
   theme_pl()
 ```
 
-<img src="man/figures/README-theme-theme_pl-1.png" width="100%" />
+<img src="man/figures/README-theme-theme_pl-1.png" width="100%"/>
 
-- a blank theme
+-   a blank theme
 
 ``` r
 ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
@@ -79,9 +77,9 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
   theme_pl0()
 ```
 
-<img src="man/figures/README-theme-theme_pl0-1.png" width="100%" />
+<img src="man/figures/README-theme-theme_pl0-1.png" width="100%"/>
 
-- a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
+-   a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
 
 ``` r
 # for text and points
@@ -92,13 +90,13 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 # geom_line(..., linewidth = lpt(1))
 ```
 
-- set repr size and resolution
+-   set repr size and resolution
 
 ``` r
 pl_size(width = 3, height = 2)
 ```
 
-- units transformation
+-   units transformation
 
 ``` r
 # inches <-> centimeters
@@ -158,15 +156,35 @@ mm2pt(1)
 #> [1] 8
 ```
 
+## echarts4r
+
+### echarts theme
+
+-   set colors for echarts plot
+
+``` r
+mini_diamond %>%
+  group_by(cut) %>%
+  e_charts(x, width = 500, height = 500) %>%
+  e_scatter(y, symbol_size = 10) %>%
+  pe_color(c("red", "yellow"), default = "black")
+```
+
+::: {#htmlwidget-b88bbeea5b3617e8bb60 .echarts4r .html-widget style="width:500px;height:500px;"}
+:::
+
+```{=html}
+<script type="application/json" data-for="htmlwidget-b88bbeea5b3617e8bb60">{"x":{"theme":"custom","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Fair","Good","Ideal"]},"series":[{"data":[{"value":[4.47,4.35]},{"value":[4.68,4.73]},{"value":[4.72,4.77]},{"value":[4.8,4.76]},{"value":[5.09,4.98]},{"value":[5.26,5.2]},{"value":[5.36,5.41]},{"value":[5.56,5.41]},{"value":[5.64,5.5]},{"value":[5.65,5.39]},{"value":[5.66,5.71]},{"value":[5.67,5.57]},{"value":[5.83,5.81]},{"value":[5.87,5.81]},{"value":[6.08,6.04]},{"value":[6.1,6.12]},{"value":[6.25,6.18]},{"value":[6.26,6.21]},{"value":[6.26,6.29]},{"value":[6.27,6.23]},{"value":[6.34,6.29]},{"value":[6.38,6.4]},{"value":[6.48,6.52]},{"value":[6.61,6.54]},{"value":[6.77,6.71]},{"value":[6.9,6.8]},{"value":[6.98,6.93]},{"value":[7.23,7.19]},{"value":[7.63,7.59]},{"value":[7.78,7.74]},{"value":[7.87,7.8]},{"value":[7.97,7.92]},{"value":[8.3,8.19]},{"value":[8.33,8.37]},{"value":[8.47,8.31]}],"name":"Fair","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.09,4.12]},{"value":[4.1,4.07]},{"value":[4.23,4.3]},{"value":[4.33,4.35]},{"value":[4.4,4.44]},{"value":[4.57,4.55]},{"value":[4.64,4.68]},{"value":[4.7,4.74]},{"value":[4.71,4.73]},{"value":[4.72,4.78]},{"value":[4.75,4.8]},{"value":[4.77,4.79]},{"value":[4.85,4.78]},{"value":[5.05,5.08]},{"value":[5.12,5.18]},{"value":[5.49,5.56]},{"value":[5.62,5.59]},{"value":[6.09,6.05]},{"value":[6.11,6.17]},{"value":[6.16,6.07]},{"value":[6.27,6.31]},{"value":[6.32,6.3]},{"value":[6.37,6.4]},{"value":[6.63,6.71]},{"value":[6.63,6.55]},{"value":[6.72,6.68]},{"value":[6.93,6.88]},{"value":[7.18,7.24]},{"value":[7.27,7.18]},{"value":[7.6,7.56]},{"value":[8.66,8.57]}],"name":"Good","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.19,4.23]},{"value":[4.27,4.29]},{"value":[4.32,4.34]},{"value":[4.33,4.39]},{"value":[4.33,4.36]},{"value":[4.36,4.41]},{"value":[4.38,4.4]},{"value":[4.38,4.34]},{"value":[4.45,4.46]},{"value":[4.72,4.75]},{"value":[4.73,4.76]},{"value":[5.11,5.05]},{"value":[5.15,5.18]},{"value":[5.15,5.11]},{"value":[5.31,5.32]},{"value":[5.34,5.39]},{"value":[5.4,5.36]},{"value":[5.69,5.72]},{"value":[5.72,5.78]},{"value":[5.73,5.77]},{"value":[5.77,5.82]},{"value":[5.91,5.96]},{"value":[6.34,6.28]},{"value":[6.35,6.39]},{"value":[6.37,6.41]},{"value":[6.4,6.43]},{"value":[6.43,6.4]},{"value":[6.54,6.5]},{"value":[6.6,6.64]},{"value":[6.62,6.67]},{"value":[6.65,6.69]},{"value":[6.66,6.7]},{"value":[7.43,7.45]},{"value":[8.31,8.26]}],"name":"Ideal","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true,"theme2":true,"customTheme":"{\"color\":[\"red\",\"yellow\",\"black\"]}","theme_name":"custom"},"evals":[],"jsHooks":[]}</script>
+```
 ## IO
 
-- save a plot
+-   save a plot
 
 ``` r
 # pl_save(p, 'plot.pdf', width=14, height=10)
 ```
 
-- save a plot into an blank A4 canvas, or a custom canvas
+-   save a plot into an blank A4 canvas, or a custom canvas
 
 ``` r
 # pl_save(p, 'plot.pdf', width=14, height=10, canvas='A4', units='cm')

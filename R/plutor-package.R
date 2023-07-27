@@ -14,14 +14,22 @@
 #' @importFrom ggplot2 element_rect
 #' @importFrom ggplot2 element_text
 #' @importFrom ggplot2 facet_grid
+#' @importFrom ggplot2 flip_data
+#' @importFrom ggplot2 Geom
 #' @importFrom ggplot2 geom_point
 #' @importFrom ggplot2 geom_rect
 #' @importFrom ggplot2 geom_text
+#' @importFrom ggplot2 GeomPoint
+#' @importFrom ggplot2 GeomSegment
 #' @importFrom ggplot2 ggplot
+#' @importFrom ggplot2 ggproto
+#' @importFrom ggplot2 has_flipped_aes
 #' @importFrom ggplot2 labs
+#' @importFrom ggplot2 layer
 #' @importFrom ggplot2 margin
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 scale_y_reverse
+#' @importFrom ggplot2 Stat
 #' @importFrom ggplot2 theme
 #' @importFrom ggplot2 theme_set
 #' @importFrom grid unit
@@ -37,3 +45,7 @@
 #' @importFrom tibble tibble
 ## usethis namespace: end
 NULL
+
+
+
+layer <- function(...) ggplot2::layer(...)

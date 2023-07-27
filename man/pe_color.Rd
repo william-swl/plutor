@@ -18,3 +18,12 @@ pe_color(e, x, rep = FALSE, default = "transparent")
 \description{
 set colors for echarts plot
 }
+\examples{
+
+mini_diamond \%>\%
+  dplyr::group_by(cut) \%>\%
+  e_charts(x, width = 500, height = 500) \%>\%
+  e_scatter(y, symbol_size = 10) \%>\%
+  pe_color(c("red", "yellow"), default = "black")
+
+}

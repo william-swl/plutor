@@ -4,7 +4,7 @@
 \alias{pl_size}
 \title{set repr size and resolution}
 \usage{
-pl_size(width = 3, height = 1.5, res = 300, w = NULL, h = NULL)
+pl_size(width = 4, height = 3, res = 300, w = NULL, h = NULL)
 }
 \arguments{
 \item{width}{width}

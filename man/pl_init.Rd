@@ -5,8 +5,8 @@
 \title{set size, resolution and default theme}
 \usage{
 pl_init(
-  width = 3,
-  height = 1.5,
+  width = 4,
+  height = 3,
   res = 300,
   w = NULL,
   h = NULL,

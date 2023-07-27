@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples pl_init()
-pl_init <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL,
+pl_init <- function(width = 4, height = 3, res = 300, w = NULL, h = NULL,
                     theme = theme_pl()) {
   width <- alias_arg(width, w, default = width)
   height <- alias_arg(height, h, default = height)
@@ -32,7 +32,7 @@ pl_init <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL,
 #' @export
 #'
 #' @examples pl_size(width = 3, height = 2)
-pl_size <- function(width = 3, height = 1.5, res = 300, w = NULL, h = NULL) {
+pl_size <- function(width = 4, height = 3, res = 300, w = NULL, h = NULL) {
   width <- alias_arg(width, w, default = width)
   height <- alias_arg(height, h, default = height)
   options(
@@ -166,6 +166,11 @@ mm2pt <- function(x) {
 tpt <- function(x) {
   pt2mm(x)
 }
+
+
+#' @export
+ppt <- tpt
+
 
 #' trans geom line point and theme line point to the real point
 #'

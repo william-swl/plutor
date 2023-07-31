@@ -131,5 +131,6 @@ geom_describe <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' @export
 geom2trace.GeomDescribe <- function(data, params, plot) { # nolint
 }

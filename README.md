@@ -30,6 +30,53 @@ notebook) and sets the theme to `theme_pl()`.
 pl_init()
 ```
 
+## plots
+
+Description values plot:
+
+- The describe geom is used to create description values plot, including
+  center symbol and error symbol.
+
+- The center symbol can be mean, median or other custom functions.
+
+- The error symbol can be sd, quantile or other custom functions.
+
+``` r
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_describe()
+```
+
+<img src="man/figures/README-plots-geom_describe-1.png" width="100%" />
+
+``` r
+center_func <- median
+low_func <- function(x, na.rm) {
+  quantile(x, 0.25, na.rm = na.rm)
+}
+
+high_func <- function(x, na.rm) {
+  quantile(x, 0.75, na.rm = na.rm)
+}
+
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_describe(center_func = center_func, low_func = low_func, high_func = high_func)
+```
+
+<img src="man/figures/README-plots-geom_describe_custom-1.png" width="100%" />
+
+Add p value and fold change on a plot
+
+``` r
+ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
+      geom_point() + geom_describe(color='red') +
+      geom_compare(cp_label = c("psymbol", "right_deno_fc"), y_position = 25000, step_increase=0.3) +
+      ylim(0, 40000)
+```
+
+<img src="man/figures/README-plots-geom_point-1.png" width="100%" />
+
 ## color
 
 - select most distant colors among a color spectrum
@@ -158,38 +205,6 @@ mm2pt(1)
 #> [1] 8
 ```
 
-## plots
-
-Description values plot: - The describe geom is used to create
-description values plot, including center symbol and error symbol. - The
-center symbol can be mean, median or other custom functions. - The error
-symbol can be sd, quantile or other custom functions.
-
-``` r
-mini_diamond %>% ggplot(aes(x = cut, y = price)) +
-  geom_point() +
-  geom_describe()
-```
-
-<img src="man/figures/README-plots-geom_describe-1.png" width="100%" />
-
-``` r
-center_func <- median
-low_func <- function(x, na.rm) {
-  quantile(x, 0.25, na.rm = na.rm)
-}
-
-high_func <- function(x, na.rm) {
-  quantile(x, 0.75, na.rm = na.rm)
-}
-
-mini_diamond %>% ggplot(aes(x = cut, y = price)) +
-  geom_point() +
-  geom_describe(center_func = center_func, low_func = low_func, high_func = high_func)
-```
-
-<img src="man/figures/README-plots-geom_describe_custom-1.png" width="100%" />
-
 ## echarts4r
 
 ### echarts theme
@@ -204,8 +219,8 @@ mini_diamond %>%
   pe_color(c("red", "yellow"), default = "black")
 ```
 
-<div id="htmlwidget-c93286f4a6e3df71b046" style="width:500px;height:500px;" class="echarts4r html-widget "></div>
-<script type="application/json" data-for="htmlwidget-c93286f4a6e3df71b046">{"x":{"theme":"custom","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Fair","Good","Ideal"]},"series":[{"data":[{"value":[4.47,4.35]},{"value":[4.68,4.73]},{"value":[4.72,4.77]},{"value":[4.8,4.76]},{"value":[5.09,4.98]},{"value":[5.26,5.2]},{"value":[5.36,5.41]},{"value":[5.56,5.41]},{"value":[5.64,5.5]},{"value":[5.65,5.39]},{"value":[5.66,5.71]},{"value":[5.67,5.57]},{"value":[5.83,5.81]},{"value":[5.87,5.81]},{"value":[6.08,6.04]},{"value":[6.1,6.12]},{"value":[6.25,6.18]},{"value":[6.26,6.21]},{"value":[6.26,6.29]},{"value":[6.27,6.23]},{"value":[6.34,6.29]},{"value":[6.38,6.4]},{"value":[6.48,6.52]},{"value":[6.61,6.54]},{"value":[6.77,6.71]},{"value":[6.9,6.8]},{"value":[6.98,6.93]},{"value":[7.23,7.19]},{"value":[7.63,7.59]},{"value":[7.78,7.74]},{"value":[7.87,7.8]},{"value":[7.97,7.92]},{"value":[8.3,8.19]},{"value":[8.33,8.37]},{"value":[8.47,8.31]}],"name":"Fair","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.09,4.12]},{"value":[4.1,4.07]},{"value":[4.23,4.3]},{"value":[4.33,4.35]},{"value":[4.4,4.44]},{"value":[4.57,4.55]},{"value":[4.64,4.68]},{"value":[4.7,4.74]},{"value":[4.71,4.73]},{"value":[4.72,4.78]},{"value":[4.75,4.8]},{"value":[4.77,4.79]},{"value":[4.85,4.78]},{"value":[5.05,5.08]},{"value":[5.12,5.18]},{"value":[5.49,5.56]},{"value":[5.62,5.59]},{"value":[6.09,6.05]},{"value":[6.11,6.17]},{"value":[6.16,6.07]},{"value":[6.27,6.31]},{"value":[6.32,6.3]},{"value":[6.37,6.4]},{"value":[6.63,6.71]},{"value":[6.63,6.55]},{"value":[6.72,6.68]},{"value":[6.93,6.88]},{"value":[7.18,7.24]},{"value":[7.27,7.18]},{"value":[7.6,7.56]},{"value":[8.66,8.57]}],"name":"Good","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.19,4.23]},{"value":[4.27,4.29]},{"value":[4.32,4.34]},{"value":[4.33,4.39]},{"value":[4.33,4.36]},{"value":[4.36,4.41]},{"value":[4.38,4.4]},{"value":[4.38,4.34]},{"value":[4.45,4.46]},{"value":[4.72,4.75]},{"value":[4.73,4.76]},{"value":[5.11,5.05]},{"value":[5.15,5.18]},{"value":[5.15,5.11]},{"value":[5.31,5.32]},{"value":[5.34,5.39]},{"value":[5.4,5.36]},{"value":[5.69,5.72]},{"value":[5.72,5.78]},{"value":[5.73,5.77]},{"value":[5.77,5.82]},{"value":[5.91,5.96]},{"value":[6.34,6.28]},{"value":[6.35,6.39]},{"value":[6.37,6.41]},{"value":[6.4,6.43]},{"value":[6.43,6.4]},{"value":[6.54,6.5]},{"value":[6.6,6.64]},{"value":[6.62,6.67]},{"value":[6.65,6.69]},{"value":[6.66,6.7]},{"value":[7.43,7.45]},{"value":[8.31,8.26]}],"name":"Ideal","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true,"theme2":true,"customTheme":"{\"color\":[\"red\",\"yellow\",\"black\"]}","theme_name":"custom"},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-57caf3e22155edaabe5b" style="width:500px;height:500px;" class="echarts4r html-widget "></div>
+<script type="application/json" data-for="htmlwidget-57caf3e22155edaabe5b">{"x":{"theme":"custom","tl":false,"draw":true,"renderer":"canvas","events":[],"buttons":[],"opts":{"yAxis":[{"show":true}],"xAxis":[{"type":"value"}],"legend":{"data":["Fair","Good","Ideal"]},"series":[{"data":[{"value":[4.47,4.35]},{"value":[4.68,4.73]},{"value":[4.72,4.77]},{"value":[4.8,4.76]},{"value":[5.09,4.98]},{"value":[5.26,5.2]},{"value":[5.36,5.41]},{"value":[5.56,5.41]},{"value":[5.64,5.5]},{"value":[5.65,5.39]},{"value":[5.66,5.71]},{"value":[5.67,5.57]},{"value":[5.83,5.81]},{"value":[5.87,5.81]},{"value":[6.08,6.04]},{"value":[6.1,6.12]},{"value":[6.25,6.18]},{"value":[6.26,6.21]},{"value":[6.26,6.29]},{"value":[6.27,6.23]},{"value":[6.34,6.29]},{"value":[6.38,6.4]},{"value":[6.48,6.52]},{"value":[6.61,6.54]},{"value":[6.77,6.71]},{"value":[6.9,6.8]},{"value":[6.98,6.93]},{"value":[7.23,7.19]},{"value":[7.63,7.59]},{"value":[7.78,7.74]},{"value":[7.87,7.8]},{"value":[7.97,7.92]},{"value":[8.3,8.19]},{"value":[8.33,8.37]},{"value":[8.47,8.31]}],"name":"Fair","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.09,4.12]},{"value":[4.1,4.07]},{"value":[4.23,4.3]},{"value":[4.33,4.35]},{"value":[4.4,4.44]},{"value":[4.57,4.55]},{"value":[4.64,4.68]},{"value":[4.7,4.74]},{"value":[4.71,4.73]},{"value":[4.72,4.78]},{"value":[4.75,4.8]},{"value":[4.77,4.79]},{"value":[4.85,4.78]},{"value":[5.05,5.08]},{"value":[5.12,5.18]},{"value":[5.49,5.56]},{"value":[5.62,5.59]},{"value":[6.09,6.05]},{"value":[6.11,6.17]},{"value":[6.16,6.07]},{"value":[6.27,6.31]},{"value":[6.32,6.3]},{"value":[6.37,6.4]},{"value":[6.63,6.71]},{"value":[6.63,6.55]},{"value":[6.72,6.68]},{"value":[6.93,6.88]},{"value":[7.18,7.24]},{"value":[7.27,7.18]},{"value":[7.6,7.56]},{"value":[8.66,8.57]}],"name":"Good","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10},{"data":[{"value":[4.19,4.23]},{"value":[4.27,4.29]},{"value":[4.32,4.34]},{"value":[4.33,4.39]},{"value":[4.33,4.36]},{"value":[4.36,4.41]},{"value":[4.38,4.4]},{"value":[4.38,4.34]},{"value":[4.45,4.46]},{"value":[4.72,4.75]},{"value":[4.73,4.76]},{"value":[5.11,5.05]},{"value":[5.15,5.18]},{"value":[5.15,5.11]},{"value":[5.31,5.32]},{"value":[5.34,5.39]},{"value":[5.4,5.36]},{"value":[5.69,5.72]},{"value":[5.72,5.78]},{"value":[5.73,5.77]},{"value":[5.77,5.82]},{"value":[5.91,5.96]},{"value":[6.34,6.28]},{"value":[6.35,6.39]},{"value":[6.37,6.41]},{"value":[6.4,6.43]},{"value":[6.43,6.4]},{"value":[6.54,6.5]},{"value":[6.6,6.64]},{"value":[6.62,6.67]},{"value":[6.65,6.69]},{"value":[6.66,6.7]},{"value":[7.43,7.45]},{"value":[8.31,8.26]}],"name":"Ideal","type":"scatter","symbol":null,"coordinateSystem":"cartesian2d","yAxisIndex":0,"xAxisIndex":0,"symbolSize":10}]},"dispose":true,"theme2":true,"customTheme":"{\"color\":[\"red\",\"yellow\",\"black\"]}","theme_name":"custom"},"evals":[],"jsHooks":[]}</script>
 
 ## IO
 

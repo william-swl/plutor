@@ -1,3 +1,5 @@
+pl_init()
+
 test_that("geom_describe", {
   vdiffr::expect_doppelganger(
     title = "geom_describe",

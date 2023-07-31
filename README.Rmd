@@ -41,6 +41,49 @@ pl_init()
 ```
 
 
+## plots
+
+Description values plot: 
+
+- The describe geom is used to create description values plot, including center symbol and error symbol.
+
+- The center symbol can be mean, median or other custom functions.
+
+- The error symbol can be sd, quantile or other custom functions.
+
+```{r plots-geom_describe, fig.width=4, fig.height=3, dpi=300 }
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_describe()
+```
+
+```{r plots-geom_describe_custom, fig.width=4, fig.height=3, dpi=300 }
+center_func <- median
+low_func <- function(x, na.rm) {
+  quantile(x, 0.25, na.rm = na.rm)
+}
+
+high_func <- function(x, na.rm) {
+  quantile(x, 0.75, na.rm = na.rm)
+}
+
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_describe(center_func = center_func, low_func = low_func, high_func = high_func)
+```
+
+
+Add p value and fold change on a plot
+
+```{r plots-geom_point, fig.width=4, fig.height=3, dpi=300 }
+ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
+      geom_point() + geom_describe(color='red') +
+      geom_compare(cp_label = c("psymbol", "right_deno_fc"), y_position = 25000, step_increase=0.3) +
+      ylim(0, 40000)
+```
+
+
+
 ## color
 
 - select most distant colors among a color spectrum
@@ -119,35 +162,6 @@ cm2pt(1)
 pt2mm(1)
 mm2pt(1)
 ```
-
-## plots
-
-Description values plot: 
-- The describe geom is used to create description values plot, including center symbol and error symbol.
-- The center symbol can be mean, median or other custom functions.
-- The error symbol can be sd, quantile or other custom functions.
-
-```{r plots-geom_describe, fig.width=4, fig.height=3, dpi=300 }
-mini_diamond %>% ggplot(aes(x = cut, y = price)) +
-  geom_point() +
-  geom_describe()
-```
-
-```{r plots-geom_describe_custom, fig.width=4, fig.height=3, dpi=300 }
-center_func <- median
-low_func <- function(x, na.rm) {
-  quantile(x, 0.25, na.rm = na.rm)
-}
-
-high_func <- function(x, na.rm) {
-  quantile(x, 0.75, na.rm = na.rm)
-}
-
-mini_diamond %>% ggplot(aes(x = cut, y = price)) +
-  geom_point() +
-  geom_describe(center_func = center_func, low_func = low_func, high_func = high_func)
-```
-
 
 
 ## echarts4r

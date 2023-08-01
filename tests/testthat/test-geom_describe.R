@@ -1,4 +1,4 @@
-pl_init()
+pl_init(w=4, h=3, res=300)
 
 test_that("geom_describe", {
   vdiffr::expect_doppelganger(

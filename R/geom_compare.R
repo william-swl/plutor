@@ -11,7 +11,8 @@ StatCompare <- ggproto("StatCompare", Stat,
   compute_group = function(data, scales, na.rm, y_position, step_increase,
                            cp_label, tip_length,
                            ignore_ns, fc_method, comparisons, paired,
-                           alternative, test_method, ns_symbol) {
+                           alternative, test_method, ns_symbol, cp_ref,
+                           cp_inline, fc_digits) {
     # p value compare
     # position scale transformation like scale_y_log10 will compute
     # before this, so just use 'identity'
@@ -52,14 +53,14 @@ StatCompare <- ggproto("StatCompare", Stat,
 
     data_fc1 <- baizer::stat_fc(data_fc,
       x = x, y = y, .by = PANEL,
-      method = fc_method
+      method = fc_method, digits = fc_digits
     ) %>%
-      dplyr::rename(right_deno_fc = fc_fmt)
+      dplyr::rename("right_deno_fc" = "fc_fmt")
     data_fc2 <- baizer::stat_fc(data_fc,
       x = x, y = y, .by = PANEL,
-      method = fc_method, rev_div = TRUE
+      method = fc_method, rev_div = TRUE, digits = fc_digits
     ) %>%
-      dplyr::rename(left_deno_fc = fc_fmt)
+      dplyr::rename("left_deno_fc" = "fc_fmt")
     data_fc <- baizer::left_expand(
       data_fc1, data_fc2,
       by = c("group1", "group2")
@@ -68,13 +69,15 @@ StatCompare <- ggproto("StatCompare", Stat,
       by = c("PANEL", "group1", "group2")
     )
 
-    # comparisons
-    comparisons <- purrr::map(
-      comparisons,
-      ~ scales$x$map(.x) %>% as.character()
-    )
 
+
+    # comparisons
     if (length(comparisons) > 0) {
+      comparisons <- purrr::map(
+        comparisons,
+        ~ scales$x$map(.x) %>% as.character()
+      )
+
       cp_tb <- baizer::list2tibble(comparisons) %>%
         set_names("group1", "group2")
 
@@ -92,11 +95,27 @@ StatCompare <- ggproto("StatCompare", Stat,
         dplyr::mutate(fc1 = left_deno_fc, fc2 = right_deno_fc)
 
       data <- baizer::replace_na(cp_tb1, cp_tb2, by = c("group1", "group2"))
-    }
 
-    # variable to aes scales
-    data <- dplyr::rename(data, x = group1, xend = group2) %>%
-      dplyr::mutate(x = as.integer(x), xend = as.integer(xend))
+      data <- dplyr::rename(data, x = group1, xend = group2) %>%
+        dplyr::mutate(x = as.integer(x), xend = as.integer(xend))
+    } else if (!is.null(cp_ref)) {
+      # comparisons ref
+      cp_ref <- scales$x$map(cp_ref)
+
+      cp_tb1 <- data %>%
+        filter(data[["group1"]] == cp_ref) %>%
+        dplyr::mutate(fc1 = left_deno_fc, fc2 = right_deno_fc) %>%
+        dplyr::rename(x = group1, xend = group2)
+      cp_tb2 <- data %>%
+        filter(data[["group2"]] == cp_ref) %>%
+        dplyr::mutate(fc1 = right_deno_fc, fc2 = left_deno_fc) %>%
+        dplyr::rename(x = group2, xend = group1)
+      data <- bind_rows(cp_tb1, cp_tb2) %>%
+        dplyr::mutate(x = as.integer(x), xend = as.integer(xend))
+    } else {
+      data <- dplyr::rename(data, x = group1, xend = group2) %>%
+        dplyr::mutate(x = as.integer(x), xend = as.integer(xend))
+    }
 
     # ignore NS
     if (all(ignore_ns == TRUE)) {
@@ -105,7 +124,6 @@ StatCompare <- ggproto("StatCompare", Stat,
       data <- data %>%
         dplyr::mutate(across(any_of(ignore_ns), ~ ifelse(p < 0.05, .x, NA)))
     }
-
 
 
     # label
@@ -131,6 +149,7 @@ StatCompare <- ggproto("StatCompare", Stat,
       y_position <- (y_range[2] - y_range[1]) * 0.8 + y_range[1]
     }
     y_step_increase <- (y_range[2] - y_range[1]) * step_increase
+    if (cp_inline == TRUE) y_step_increase <- 0
     data <- data %>% dplyr::mutate(
       cp_step = seq_len(dplyr::n()) - 1,
       y = y_position + y_step_increase * cp_step, yend = y
@@ -150,8 +169,19 @@ GeomCompare <- ggproto("GeomCompare", Geom,
     size = 3.88, angle = 0, hjust = 0.5, vjust = -0.1,
     family = "", fontface = 1, lineheight = 1
   ),
+  setup_params = function(self, data, params) {
+    params$cp_result <- data
+    return(params)
+  },
+  setup_data = function(self, data, params) {
+    if (!is.null(params$cp_manual)) {
+      data <- params$cp_manual
+    }
+    return(data)
+  },
   draw_group = function(data, panel_params, coord, cp_label,
-                        ns_lineheight_just, tip_length, ...) {
+                        ns_lineheight_just, tip_length, cp_ref, cp_inline,
+                        brackets_widen, cp_manual, cp_result, ...) {
     # ns lineheight justify
     if ("psymbol" %in% cp_label) {
       data <- data %>% dplyr::mutate(
@@ -159,27 +189,55 @@ GeomCompare <- ggproto("GeomCompare", Geom,
           ifelse(p >= 0.05, lineheight + ns_lineheight_just, lineheight)
       )
     }
-    # tip
+
     y_range <- panel_params$y.range
-    tip_left <- data %>%
-      dplyr::mutate(xend = x, yend = y - tip_length * (y_range[2] - y_range[1]))
-    tip_right <- data %>%
-      dplyr::mutate(x = xend, yend = y - tip_length * (y_range[2] - y_range[1]))
-    # label
-    label_data <- dplyr::mutate(data, x = (x + xend) / 2)
+    if (!is.null(cp_ref) && (cp_inline == TRUE)) {
+      # label
+      label_data <- dplyr::mutate(data, x = xend)
+      # bracket
+      bracket <- data %>%
+        dplyr::mutate(
+          xx = min(min(x), min(xend)) - brackets_widen,
+          xend = max(max(x), max(xend)) + brackets_widen,
+          x = xx
+        ) %>%
+        dplyr::slice(1)
+    } else {
+      # label
+      label_data <- dplyr::mutate(data, x = (x + xend) / 2)
+      # bracket
+      bracket <- data %>% dplyr::mutate(
+        x = ifelse(x < xend, x - brackets_widen, x + brackets_widen),
+        xend = ifelse(x < xend, xend + brackets_widen, xend - brackets_widen)
+      )
+      # tip
+      tip_left <- bracket %>%
+        dplyr::mutate(
+          xend = x,
+          yend = y - tip_length * (y_range[2] - y_range[1])
+        )
+      tip_right <- bracket %>%
+        dplyr::mutate(
+          x = xend, yend =
+            y - tip_length * (y_range[2] - y_range[1])
+        )
+    }
+
 
     grid::gList(
-      GeomSegment$draw_panel(data, panel_params, coord, ...),
-      if (!is.na(tip_length)) {
+      GeomSegment$draw_panel(bracket, panel_params, coord, ...),
+      if (!is.na(tip_length) && cp_inline == FALSE) {
         GeomSegment$draw_panel(tip_left, panel_params, coord, ...)
       },
-      if (!is.na(tip_length)) {
+      if (!is.na(tip_length) && cp_inline == FALSE) {
         GeomSegment$draw_panel(tip_right, panel_params, coord, ...)
       },
       GeomText$draw_panel(label_data, panel_params, coord, ...)
     )
   }
 )
+
+
 
 #' add p value and fold change on a plot
 #'
@@ -210,20 +268,16 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 #' use mapping=aes(paired_by=col) to indicate pairs by an extra column
 #' @param alternative one of `two.sided, greater, less`
 #' @param test_method `wilcoxon` as default, one of `wilcoxon, t`
+#' @param cp_ref reference item, the others will be compared with it
+#' @param cp_inline draw in line or not, default is `FALSE`
+#' @param fc_digits fold change digits
+#' @param cp_manual manual comparisons table,
+#' please refer to `extract_compare()`
 #' @param ns_symbol the symbol of non-significant, `NS` as default
+#' @param brackets_widen widen the brackets, can be a negative value
+#'
 #' @export
-#'
-#' @examples
-#'
-#' ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
-#'   geom_point() +
-#'   geom_describe(show_error = FALSE, color = "red") +
-#'   geom_compare(
-#'     cp_label = c("psymbol", "right_deno_fc"),
-#'     y_position = 20000, step_increase = 0.22
-#'   ) +
-#'   ylim(0, 30000)
-#'
+
 geom_compare <- function(mapping = NULL, data = NULL,
                          stat = "compare", position = "identity",
                          ..., na.rm = FALSE, show.legend = NA,
@@ -234,7 +288,9 @@ geom_compare <- function(mapping = NULL, data = NULL,
                          ignore_ns = FALSE, fc_method = NULL,
                          comparisons = NULL, paired = FALSE,
                          alternative = "two.sided", test_method = "wilcoxon",
-                         ns_symbol = "NS") {
+                         ns_symbol = "NS", cp_ref = NULL, cp_inline = FALSE,
+                         brackets_widen = 0, fc_digits = 2,
+                         cp_result = NULL, cp_manual = NULL) {
   layer(
     data = data,
     mapping = mapping,
@@ -248,10 +304,51 @@ geom_compare <- function(mapping = NULL, data = NULL,
       tip_length = tip_length, cp_label = cp_label, ignore_ns = ignore_ns,
       ns_lineheight_just = ns_lineheight_just, fc_method = fc_method,
       comparisons = comparisons, paired = paired, alternative = alternative,
-      test_method = test_method, ns_symbol = ns_symbol, ...
+      test_method = test_method, ns_symbol = ns_symbol, cp_ref = cp_ref,
+      cp_inline = cp_inline, brackets_widen = brackets_widen,
+      fc_digits = fc_digits, cp_result = cp_result, cp_manual = cp_manual, ...
     )
   )
 }
 
+
 #' @export
 geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
+
+
+
+#' extract the result of `geom_compare`
+#'
+#' @param p ggplot object
+#'
+#' @return compare tibble
+#' @export
+#'
+#' @examples
+#'
+#' p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
+#'   geom_point() +
+#'   geom_describe(show_error = FALSE, color = "red") +
+#'   geom_compare(
+#'     cp_label = c("psymbol", "right_deno_fc"),
+#'     y_position = 20000, step_increase = 0.22
+#'   ) +
+#'   ylim(0, 30000)
+#'
+#' extract_compare(p)
+#'
+extract_compare <- function(p) {
+  if (!is.ggplot(p)) {
+    stop("Please input a ggplot object!")
+  }
+  # render but do not need to return
+  xxx <- suppressWarnings(ggplot_build(p)) # nolint
+
+  l <- p$layers %>% map(~ .x[["computed_geom_params"]][["cp_result"]])
+  l <- l[!map_lgl(l, is.null)]
+  if (length(l) == 1) {
+    return(l[[1]])
+  } else {
+    return(l)
+  }
+}

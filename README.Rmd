@@ -77,9 +77,18 @@ Add p value and fold change on a plot
 
 ```{r plots-geom_point, fig.width=4, fig.height=3, dpi=300 }
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
-      geom_point() + geom_describe(color='red') +
-      geom_compare(cp_label = c("psymbol", "right_deno_fc"), y_position = 25000, step_increase=0.3) +
-      ylim(0, 40000)
+  geom_point() + geom_describe(color = "red") +
+  geom_compare(cp_label = c("psymbol", "right_deno_fc"), y_position = 25000, step_increase = 0.3) +
+  ylim(0, 40000)
+```
+
+
+```{r plots-geom_point_inline, fig.width=4, fig.height=3, dpi=300 }
+ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
+  geom_point() + geom_describe(color = "red") +
+  geom_compare(cp_ref='Good', cp_inline=TRUE, y_position = 22000, brackets_widen = 0.1) +
+  geom_compare(cp_ref='Ideal', cp_inline=TRUE, y_position = 25000, brackets_widen = 0.1) +
+  ylim(0, 40000)
 ```
 
 

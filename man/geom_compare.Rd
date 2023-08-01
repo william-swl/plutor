@@ -24,7 +24,13 @@ geom_compare(
   paired = FALSE,
   alternative = "two.sided",
   test_method = "wilcoxon",
-  ns_symbol = "NS"
+  ns_symbol = "NS",
+  cp_ref = NULL,
+  cp_inline = FALSE,
+  brackets_widen = 0,
+  fc_digits = 2,
+  cp_result = NULL,
+  cp_manual = NULL
 )
 }
 \arguments{
@@ -45,8 +51,8 @@ a ratio according to the whole panel height, default as 0.05}
 a ratio according to the whole panel height, default as 0.02}
 
 \item{cp_label}{which values will be add on the plot, a character vector
-with some of \verb{psymbol, p, right_deno_fc, left_deno_fc} in it. If \code{comparisons}
-is assigned, you can also include \verb{fc1, fc2}}
+with some of \verb{psymbol, p, right_deno_fc, left_deno_fc} in it.
+If \code{comparisons} is assigned, you can also include \verb{fc1, fc2}}
 
 \item{ns_lineheight_just}{if show \code{psymbol} in the label, justify
 the \code{NS} labels to make the lineheights look balanced}
@@ -69,16 +75,18 @@ use mapping=aes(paired_by=col) to indicate pairs by an extra column}
 \item{test_method}{\code{wilcoxon} as default, one of \verb{wilcoxon, t}}
 
 \item{ns_symbol}{the symbol of non-significant, \code{NS} as default}
+
+\item{cp_ref}{reference item, the others will be compared with it}
+
+\item{cp_inline}{draw in line or not, default is \code{FALSE}}
+
+\item{brackets_widen}{widen the brackets, can be a negative value}
+
+\item{fc_digits}{fold change digits}
+
+\item{cp_manual}{manual comparisons table,
+please refer to \code{extract_compare()}}
 }
 \description{
 add p value and fold change on a plot
-}
-\examples{
-
-ggplot(data=mini_diamond, mapping=aes(x=cut, y=price)) + geom_point() +
-  geom_describe(show_error=FALSE, color='red') +
-  geom_compare(cp_label=c('psymbol', 'right_deno_fc'),
-    y_position=20000, step_increase=0.22) +
-  ylim(0, 30000)
-
 }

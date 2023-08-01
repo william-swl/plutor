@@ -8,7 +8,7 @@ StatCompare <- ggproto("StatCompare", Stat,
     data <- dplyr::mutate(data, group = 1)
     return(data)
   },
-  compute_group = function(data, scales, na.rm, y_position, step_increase,
+  compute_group = function(data, scales, na.rm, lab_pos, step_increase,
                            cp_label, tip_length,
                            ignore_ns, fc_method, comparisons, paired,
                            alternative, test_method, ns_symbol, cp_ref,
@@ -39,17 +39,16 @@ StatCompare <- ggproto("StatCompare", Stat,
     # fold change is a little complicated, you may want the fold change
     # between means or geometric means
     # so we should get the raw value before position scale transformation
-    y_trans <- scales$y$trans$name
-    if (y_trans == "log-10") {
-      data_fc <- dplyr::mutate(data, y = 10^y)
+    revert_func <- revert_pos_scale(scales$y)
+    trans_func <- trans_pos_scale(scales$y)
+    data_fc <- dplyr::mutate(data, y = revert_func(y))
+
+    if (str_detect(scales$y$trans$name, "^log")) {
       if (is.null(fc_method)) fc_method <- "geom_mean"
-    } else if (y_trans == "log-2") {
-      data_fc <- dplyr::mutate(data, y = 2^y)
-      if (is.null(fc_method)) fc_method <- "geom_mean"
-    } else if (y_trans %in% c("identity", "reverse")) {
-      data_fc <- data
+    } else {
       if (is.null(fc_method)) fc_method <- "mean"
     }
+
 
     data_fc1 <- baizer::stat_fc(data_fc,
       x = x, y = y, .by = PANEL,
@@ -150,19 +149,21 @@ StatCompare <- ggproto("StatCompare", Stat,
 
     # compare bracket y position
     y_range <- scales$y$range$range
-    if (is.null(y_position)) {
-      y_position <- (y_range[2] - y_range[1]) * 0.8 + y_range[1]
+    if (is.null(lab_pos)) {
+      lab_pos <- (y_range[2] - y_range[1]) * 0.8 + y_range[1]
     }
     y_step_increase <- (y_range[2] - y_range[1]) * step_increase
     if (cp_inline == TRUE) y_step_increase <- 0
     data <- data %>% dplyr::mutate(
       cp_step = seq_len(dplyr::n()) - 1,
-      y = y_position + y_step_increase * cp_step, yend = y
+      y = trans_func(lab_pos) + y_step_increase * cp_step, yend = y
     )
 
     return(data)
   }
 )
+
+
 
 
 #' @export
@@ -252,7 +253,7 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 #'   often aesthetics, used to set an aesthetic to a fixed value, like
 #'   `colour = "red"` or `size = 3`. They may also be parameters
 #'   to the paired geom/stat.
-#' @param y_position y position of the brackets
+#' @param lab_pos position of the label brackets
 #' @param step_increase the increase height for next bracket,
 #' a ratio according to the whole panel height, default as 0.05
 #' @param tip_length the length for tips at the ends of the brackets,
@@ -286,7 +287,7 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 geom_compare <- function(mapping = NULL, data = NULL,
                          stat = "compare", position = "identity",
                          ..., na.rm = FALSE, show.legend = NA,
-                         inherit.aes = TRUE, y_position = NULL,
+                         inherit.aes = TRUE, lab_pos = NULL,
                          step_increase = 0.05,
                          tip_length = 0.02, cp_label = c("psymbol"),
                          ns_lineheight_just = 0.2,
@@ -305,7 +306,7 @@ geom_compare <- function(mapping = NULL, data = NULL,
     show.legend = show.legend,
     inherit.aes = inherit.aes,
     params = list(
-      na.rm = na.rm, y_position = y_position, step_increase = step_increase,
+      na.rm = na.rm, lab_pos = lab_pos, step_increase = step_increase,
       tip_length = tip_length, cp_label = cp_label, ignore_ns = ignore_ns,
       ns_lineheight_just = ns_lineheight_just, fc_method = fc_method,
       comparisons = comparisons, paired = paired, alternative = alternative,
@@ -336,7 +337,7 @@ geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 #'   geom_describe(show_error = FALSE, color = "red") +
 #'   geom_compare(
 #'     cp_label = c("psymbol", "right_deno_fc"),
-#'     y_position = 20000, step_increase = 0.22
+#'     lab_pos = 20000, step_increase = 0.22
 #'   ) +
 #'   ylim(0, 30000)
 #'

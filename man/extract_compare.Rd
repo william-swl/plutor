@@ -22,7 +22,7 @@ p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_describe(show_error = FALSE, color = "red") +
   geom_compare(
     cp_label = c("psymbol", "right_deno_fc"),
-    y_position = 20000, step_increase = 0.22
+    lab_pos = 20000, step_increase = 0.22
   ) +
   ylim(0, 30000)
 

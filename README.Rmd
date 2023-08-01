@@ -79,7 +79,7 @@ Add p value and fold change on a plot
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
   geom_describe(color = "red") +
-  geom_compare(cp_label = c("psymbol", "right_deno_fc"), y_position = 25000, step_increase = 0.3) +
+  geom_compare(cp_label = c("psymbol", "right_deno_fc"), lab_pos = 25000, step_increase = 0.3) +
   ylim(0, 40000)
 ```
 
@@ -88,8 +88,8 @@ ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
   geom_describe(color = "red") +
-  geom_compare(cp_ref = "Good", cp_inline = TRUE, y_position = 22000, brackets_widen = 0.1) +
-  geom_compare(cp_ref = "Ideal", cp_inline = TRUE, y_position = 25000, brackets_widen = 0.1) +
+  geom_compare(cp_ref = "Good", cp_inline = TRUE, lab_pos = 22000, brackets_widen = 0.1) +
+  geom_compare(cp_ref = "Ideal", cp_inline = TRUE, lab_pos = 25000, brackets_widen = 0.1) +
   ylim(0, 40000)
 ```
 
@@ -97,10 +97,18 @@ ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
 A new `Stat` class to add mean labels on a plot
 
 ```{r plots-StatMeanPL, fig.width=4, fig.height=3, dpi=300 }
-mini_diamond %>% ggplot(aes(x=cut, y=price)) + geom_point() +
-    geom_text(aes(label=price), stat='meanPL')
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(aes(label = price), stat = "meanPL")
 ```
 
+A new `Stat` class to add count labels on a plot
+
+```{r plots-StatCountPL, fig.width=4, fig.height=3, dpi=300 }
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(aes(label = price), stat = "countPL")
+```
 
 
 ## color

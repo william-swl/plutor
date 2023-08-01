@@ -13,7 +13,7 @@ geom_compare(
   na.rm = FALSE,
   show.legend = NA,
   inherit.aes = TRUE,
-  y_position = NULL,
+  lab_pos = NULL,
   step_increase = 0.05,
   tip_length = 0.02,
   cp_label = c("psymbol"),
@@ -42,7 +42,7 @@ to the paired geom/stat.}
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
 
-\item{y_position}{y position of the brackets}
+\item{lab_pos}{position of the label brackets}
 
 \item{step_increase}{the increase height for next bracket,
 a ratio according to the whole panel height, default as 0.05}

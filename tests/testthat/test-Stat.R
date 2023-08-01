@@ -9,3 +9,13 @@ test_that("StatMeanPL", {
     writer = pl_svg
   )
 })
+
+test_that("StatCountPL", {
+  vdiffr::expect_doppelganger(
+    title = "StatCountPL",
+    fig = mini_diamond %>% ggplot(aes(y = cut, x = price)) +
+      geom_point() +
+      geom_text(aes(label = price), stat = "countPL"),
+    writer = pl_svg
+  )
+})

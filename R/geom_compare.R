@@ -103,11 +103,11 @@ StatCompare <- ggproto("StatCompare", Stat,
       cp_ref <- scales$x$map(cp_ref)
 
       cp_tb1 <- data %>%
-        filter(data[["group1"]] == cp_ref) %>%
+        dplyr::filter(data[["group1"]] == cp_ref) %>%
         dplyr::mutate(fc1 = left_deno_fc, fc2 = right_deno_fc) %>%
         dplyr::rename(x = group1, xend = group2)
       cp_tb2 <- data %>%
-        filter(data[["group2"]] == cp_ref) %>%
+        dplyr::filter(data[["group2"]] == cp_ref) %>%
         dplyr::mutate(fc1 = right_deno_fc, fc2 = left_deno_fc) %>%
         dplyr::rename(x = group2, xend = group1)
       data <- bind_rows(cp_tb1, cp_tb2) %>%
@@ -122,7 +122,12 @@ StatCompare <- ggproto("StatCompare", Stat,
       data <- data %>% dplyr::filter(p < 0.05)
     } else if (is.character(ignore_ns)) {
       data <- data %>%
-        dplyr::mutate(across(any_of(ignore_ns), ~ ifelse(p < 0.05, .x, NA)))
+        dplyr::mutate(
+          dplyr::across(
+            tidyselect::any_of(ignore_ns),
+            ~ ifelse(p < 0.05, .x, NA)
+          )
+        )
     }
 
 

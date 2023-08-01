@@ -3,6 +3,7 @@
 
 ## usethis namespace: start
 #' @importFrom baizer alias_arg
+#' @importFrom dplyr bind_rows
 #' @importFrom dplyr full_join
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr left_join
@@ -55,6 +56,7 @@
 #' @importFrom stringr str_c
 #' @importFrom stringr str_detect
 #' @importFrom stringr str_extract
+#' @importFrom stringr str_glue
 #' @importFrom stringr str_replace
 #' @importFrom tibble as_tibble
 #' @importFrom tibble tibble

@@ -44,8 +44,10 @@ StatMeanPL <- ggproto("StatMeanPL", Stat,
     } else if (is.numeric(lab_pos)) {
       data <- lab_data %>% dplyr::mutate(y = trans_func(lab_pos))
     } else if (is(lab_pos, "function")) {
-      y_data <- data %>% dplyr::summarise(y = lab_pos(y),
-                                          .by = c(x, group, PANEL))
+      y_data <- data %>% dplyr::summarise(
+        y = lab_pos(y),
+        .by = c(x, group, PANEL)
+      )
       data <- lab_data %>% dplyr::mutate(y = y_data$y)
     }
 
@@ -94,8 +96,10 @@ StatCountPL <- ggproto("StatCountPL", Stat,
     } else if (is.numeric(lab_pos)) {
       data <- lab_data %>% dplyr::mutate(y = trans_func(lab_pos))
     } else if (is(lab_pos, "function")) {
-      y_data <- data %>% dplyr::summarise(y = lab_pos(y),
-                                          .by = c(x, group, PANEL))
+      y_data <- data %>% dplyr::summarise(
+        y = lab_pos(y),
+        .by = c(x, group, PANEL)
+      )
       data <- lab_data %>% dplyr::mutate(y = y_data$y)
     }
 

@@ -35,6 +35,7 @@
 #' @importFrom ggplot2 labs
 #' @importFrom ggplot2 layer
 #' @importFrom ggplot2 margin
+#' @importFrom ggplot2 Position
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 scale_y_log10
 #' @importFrom ggplot2 scale_y_reverse

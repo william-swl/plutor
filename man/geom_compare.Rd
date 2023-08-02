@@ -14,8 +14,9 @@ geom_compare(
   show.legend = NA,
   inherit.aes = TRUE,
   lab_pos = NULL,
-  step_increase = 0.05,
+  step_increase = 0.1,
   tip_length = 0.02,
+  lineend = "round",
   cp_label = c("psymbol"),
   ns_lineheight_just = 0.2,
   ignore_ns = FALSE,
@@ -45,10 +46,10 @@ a warning. If \code{TRUE}, missing values are silently removed.}
 \item{lab_pos}{position of the label brackets}
 
 \item{step_increase}{the increase height for next bracket,
-a ratio according to the whole panel height, default as 0.05}
+a ratio according to the whole panel height}
 
 \item{tip_length}{the length for tips at the ends of the brackets,
-a ratio according to the whole panel height, default as 0.02}
+a ratio according to the whole panel height}
 
 \item{cp_label}{which values will be add on the plot, a character vector
 with some of \verb{psymbol, p, right_deno_fc, left_deno_fc} in it.

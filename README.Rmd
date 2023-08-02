@@ -191,18 +191,6 @@ mm2pt(1)
 ```
 
 
-## echarts4r
-
-### echarts theme
-
-- set colors for echarts plot
-```{r echarts-theme-}
-mini_diamond %>%
-  group_by(cut) %>%
-  e_charts(x, width = 500, height = 500) %>%
-  e_scatter(y, symbol_size = 10) %>%
-  pe_color(c("red", "yellow"), default = "black")
-```
 
 ## IO
 - save a plot

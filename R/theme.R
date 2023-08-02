@@ -209,24 +209,26 @@ scale_ele <- function(level, base, ele_scales) {
 #' 1. base size, used by legend text, axis text, caption
 #' 2. used by legend title, axis title, strip text (facet title), subtitle
 #' 3. used by title, tag
-#' @param base_lw base line width
+#' @param base_line_size base linewidth
+#' @param base_rect_size base linewidth of the rectangles
 #' @param margin_factor factor to adjust the element margins according to
-#' size_scales, default is 0.5
+#' size_scales
 #' @param font_family font family
 #' @param plot_margin_factor factor to adjust the plot margins according to
-#' size_scales[3], default is 1.2
+#' size_scales[3]
 #' @param legend_spacing_factor factor to adjust the space of legend items
-#' according to size_scales[2],
-#' default is 1.2
+#' according to size_scales[2]
 #' @param ... arguments from ggplot::theme()
 #'
 #' @return theme object of ggplot
 #' @export
 #'
 #' @examples theme_pl()
-theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
-                     base_lw = 0.5,
-                     margin_factor = 0.5, plot_margin_factor = 1.2,
+theme_pl <- function(base_size = 10,
+                     base_line_size = lpt(1),
+                     base_rect_size = lpt(1),
+                     size_scales = c(5, 6, 7),
+                     margin_factor = 0.25, plot_margin_factor = 0.5,
                      legend_spacing_factor = 1.2,
                      font_family = "", ...) {
   if (length(size_scales) != 3) {
@@ -237,8 +239,10 @@ theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
 
   ggplot2::theme_grey(
     base_size = base_size,
+    base_line_size = base_line_size,
+    base_rect_size = base_rect_size,
     base_family = font_family
-  ) %+replace%
+  ) +
     ggplot2::theme(
       ##################################
       ### text
@@ -246,32 +250,55 @@ theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
 
       # global text, margins in pt as default
       text = element_text(
-        face = "plain", color = "black", size = base_size,
+        family = font_family, face = "plain", color = "black", size = base_size,
         hjust = 0.5, vjust = 0.5, angle = 0, margin = margin(0, 0, 0, 0)
       ),
       # plot tag. e.g. A, B, C
-      plot.tag = element_text(face = "bold", size = scale_size(3)),
+      plot.tag = element_text(
+        family = font_family, face = "bold",
+        size = scale_size(3)
+      ),
       # plot title
       plot.title = element_text(
-        face = "bold", size = scale_size(3), hjust = 0,
+        family = font_family, face = "bold", size = scale_size(3), hjust = 0,
         margin = margin(b = scale_size(3) * margin_factor)
       ),
       # plot subtitle, under the title
       plot.subtitle = element_text(
-        size = scale_size(2), hjust = 0,
+        family = font_family, size = scale_size(2), hjust = 0,
         margin = margin(b = scale_size(2) * margin_factor)
       ),
       # plot caption, bottom of the plot
-      plot.caption = element_text(size = scale_size(1), hjust = 1),
+      plot.caption = element_text(
+        family = font_family,
+        size = scale_size(1), hjust = 1
+      ),
       # plot legend title and text
-      legend.title = element_text(size = scale_size(2), hjust = 0),
-      legend.text = element_text(size = scale_size(1), hjust = 0),
+      legend.title = element_text(
+        family = font_family,
+        size = scale_size(2), hjust = 0
+      ),
+      legend.text = element_text(
+        family = font_family,
+        size = scale_size(1), hjust = 0
+      ),
       # x, y axis title
-      axis.title = element_text(size = scale_size(2)),
+      axis.title.x = element_text(
+        family = font_family, size = scale_size(2),
+        margin = margin(t = scale_size(2) * margin_factor * 0.8)
+      ),
+      axis.title.y = element_text(
+        family = font_family, size = scale_size(2), angle = 90,
+        margin = margin(r = scale_size(2) * margin_factor) * 2
+      ),
       # x, y axis tick label
-      axis.text = element_text(size = scale_size(1)),
+      axis.text = element_text(
+        family = font_family, color = "black",
+        size = scale_size(1)
+      ),
       # facet title
       strip.text = element_text(
+        family = font_family,
         size = scale_size(2),
         margin = margin(
           b = scale_size(2) * margin_factor,
@@ -284,26 +311,24 @@ theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
       ##################################
       # global line
       line = element_line(
-        color = "black", linewidth = lpt(base_lw),
-        linetype = 1, lineend = "butt"
+        color = "black", linetype = 1, lineend = "butt"
       ),
       # grid in plot panel
       panel.grid = element_blank(),
       # axis line
-      axis.line = element_line(linewidth = lpt(base_lw)),
+      axis.line = element_line(linewidth = base_line_size),
 
       # axis tick line width
-      axis.ticks = element_line(linewidth = lpt(base_lw)),
+      axis.ticks = element_line(),
       # axis tick line length
-      axis.ticks.length = unit(4 * 0.5, "pt"),
+      axis.ticks.length = unit(5 * base_line_size, "pt"),
 
       ##################################
       ### rect
       ##################################
       #  global rect
       rect = element_rect(
-        fill = NA, color = NA,
-        linewidth = lpt(base_lw), linetype = 1
+        fill = NA, color = NA, linewidth = base_rect_size, linetype = 1
       ),
       # backgrounds
       plot.background = element_blank(),
@@ -341,9 +366,8 @@ theme_pl <- function(base_size = 5, size_scales = c(5, 6, 7),
         scale_size(3) * plot_margin_factor,
         scale_size(3) * plot_margin_factor,
         scale_size(3) * plot_margin_factor
-      ),
-      complete = TRUE
-    ) %+replace%
+      )
+    ) +
     # allow modification
     ggplot2::theme(...)
 }
@@ -362,7 +386,8 @@ theme_pl0 <- function(...) {
   theme_pl(
     legend.position = "none", title = element_blank(),
     axis.line = element_blank(), axis.ticks = element_blank(),
-    axis.title = element_blank(), axis.text = element_blank()
-  ) %+replace%
+    axis.title.x = element_blank(), axis.title.y = element_blank(),
+    axis.text = element_blank()
+  ) +
     ggplot2::theme(...)
 }

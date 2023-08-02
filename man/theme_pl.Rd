@@ -5,11 +5,12 @@
 \title{a new extensible theme}
 \usage{
 theme_pl(
-  base_size = 5,
+  base_size = 10,
+  base_line_size = lpt(1),
+  base_rect_size = lpt(1),
   size_scales = c(5, 6, 7),
-  base_lw = 0.5,
-  margin_factor = 0.5,
-  plot_margin_factor = 1.2,
+  margin_factor = 0.25,
+  plot_margin_factor = 0.5,
   legend_spacing_factor = 1.2,
   font_family = "",
   ...
@@ -18,6 +19,10 @@ theme_pl(
 \arguments{
 \item{base_size}{base size of fonts and margins}
 
+\item{base_line_size}{base linewidth}
+
+\item{base_rect_size}{base linewidth of the rectangles}
+
 \item{size_scales}{a vector of element size scales, namely:
 \enumerate{
 \item base size, used by legend text, axis text, caption
@@ -25,17 +30,14 @@ theme_pl(
 \item used by title, tag
 }}
 
-\item{base_lw}{base line width}
-
 \item{margin_factor}{factor to adjust the element margins according to
-size_scales, default is 0.5}
+size_scales}
 
 \item{plot_margin_factor}{factor to adjust the plot margins according to
-size_scales\link{3}, default is 1.2}
+size_scales\link{3}}
 
 \item{legend_spacing_factor}{factor to adjust the space of legend items
-according to size_scales\link{2},
-default is 1.2}
+according to size_scales\link{2}}
 
 \item{font_family}{font family}
 

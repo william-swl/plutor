@@ -2,7 +2,7 @@
 StatCompare <- ggproto("StatCompare", Stat,
   required_aes = c("x", "y"),
   optional_aes = c("paired_by"),
-  dropped_aes = c("paired_by"),
+  dropped_aes = c("paired_by", "colour"),
   setup_data = function(self, data, params) {
     # init group
     data <- dplyr::mutate(data, group = 1)
@@ -171,9 +171,9 @@ GeomCompare <- ggproto("GeomCompare", Geom,
   required_aes = c("x", "y", "label"),
   default_aes = aes(
     colour = "black",
-    linewidth = .5, linetype = 1, alpha = NA,
-    size = 3.88, angle = 0, hjust = 0.5, vjust = -0.1,
-    family = "", fontface = 1, lineheight = 1
+    linewidth = lpt(1), linetype = 1, alpha = NA,
+    size = tpt(10), angle = 0, hjust = 0.5, vjust = -0.1,
+    family = "", fontface = 1, lineheight = 0.7
   ),
   setup_params = function(self, data, params) {
     params$cp_result <- data
@@ -187,7 +187,7 @@ GeomCompare <- ggproto("GeomCompare", Geom,
   },
   draw_group = function(data, panel_params, coord, cp_label,
                         ns_lineheight_just, tip_length, cp_ref, cp_inline,
-                        brackets_widen, cp_manual, cp_result, ...) {
+                        brackets_widen, cp_manual, cp_result, lineend, ...) {
     # ns lineheight justify
     if ("psymbol" %in% cp_label) {
       data <- data %>% dplyr::mutate(
@@ -231,12 +231,15 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 
 
     grid::gList(
-      GeomSegment$draw_panel(bracket, panel_params, coord, ...),
+      GeomSegment$draw_panel(bracket, panel_params,
+                             coord, lineend = lineend, ...),
       if (!is.na(tip_length) && cp_inline == FALSE) {
-        GeomSegment$draw_panel(tip_left, panel_params, coord, ...)
+        GeomSegment$draw_panel(tip_left, panel_params,
+                               coord, lineend = lineend, ...)
       },
       if (!is.na(tip_length) && cp_inline == FALSE) {
-        GeomSegment$draw_panel(tip_right, panel_params, coord, ...)
+        GeomSegment$draw_panel(tip_right, panel_params,
+                               coord, lineend = lineend, ...)
       },
       GeomText$draw_panel(label_data, panel_params, coord, ...)
     )
@@ -255,9 +258,9 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 #'   to the paired geom/stat.
 #' @param lab_pos position of the label brackets
 #' @param step_increase the increase height for next bracket,
-#' a ratio according to the whole panel height, default as 0.05
+#' a ratio according to the whole panel height
 #' @param tip_length the length for tips at the ends of the brackets,
-#' a ratio according to the whole panel height, default as 0.02
+#' a ratio according to the whole panel height
 #' @param cp_label which values will be add on the plot, a character vector
 #' with some of `psymbol, p, right_deno_fc, left_deno_fc` in it.
 #' If `comparisons` is assigned, you can also include `fc1, fc2`
@@ -288,8 +291,9 @@ geom_compare <- function(mapping = NULL, data = NULL,
                          stat = "compare", position = "identity",
                          ..., na.rm = FALSE, show.legend = NA,
                          inherit.aes = TRUE, lab_pos = NULL,
-                         step_increase = 0.05,
-                         tip_length = 0.02, cp_label = c("psymbol"),
+                         step_increase = 0.1,
+                         tip_length = 0.02, lineend = "round",
+                         cp_label = c("psymbol"),
                          ns_lineheight_just = 0.2,
                          ignore_ns = FALSE, fc_method = NULL,
                          comparisons = NULL, paired = FALSE,
@@ -312,7 +316,8 @@ geom_compare <- function(mapping = NULL, data = NULL,
       comparisons = comparisons, paired = paired, alternative = alternative,
       test_method = test_method, ns_symbol = ns_symbol, cp_ref = cp_ref,
       cp_inline = cp_inline, brackets_widen = brackets_widen,
-      fc_digits = fc_digits, cp_result = cp_result, cp_manual = cp_manual, ...
+      fc_digits = fc_digits, cp_result = cp_result, cp_manual = cp_manual,
+      lineend = lineend, ...
     )
   )
 }

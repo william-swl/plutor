@@ -5,7 +5,7 @@ test_that("geom_compare", {
     title = "geom_compare",
     fig = ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
       geom_point() +
-      geom_compare(cp_label = c("p", "right_deno_fc"), lab_pos = 20000) +
+      geom_compare(cp_label = c("p", "right_deno_fc")) +
       ylim(0, 25000),
     writer = pl_svg
   )
@@ -68,7 +68,7 @@ test_that("geom_compare, fc1", {
     fig = ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
       geom_point() +
       geom_compare(
-        cp_label = c("psymbol", "fc1"), lab_pos = 20000, tip_length = 0,
+        cp_label = c("psymbol", "fc1"), lab_pos = 20000, tip_length = NA,
         comparisons = list(c("Fair", "Good"), c("Ideal", "Good"))
       ) +
       ylim(0, 25000),

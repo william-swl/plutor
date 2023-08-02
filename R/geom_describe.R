@@ -30,13 +30,13 @@ StatDescribe <- ggproto("StatDescribe", Stat,
 GeomDescribe <- ggproto("GeomDescribe", Geom,
   required_aes = c("y|x", "ylow|xlow", "yhigh|xhigh"),
   default_aes = aes(
-    colour = "black", linewidth = .5, fill = NA, alpha = NA,
-    size = 2, linetype = 1, shape = 19, stroke = 1
+    colour = "black", linewidth = lpt(1), fill = NA, alpha = NA,
+    size = tpt(10), linetype = 1, shape = 19, stroke = 1
   ),
   setup_params = StatDescribe$setup_params,
   draw_group = function(data, panel_params, coord, flipped_aes,
                         show_error, center_width,
-                        error_width, center_symbol, ...) {
+                        error_width, center_symbol, lineend, ...) {
     data <- flip_data(data, flipped_aes)
     center <- flip_data(data, flipped_aes)
     center_bar <- dplyr::mutate(data,
@@ -62,10 +62,12 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
         GeomPoint$draw_panel(data, panel_params, coord, ...)
       },
       if (center_symbol == "bar") {
-        GeomSegment$draw_panel(center_bar, panel_params, coord, ...)
+        GeomSegment$draw_panel(center_bar, panel_params,
+                               coord, lineend = lineend, ...)
       },
       if (show_error == TRUE) {
-        GeomSegment$draw_panel(error, panel_params, coord, ...)
+        GeomSegment$draw_panel(error, panel_params,
+                               coord, lineend = lineend, ...)
       }
     )
   }
@@ -103,9 +105,9 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
 geom_describe <- function(mapping = NULL, data = NULL,
                           stat = "describe", position = "identity",
                           na.rm = FALSE, show.legend = NA,
-                          inherit.aes = TRUE,
+                          inherit.aes = TRUE, lineend = "round",
                           show_error = TRUE, center_symbol = "bar",
-                          center_width = 0.4, error_width = 0.2,
+                          center_width = 0.2, error_width = 0.15,
                           center_func = mean,
                           low_func = function(x, na.rm) {
                             mean(x, na.rm = na.rm) - sd(x, na.rm = na.rm)
@@ -126,7 +128,7 @@ geom_describe <- function(mapping = NULL, data = NULL,
       na.rm = na.rm, show_error = show_error,
       center_width = center_width, error_width = error_width,
       center_func = center_func, center_symbol = center_symbol,
-      low_func = low_func, high_func = high_func, ...
+      low_func = low_func, high_func = high_func, lineend = lineend, ...
     )
   )
 }

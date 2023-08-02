@@ -13,7 +13,9 @@ PositionFloatyPL <- ggproto("PositionFloatyPL", ggplot2::Position,
     y_range <- panel$panel_scales_y[[1]]$range$range
     float_step <- (y_range[2] - y_range[1]) * params$float
     float_value <- baizer::broadcast_vector(
-      float_step * seq(0, params$cycle - 1), n = nrow(data))
+      float_step * seq(0, params$cycle - 1),
+      n = nrow(data)
+    )
     data <- data %>% dplyr::mutate(y = y + float_value)
     return(data)
   }
@@ -38,7 +40,9 @@ PositionFloatxPL <- ggproto("PositionFloatxPL", ggplot2::Position,
     x_range <- panel$panel_scales_x[[1]]$range$range
     float_step <- (x_range[2] - x_range[1]) * params$float
     float_value <- baizer::broadcast_vector(
-      float_step * seq(0, params$cycle - 1), n = nrow(data))
+      float_step * seq(0, params$cycle - 1),
+      n = nrow(data)
+    )
     data <- data %>% dplyr::mutate(x = x + float_value)
     return(data)
   }

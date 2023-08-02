@@ -63,11 +63,15 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
       },
       if (center_symbol == "bar") {
         GeomSegment$draw_panel(center_bar, panel_params,
-                               coord, lineend = lineend, ...)
+          coord,
+          lineend = lineend, ...
+        )
       },
       if (show_error == TRUE) {
         GeomSegment$draw_panel(error, panel_params,
-                               coord, lineend = lineend, ...)
+          coord,
+          lineend = lineend, ...
+        )
       }
     )
   }
@@ -107,7 +111,7 @@ geom_describe <- function(mapping = NULL, data = NULL,
                           na.rm = FALSE, show.legend = NA,
                           inherit.aes = TRUE, lineend = "round",
                           show_error = TRUE, center_symbol = "bar",
-                          center_width = 0.2, error_width = 0.15,
+                          center_width = 0.3, error_width = 0.2,
                           center_func = mean,
                           low_func = function(x, na.rm) {
                             mean(x, na.rm = na.rm) - sd(x, na.rm = na.rm)

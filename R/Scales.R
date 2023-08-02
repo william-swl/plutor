@@ -1,0 +1,195 @@
+#' A variant of `scale_y_log10()` to show axis minor breaks
+#' and better axis labels
+#'
+#' @param expand use `expansion()` to dismiss the blank between y axis low limit
+#' and x axis
+#' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
+#' will always consider the data points out of the limits
+#' @param show_minor_breaks show minor breaks or not
+#'
+#' @export
+#'
+scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
+                             minor_breaks = NULL, n.breaks = NULL,
+                             labels = NULL, limits = NULL,
+                             expand = ggplot2::expansion(),
+                             oob = scales::oob_keep,
+                             na.value = NA_real_, trans = scales::log10_trans(),
+                             guide = ggh4x::guide_axis_minor(),
+                             position = "left",
+                             sec.axis = waiver(), show_minor_breaks = TRUE) {
+  if (is.null(limits)) {
+    y_lim <- c(10^-10, 10^10)
+  } else {
+    y_lim <- limits
+  }
+  if (is.null(breaks)) {
+    breaks <- 10^c(floor(log10(y_lim[1])):ceiling(log10(y_lim[2])))
+  }
+  if (is.null(labels)) {
+    labels <- scales::trans_format("log10", scales::math_format(10^.x)) # nolint
+  }
+  if (is.null(minor_breaks) && show_minor_breaks) {
+    minor_breaks <- baizer::adjacent_div(
+      10^c(floor(log10(y_lim[1])):ceiling(log10(y_lim[2]))),
+      .unique = TRUE
+    )
+  }
+
+  sc <- ggplot2::continuous_scale(
+    ggplot2:::ggplot_global$y_aes,
+    "position_c", identity,
+    name = name, breaks = breaks, n.breaks = n.breaks,
+    minor_breaks = minor_breaks, labels = labels, limits = limits,
+    expand = expand, oob = oob, na.value = na.value, trans = trans,
+    guide = guide, position = position, super = ScaleContinuousPosition
+  )
+
+  ggplot2:::set_sec_axis(sec.axis, sc)
+}
+
+
+
+
+
+#' A variant of `scale_y_continuous()` to show axis minor breaks
+#'
+#' @param expand use `expansion()` to dismiss the blank between y axis low limit
+#' and x axis
+#' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
+#' will always consider the data points out of the limits
+#' @param show_minor_breaks show minor breaks or not
+#' @param minor_break_step the step of minor breaks
+#'
+#' @export
+#'
+scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
+                                  minor_breaks = NULL, n.breaks = NULL,
+                                  labels = waiver(), limits = NULL,
+                                  expand = ggplot2::expansion(),
+                                  oob = scales::oob_keep,
+                                  na.value = NA_real_, trans = "identity",
+                                  guide = ggh4x::guide_axis_minor(),
+                                  position = "left",
+                                  sec.axis = waiver(), show_minor_breaks = TRUE,
+                                  minor_break_step = NULL) {
+  if (is.null(limits)) {
+    y_lim <- c(10^-10, 10^10)
+  } else {
+    y_lim <- limits
+  }
+  if (is.null(minor_breaks) &&
+    show_minor_breaks && !is.null(minor_break_step)) {
+    start <- y_lim[1] - y_lim[1] %% minor_break_step
+    end <- y_lim[2] - y_lim[2] %% minor_break_step + minor_break_step
+    minor_breaks <- seq(start, end, minor_break_step)
+  }
+
+  sc <- ggplot2::continuous_scale(
+    ggplot2:::ggplot_global$y_aes,
+    "position_c", identity,
+    name = name, breaks = breaks, n.breaks = n.breaks,
+    minor_breaks = minor_breaks, labels = labels, limits = limits,
+    expand = expand, oob = oob, na.value = na.value, trans = trans,
+    guide = guide, position = position, super = ScaleContinuousPosition
+  )
+
+  ggplot2:::set_sec_axis(sec.axis, sc)
+}
+
+
+#' A variant of `scale_x_log10()` to show axis minor breaks and
+#' better axis labels
+#'
+#' @param expand use `expansion()` to dismiss the blank between x axis low limit
+#' and y axis
+#' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
+#' will always consider the data points out of the limits
+#' @param show_minor_breaks show minor breaks or not
+#'
+#' @export
+#'
+scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
+                             minor_breaks = NULL, n.breaks = NULL,
+                             labels = NULL, limits = NULL,
+                             expand = ggplot2::expansion(),
+                             oob = scales::oob_keep,
+                             na.value = NA_real_, trans = scales::log10_trans(),
+                             guide = ggh4x::guide_axis_minor(),
+                             position = "bottom",
+                             sec.axis = waiver(), show_minor_breaks = TRUE) {
+  if (is.null(limits)) {
+    x_lim <- c(10^-10, 10^10)
+  } else {
+    x_lim <- limits
+  }
+  if (is.null(breaks)) {
+    breaks <- 10^c(floor(log10(x_lim[1])):ceiling(log10(x_lim[2])))
+  }
+  if (is.null(labels)) {
+    labels <- scales::trans_format("log10", scales::math_format(10^.x)) # nolint
+  }
+  if (is.null(minor_breaks) && show_minor_breaks) {
+    minor_breaks <- baizer::adjacent_div(
+      10^c(floor(log10(x_lim[1])):ceiling(log10(x_lim[2]))),
+      .unique = TRUE
+    )
+  }
+
+  sc <- ggplot2::continuous_scale(
+    ggplot2:::ggplot_global$x_aes,
+    "position_c", identity,
+    name = name, breaks = breaks, n.breaks = n.breaks,
+    minor_breaks = minor_breaks, labels = labels, limits = limits,
+    expand = expand, oob = oob, na.value = na.value, trans = trans,
+    guide = guide, position = position, super = ScaleContinuousPosition
+  )
+
+  ggplot2:::set_sec_axis(sec.axis, sc)
+}
+
+
+#' A variant of `scale_x_continuous()` to show axis minor breaks
+#'
+#' @param expand use `expansion()` to dismiss the blank between x axis low limit
+#' and y axis
+#' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
+#' will always consider the data points out of the limits
+#' @param show_minor_breaks show minor breaks or not
+#' @param minor_break_step the step of minor breaks
+#'
+#' @export
+#'
+scale_x_continuous_pl <- function(name = waiver(), breaks = waiver(),
+                                  minor_breaks = NULL, n.breaks = NULL,
+                                  labels = waiver(), limits = NULL,
+                                  expand = ggplot2::expansion(),
+                                  oob = scales::oob_keep,
+                                  na.value = NA_real_, trans = "identity",
+                                  guide = ggh4x::guide_axis_minor(),
+                                  position = "bottom",
+                                  sec.axis = waiver(), show_minor_breaks = TRUE,
+                                  minor_break_step = NULL) {
+  if (is.null(limits)) {
+    x_lim <- c(10^-10, 10^10)
+  } else {
+    x_lim <- limits
+  }
+  if (is.null(minor_breaks) &&
+    show_minor_breaks && !is.null(minor_break_step)) {
+    start <- x_lim[1] - x_lim[1] %% minor_break_step
+    end <- x_lim[2] - x_lim[2] %% minor_break_step + minor_break_step
+    minor_breaks <- seq(start, end, minor_break_step)
+  }
+
+  sc <- ggplot2::continuous_scale(
+    ggplot2:::ggplot_global$x_aes,
+    "position_c", identity,
+    name = name, breaks = breaks, n.breaks = n.breaks,
+    minor_breaks = minor_breaks, labels = labels, limits = limits,
+    expand = expand, oob = oob, na.value = na.value, trans = trans,
+    guide = guide, position = position, super = ScaleContinuousPosition
+  )
+
+  ggplot2:::set_sec_axis(sec.axis, sc)
+}

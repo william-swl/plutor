@@ -15,8 +15,8 @@ geom_describe(
   lineend = "round",
   show_error = TRUE,
   center_symbol = "bar",
-  center_width = 0.2,
-  error_width = 0.15,
+  center_width = 0.3,
+  error_width = 0.2,
   center_func = mean,
   low_func = function(x, na.rm) {
      mean(x, na.rm = na.rm) - sd(x, na.rm = na.rm)

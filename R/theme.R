@@ -200,8 +200,6 @@ scale_ele <- function(level, base, ele_scales) {
 }
 
 
-
-
 #' a new extensible theme
 #'
 #' @param base_size base size of fonts and margins
@@ -311,17 +309,18 @@ theme_pl <- function(base_size = 10,
       ##################################
       # global line
       line = element_line(
-        color = "black", linetype = 1, lineend = "butt"
+        color = "black", linetype = 1, lineend = "round"
       ),
       # grid in plot panel
       panel.grid = element_blank(),
       # axis line
-      axis.line = element_line(linewidth = base_line_size),
+      axis.line = element_line(color = "black", linewidth = base_line_size),
 
       # axis tick line width
-      axis.ticks = element_line(),
+      axis.ticks = element_line(color = "black"),
       # axis tick line length
-      axis.ticks.length = unit(5 * base_line_size, "pt"),
+      axis.ticks.length = unit(6 * base_line_size, "pt"),
+      ggh4x.axis.ticks.length.minor = ggplot2::rel(0.6),
 
       ##################################
       ### rect

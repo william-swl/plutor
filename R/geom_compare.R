@@ -172,8 +172,8 @@ GeomCompare <- ggproto("GeomCompare", Geom,
   default_aes = aes(
     colour = "black",
     linewidth = lpt(1), linetype = 1, alpha = NA,
-    size = tpt(10), angle = 0, hjust = 0.5, vjust = -0.1,
-    family = "", fontface = 1, lineheight = 0.7
+    size = tpt(10), angle = 0, hjust = 0.5, vjust = -0.15,
+    family = "", fontface = 1, lineheight = 0.8
   ),
   setup_params = function(self, data, params) {
     params$cp_result <- data
@@ -232,14 +232,20 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 
     grid::gList(
       GeomSegment$draw_panel(bracket, panel_params,
-                             coord, lineend = lineend, ...),
+        coord,
+        lineend = lineend, ...
+      ),
       if (!is.na(tip_length) && cp_inline == FALSE) {
         GeomSegment$draw_panel(tip_left, panel_params,
-                               coord, lineend = lineend, ...)
+          coord,
+          lineend = lineend, ...
+        )
       },
       if (!is.na(tip_length) && cp_inline == FALSE) {
         GeomSegment$draw_panel(tip_right, panel_params,
-                               coord, lineend = lineend, ...)
+          coord,
+          lineend = lineend, ...
+        )
       },
       GeomText$draw_panel(label_data, panel_params, coord, ...)
     )

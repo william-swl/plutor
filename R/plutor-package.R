@@ -39,9 +39,11 @@
 #' @importFrom ggplot2 scale_fill_manual
 #' @importFrom ggplot2 scale_y_log10
 #' @importFrom ggplot2 scale_y_reverse
+#' @importFrom ggplot2 ScaleContinuousPosition
 #' @importFrom ggplot2 Stat
 #' @importFrom ggplot2 theme
 #' @importFrom ggplot2 theme_set
+#' @importFrom ggplot2 waiver
 #' @importFrom ggplot2 xlim
 #' @importFrom ggplot2 ylim
 #' @importFrom grid unit
@@ -69,3 +71,7 @@ NULL
 
 
 layer <- function(...) ggplot2::layer(...)
+
+.onLoad <- function(...) {
+  ggh4x:::ggh4x_theme_elements()
+}

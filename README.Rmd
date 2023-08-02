@@ -110,6 +110,24 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_text(aes(label = price), stat = "countPL")
 ```
 
+A variant of `scale_y_log10()` to show axis minor breaks and better axis labels
+
+```{r plots-scale_y_log10_pl, fig.width=4, fig.height=3, dpi=300 }
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(stat = "meanPL", lab_pos = 30000) +
+  scale_y_log10_pl(show_minor_breaks = TRUE, limits = c(100, 100000))
+```
+
+A variant of `scale_y_continuous()` to show axis minor breaks
+
+```{r plots-scale_y_continuous_pl, fig.width=4, fig.height=3, dpi=300 }
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(stat = "meanPL", lab_pos = 25000) +
+  scale_y_continuous_pl(limits = c(0, 40000), minor_break_step = 2500)
+```
+
 
 ## color
 

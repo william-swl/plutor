@@ -109,6 +109,29 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 
 <img src="man/figures/README-plots-StatCountPL-1.png" width="100%" />
 
+A variant of `scale_y_log10()` to show axis minor breaks and better axis
+labels
+
+``` r
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(stat = "meanPL", lab_pos = 30000) +
+  scale_y_log10_pl(show_minor_breaks = TRUE, limits = c(100, 100000))
+```
+
+<img src="man/figures/README-plots-scale_y_log10_pl-1.png" width="100%" />
+
+A variant of `scale_y_continuous()` to show axis minor breaks
+
+``` r
+mini_diamond %>% ggplot(aes(x = cut, y = price)) +
+  geom_point() +
+  geom_text(stat = "meanPL", lab_pos = 25000) +
+  scale_y_continuous_pl(limits = c(0, 40000), minor_break_step = 2500)
+```
+
+<img src="man/figures/README-plots-scale_y_continuous_pl-1.png" width="100%" />
+
 ## color
 
 - select most distant colors among a color spectrum

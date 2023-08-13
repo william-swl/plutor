@@ -8,6 +8,19 @@
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
+- In ancient Greek mythology, `Pluto` was the ruler of the underworld
+  and presides over the afterlife.
+
+- `Pluto` was frequently conflated with `Plutus`, the god of wealth,
+  because mineral wealth was found underground.
+
+- When plotting with R, you try once, twice, practice again and again,
+  and finally you get a pretty figure you want.
+
+- It’s a `plot tour`, a tour about repetition and reward.
+
+- Hope `plutor` helps you on the tour!
+
 ## installation
 
 You can install the development version of `plutor` like so:
@@ -197,7 +210,7 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 - set repr size and resolution
 
 ``` r
-pl_size(width = 3, height = 2)
+pl_size(w = 4, h = 3, res = 300)
 ```
 
 - units transformation

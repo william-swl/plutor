@@ -77,7 +77,7 @@ StatCompare <- ggproto("StatCompare", Stat,
         ~ scales$x$map(.x) %>% as.character()
       )
 
-      cp_tb <- baizer::list2tibble(comparisons) %>%
+      cp_tb <- baizer::list2df(comparisons) %>%
         set_names("group1", "group2")
 
       cp_tb1 <- cp_tb %>%
@@ -93,7 +93,7 @@ StatCompare <- ggproto("StatCompare", Stat,
         ) %>%
         dplyr::mutate(fc1 = left_deno_fc, fc2 = right_deno_fc)
 
-      data <- baizer::replace_na(cp_tb1, cp_tb2, by = c("group1", "group2"))
+      data <- baizer::rewrite_na(cp_tb1, cp_tb2, by = c("group1", "group2"))
 
       data <- dplyr::rename(data, x = group1, xend = group2) %>%
         dplyr::mutate(x = as.integer(x), xend = as.integer(xend))

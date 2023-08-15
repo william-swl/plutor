@@ -74,6 +74,14 @@ StatCountPL <- ggproto("StatCountPL", Stat,
                            lab_pos = "max+sd", fmt = "n = {n}") {
     data <- ggplot2::flip_data(data, flipped_aes)
 
+    if (flipped_aes == FALSE) {
+      revert_func <- revert_pos_scale(scales$y)
+      trans_func <- trans_pos_scale(scales$y)
+    } else if (flipped_aes == TRUE) {
+      revert_func <- revert_pos_scale(scales$x)
+      trans_func <- trans_pos_scale(scales$x)
+    }
+
     # label value
     lab_data <- data %>% dplyr::summarise(
       mean = mean(y, na.rm = na.rm),

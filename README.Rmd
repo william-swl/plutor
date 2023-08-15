@@ -141,19 +141,21 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 
 ## color
 
-- select most distant colors among a color spectrum
-```{r color-select_color}
-select_color(5)
+- select colors from `RColorBrewer` package presets
+
+```{r color-brewer_colors}
+brewer_colors("Blues", 5)
 ```
 
+
 - generate gradient colors
-```{r color-gradient_color}
-gradient_color(c("blue", "red"), 10)
+```{r color-gradient_colors}
+gradient_colors(c("blue", "red"), 10)
 ```
 
 - show colors
-```{r color-plot_col, fig.width=4, fig.height=3, dpi=300 }
-plot_col(gradient_color(c("blue", "red"), 10))
+```{r color-plot_colors, fig.width=4, fig.height=3, dpi=300 }
+plot_colors(gradient_colors(c("blue", "red"), 10))
 ```
 
 

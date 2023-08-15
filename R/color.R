@@ -1,21 +1,17 @@
-#' select most distant colors among a color spectrum
+#' select colors from `RColorBrewer` package presets
 #'
+#' @param name presets name
 #' @param n number of colors
-#' @param color_set selection from
-#' @param type color_set type, 'munsell' as default
+#' @param ... other arguments of `RColorBrewer::brewer.pal`
 #'
-#' @return hex value of selected colors
+#' @return colors
 #' @export
 #'
-#' @examples select_color(5)
-select_color <- function(n, color_set = base_color, type = "munsell") {
-  res <- baizer::fps_vector(color_set, n)
-  if (type == "munsell") {
-    return(munsell::mnsl(res))
-  } else {
-    return(res)
-  }
+#' @examples brewer_colors("Blues", 5)
+brewer_colors <- function(name, n = 3, ...) {
+  RColorBrewer::brewer.pal(n, name, ...)
 }
+
 
 
 #' generate gradient colors
@@ -26,8 +22,8 @@ select_color <- function(n, color_set = base_color, type = "munsell") {
 #' @return gradient colors
 #' @export
 #'
-#' @examples gradient_color(c("blue", "red"), 10)
-gradient_color <- function(x, n) {
+#' @examples gradient_colors(c("blue", "red"), 10)
+gradient_colors <- function(x, n) {
   grDevices::colorRampPalette(x)(n)
 }
 
@@ -41,8 +37,8 @@ gradient_color <- function(x, n) {
 #' @return ggplot object
 #' @export
 #'
-#' @examples plot_col(gradient_color(c("blue", "red"), 10))
-plot_col <- function(x, ncol = 10, show_name = TRUE) {
+#' @examples plot_colors(gradient_color(c("blue", "red"), 10))
+plot_colors <- function(x, ncol = 10, show_name = TRUE) {
   df <- as_tibble(x, rownames = "key") %>%
     dplyr::mutate(row = floor((seq_len(dplyr::n()) - 1) / ncol) + 1) %>%
     dplyr::mutate(col = seq_len(dplyr::n()), .by = row)

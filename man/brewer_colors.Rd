@@ -20,5 +20,5 @@ colors
 select colors from \code{RColorBrewer} package presets
 }
 \examples{
-brewer_colors('Blues', 5)
+brewer_colors("Blues", 5)
 }

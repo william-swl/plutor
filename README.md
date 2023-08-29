@@ -37,7 +37,7 @@ library(plutor)
 
 It is recommended to perform initialization, which adjusts the default
 plotting parameters in an interactive environment (such as jupyter
-notebook) and sets the theme to `theme_pl()`.
+notebook) and sets the default theme to `theme_pl()`.
 
 ``` r
 pl_init()
@@ -151,7 +151,7 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 
 ``` r
 brewer_colors("Blues", 5)
-#> [1] "#EFF3FF" "#BDD7E7" "#6BAED6" "#3182BD" "#08519C"
+#> [1] "#08519C" "#3182BD" "#6BAED6" "#BDD7E7" "#EFF3FF"
 ```
 
 - generate gradient colors

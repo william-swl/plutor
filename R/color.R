@@ -9,7 +9,7 @@
 #'
 #' @examples brewer_colors("Blues", 5)
 brewer_colors <- function(name, n = 3, ...) {
-  RColorBrewer::brewer.pal(n, name, ...)
+  rev(RColorBrewer::brewer.pal(n, name, ...))
 }
 
 

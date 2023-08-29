@@ -1,3 +1,17 @@
+set_sec_axis <- function(sec.axis, scale) {
+  if (!inherits(sec.axis, "waiver")) {
+    if (inherits(sec.axis, "formula")) {
+      sec.axis <- ggplot::sec_axis(sec.axis)
+    }
+    if (!inherits(sec.axis, "AxisSecondary")) {
+      cli::cli_abort("Secondary axes must be specified using {.fn sec_axis}")
+    }
+    scale$secondary.axis <- sec.axis
+  }
+  return(scale)
+}
+
+
 #' A variant of `scale_y_log10()` to show axis minor breaks
 #' and better axis labels
 #'
@@ -45,7 +59,7 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
     guide = guide, position = position, super = ScaleContinuousPosition
   )
 
-  ggplot2:::set_sec_axis(sec.axis, sc)
+  set_sec_axis(sec.axis, sc)
 }
 
 
@@ -94,7 +108,7 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
     guide = guide, position = position, super = ScaleContinuousPosition
   )
 
-  ggplot2:::set_sec_axis(sec.axis, sc)
+  set_sec_axis(sec.axis, sc)
 }
 
 
@@ -145,7 +159,7 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
     guide = guide, position = position, super = ScaleContinuousPosition
   )
 
-  ggplot2:::set_sec_axis(sec.axis, sc)
+  set_sec_axis(sec.axis, sc)
 }
 
 
@@ -191,5 +205,5 @@ scale_x_continuous_pl <- function(name = waiver(), breaks = waiver(),
     guide = guide, position = position, super = ScaleContinuousPosition
   )
 
-  ggplot2:::set_sec_axis(sec.axis, sc)
+  set_sec_axis(sec.axis, sc)
 }

@@ -77,3 +77,8 @@ layer <- function(...) ggplot2::layer(...)
 .onLoad <- function(...) {
   ggh4x:::ggh4x_theme_elements()
 }
+
+mini_diamond <- baizer::mini_diamond
+
+repr_option_defaults <- repr::repr_option_defaults
+

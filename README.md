@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # plutor
@@ -6,20 +5,18 @@
 <!-- badges: start -->
 
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
+
 <!-- badges: end -->
 
-- In ancient Greek mythology, `Pluto` was the ruler of the underworld
-  and presides over the afterlife.
+-   In ancient Greek mythology, `Pluto` was the ruler of the underworld and presides over the afterlife.
 
-- `Pluto` was frequently conflated with `Plutus`, the god of wealth,
-  because mineral wealth was found underground.
+-   `Pluto` was frequently conflated with `Plutus`, the god of wealth, because mineral wealth was found underground.
 
-- When plotting with R, you try once, twice, practice again and again,
-  and finally you get a pretty figure you want.
+-   When plotting with R, you try once, twice, practice again and again, and finally you get a pretty figure you want.
 
-- It’s a `plot tour`, a tour about repetition and reward.
+-   It's a `plot tour`, a tour about repetition and reward.
 
-- Hope `plutor` helps you on the tour!
+-   Hope `plutor` helps you on the tour!
 
 ## installation
 
@@ -35,9 +32,7 @@ And load the package:
 library(plutor)
 ```
 
-It is recommended to perform initialization, which adjusts the default
-plotting parameters in an interactive environment (such as jupyter
-notebook) and sets the default theme to `theme_pl()`.
+It is recommended to perform initialization, which adjusts the default plotting parameters in an interactive environment (such as jupyter notebook) and sets the default theme to `theme_pl()`.
 
 ``` r
 pl_init()
@@ -47,12 +42,11 @@ pl_init()
 
 Description values plot:
 
-- The describe geom is used to create description values plot, including
-  center symbol and error symbol.
+-   The describe geom is used to create description values plot, including center symbol and error symbol.
 
-- The center symbol can be mean, median or other custom functions.
+-   The center symbol can be mean, median or other custom functions.
 
-- The error symbol can be sd, quantile or other custom functions.
+-   The error symbol can be sd, quantile or other custom functions.
 
 ``` r
 mini_diamond %>% ggplot(aes(x = cut, y = price)) +
@@ -60,7 +54,7 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_describe()
 ```
 
-<img src="man/figures/README-plots-geom_describe-1.png" width="100%" />
+<img src="man/figures/README-plots-geom_describe-1.png" width="100%"/>
 
 ``` r
 center_func <- median
@@ -77,7 +71,7 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_describe(center_func = center_func, low_func = low_func, high_func = high_func)
 ```
 
-<img src="man/figures/README-plots-geom_describe_custom-1.png" width="100%" />
+<img src="man/figures/README-plots-geom_describe_custom-1.png" width="100%"/>
 
 Add p value and fold change on a plot
 
@@ -89,7 +83,7 @@ ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   ylim(0, 40000)
 ```
 
-<img src="man/figures/README-plots-geom_point-1.png" width="100%" />
+<img src="man/figures/README-plots-geom_point-1.png" width="100%"/>
 
 ``` r
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
@@ -100,7 +94,7 @@ ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   ylim(0, 40000)
 ```
 
-<img src="man/figures/README-plots-geom_point_inline-1.png" width="100%" />
+<img src="man/figures/README-plots-geom_point_inline-1.png" width="100%"/>
 
 A new `Stat` class to add mean labels on a plot
 
@@ -110,7 +104,7 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_text(aes(label = price), stat = "meanPL")
 ```
 
-<img src="man/figures/README-plots-StatMeanPL-1.png" width="100%" />
+<img src="man/figures/README-plots-StatMeanPL-1.png" width="100%"/>
 
 A new `Stat` class to add count labels on a plot
 
@@ -120,10 +114,9 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_text(aes(label = price), stat = "countPL")
 ```
 
-<img src="man/figures/README-plots-StatCountPL-1.png" width="100%" />
+<img src="man/figures/README-plots-StatCountPL-1.png" width="100%"/>
 
-A variant of `scale_y_log10()` to show axis minor breaks and better axis
-labels
+A variant of `scale_y_log10()` to show axis minor breaks and better axis labels
 
 ``` r
 mini_diamond %>% ggplot(aes(x = cut, y = price)) +
@@ -132,7 +125,7 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   scale_y_log10_pl(show_minor_breaks = TRUE, limits = c(100, 100000))
 ```
 
-<img src="man/figures/README-plots-scale_y_log10_pl-1.png" width="100%" />
+<img src="man/figures/README-plots-scale_y_log10_pl-1.png" width="100%"/>
 
 A variant of `scale_y_continuous()` to show axis minor breaks
 
@@ -143,18 +136,18 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   scale_y_continuous_pl(limits = c(0, 40000), minor_break_step = 2500)
 ```
 
-<img src="man/figures/README-plots-scale_y_continuous_pl-1.png" width="100%" />
+<img src="man/figures/README-plots-scale_y_continuous_pl-1.png" width="100%"/>
 
 ## color
 
-- select colors from `RColorBrewer` package presets
+-   select colors from `RColorBrewer` package presets
 
 ``` r
 brewer_colors("Blues", 5)
 #> [1] "#08519C" "#3182BD" "#6BAED6" "#BDD7E7" "#EFF3FF"
 ```
 
-- generate gradient colors
+-   generate gradient colors
 
 ``` r
 gradient_colors(c("blue", "red"), 10)
@@ -162,17 +155,17 @@ gradient_colors(c("blue", "red"), 10)
 #>  [8] "#C60038" "#E2001C" "#FF0000"
 ```
 
-- show colors
+-   show colors
 
 ``` r
 plot_colors(gradient_colors(c("blue", "red"), 10))
 ```
 
-<img src="man/figures/README-color-plot_colors-1.png" width="100%" />
+<img src="man/figures/README-color-plot_colors-1.png" width="100%"/>
 
 ## theme
 
-- a custom flexible theme
+-   a custom flexible theme
 
 ``` r
 ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
@@ -182,9 +175,9 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
   theme_pl()
 ```
 
-<img src="man/figures/README-theme-theme_pl-1.png" width="100%" />
+<img src="man/figures/README-theme-theme_pl-1.png" width="100%"/>
 
-- a blank theme
+-   a blank theme
 
 ``` r
 ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
@@ -194,9 +187,9 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
   theme_pl0()
 ```
 
-<img src="man/figures/README-theme-theme_pl0-1.png" width="100%" />
+<img src="man/figures/README-theme-theme_pl0-1.png" width="100%"/>
 
-- a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
+-   a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
 
 ``` r
 # for text and points
@@ -207,13 +200,13 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 # geom_line(..., linewidth = lpt(1))
 ```
 
-- set repr size and resolution
+-   set repr size and resolution
 
 ``` r
 pl_size(w = 4, h = 3, res = 300)
 ```
 
-- units transformation
+-   units transformation
 
 ``` r
 # inches <-> centimeters
@@ -275,13 +268,13 @@ mm2pt(1)
 
 ## IO
 
-- save a plot
+-   save a plot
 
 ``` r
 # pl_save(p, 'plot.pdf', width=14, height=10)
 ```
 
-- save a plot into an blank A4 canvas, or a custom canvas
+-   save a plot into an blank A4 canvas, or a custom canvas
 
 ``` r
 # pl_save(p, 'plot.pdf', width=14, height=10, canvas='A4', units='cm')

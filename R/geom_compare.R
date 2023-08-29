@@ -341,18 +341,7 @@ geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 #' @return compare tibble
 #' @export
 #'
-#' @examples
-#'
-#' p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
-#'   geom_point() +
-#'   geom_describe(show_error = FALSE, color = "red") +
-#'   geom_compare(
-#'     cp_label = c("psymbol", "right_deno_fc"),
-#'     lab_pos = 20000, step_increase = 0.22
-#'   ) +
-#'   ylim(0, 30000)
-#'
-#' extract_compare(p)
+#' @examples extract_compare(p)
 #'
 extract_compare <- function(p) {
   if (!is.ggplot(p)) {

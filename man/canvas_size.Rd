@@ -9,7 +9,7 @@
 }
 }
 \source{
-built according to the print format
+according to the print format
 }
 \usage{
 canvas_size

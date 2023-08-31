@@ -2,7 +2,7 @@
 % Please edit documentation in R/geom_compare.R
 \name{extract_compare}
 \alias{extract_compare}
-\title{extract the result of \code{geom_compare}}
+\title{extract the result of \code{geom_compare} from a \code{ggplot} object}
 \usage{
 extract_compare(p)
 }
@@ -13,9 +13,9 @@ extract_compare(p)
 compare tibble
 }
 \description{
-extract the result of \code{geom_compare}
+extract the result of \code{geom_compare} from a \code{ggplot} object
 }
 \examples{
-extract_compare(p)
+# extract_compare(p)
 
 }

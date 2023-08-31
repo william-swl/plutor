@@ -75,10 +75,31 @@ NULL
 layer <- function(...) ggplot2::layer(...)
 
 .onLoad <- function(...) {
-  ggh4x:::ggh4x_theme_elements()
+  # https://github.com/teunbrand/ggh4x/blob/b80894538330ff259179159c3c39b444d7c627d4/R/themes.R #nolint
+  ggplot2::register_theme_elements(
+    ggh4x.facet.nestline = element_blank(),
+    ggh4x.axis.nestline = element_line(),
+    ggh4x.axis.nestline.x = element_line(),
+    ggh4x.axis.nestline.y = element_line(),
+    ggh4x.axis.nesttext.x = element_text(angle = 0, hjust = 0.5, vjust = 0.5),
+    ggh4x.axis.nesttext.y = element_text(),
+    ggh4x.axis.ticks.length.minor = ggplot2::rel(2 / 3),
+    ggh4x.axis.ticks.length.mini = ggplot2::rel(1 / 3),
+    element_tree = list(
+      ggh4x.facet.nestline = ggplot2::el_def("element_line", "line"),
+      ggh4x.axis.nestline = ggplot2::el_def("element_line", "axis.ticks"),
+      ggh4x.axis.nestline.x = ggplot2::el_def("element_line",
+                                              "ggh4x.axis.nestline"),
+      ggh4x.axis.nestline.y = ggplot2::el_def("element_line",
+                                              "ggh4x.axis.nestline"),
+      ggh4x.axis.nesttext.x = ggplot2::el_def("element_text", "axis.text.x"),
+      ggh4x.axis.nesttext.y = ggplot2::el_def("element_text", "axis.text.y"),
+      ggh4x.axis.ticks.length.minor = ggplot2::el_def(c("rel")),
+      ggh4x.axis.ticks.length.mini = ggplot2::el_def(c("rel"))
+    )
+  )
 }
 
 mini_diamond <- baizer::mini_diamond
 
 repr_option_defaults <- repr::repr_option_defaults
-

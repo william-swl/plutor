@@ -86,11 +86,12 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 Add p value and fold change on a plot
 
 ```{r plots-geom_point, fig.width=4, fig.height=3, dpi=300 }
-ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
+p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
   geom_describe(color = "red") +
   geom_compare(cp_label = c("psymbol", "right_deno_fc"), lab_pos = 25000, step_increase = 0.3) +
   ylim(0, 40000)
+p
 ```
 
 
@@ -103,6 +104,10 @@ ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   ylim(0, 40000)
 ```
 
+extract the result of `geom_compare` from a `ggplot` object
+```{r extract_compare}
+head(extract_compare(p))
+```
 
 A new `Stat` class to add mean labels on a plot
 
@@ -122,16 +127,29 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 
 A new `Stat` class to add custom function labels on a plot
 
-```{r plots-StatCountPL, fig.width=4, fig.height=3, dpi=300 }
+```{r plots-StatFuncPL, fig.width=4, fig.height=3, dpi=300 }
 lab_func <- function(x) {
-    str_glue('mean = {round(mean(x))}\nn = {length(x)}')
+  str_glue("mean = {round(mean(x))}\nn = {length(x)}")
 }
 
 mini_diamond %>% ggplot(aes(y = cut, x = price)) +
-      geom_point() +
-      geom_text(aes(label = price), stat = "funcPL", 
-                lab_func=lab_func, lab_pos=25000) +
-      xlim(0, 30000)
+  geom_point() +
+  geom_text(aes(label = price),
+    stat = "funcPL",
+    lab_func = lab_func, lab_pos = 25000
+  ) +
+  xlim(0, 30000)
+```
+
+A new Position object to create float x/y position
+
+```{r plots-, fig.width=4, fig.height=3, dpi=300 }
+mini_diamond %>% ggplot(aes(x = clarity, y = price)) +
+  geom_point() +
+  geom_text(aes(label = price),
+    stat = "countPL",
+    lab_pos = 20000, position = position_floatyPL()
+  )
 ```
 
 
@@ -156,13 +174,6 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
 
 ## color
 
-- select colors from `RColorBrewer` package presets
-
-```{r color-brewer_colors}
-brewer_colors("Blues", 5)
-```
-
-
 - generate gradient colors
 ```{r color-gradient_colors}
 gradient_colors(c("blue", "red"), 10)
@@ -172,6 +183,26 @@ gradient_colors(c("blue", "red"), 10)
 ```{r color-plot_colors, fig.width=4, fig.height=3, dpi=300 }
 plot_colors(gradient_colors(c("blue", "red"), 10))
 ```
+
+- select colors from `RColorBrewer` package presets
+
+```{r color-brewer_colors}
+brewer_colors("Blues", 5) %>% plot_colors()
+```
+
+- select colors from `ggsci` package presets
+```{r color-sci_colors}
+sci_colors("npg", 5) %>% plot_colors()
+```
+
+
+- assign colors by a column in a tibble, for the convenience to 
+use `scale_color_identity()`
+
+```{r color-assign_colors}
+assign_colors(mini_diamond, cut, colors = sci_colors("nejm", 8))
+```
+
 
 
 

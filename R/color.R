@@ -23,18 +23,18 @@ brewer_colors <- function(name, n = 3, ...) {
 #' @export
 #'
 #' @examples sci_colors("npg", 5)
-sci_colors <- function(name, n=3, alpha=1) {
-  if (name == 'npg') {
-    res <- ggsci::pal_npg('nrc', alpha)(n)
-  } else if (name == 'nejm') {
-    res <- ggsci::pal_nejm('default', alpha)(n)
-  } else if (name == 'lancet') {
-    res <- ggsci::pal_lancet('lanonc', alpha)(n)
-  } else if (name == 'd3') {
-    res <- ggsci::pal_d3('category20', alpha)(n)
+sci_colors <- function(name, n = 3, alpha = 1) {
+  if (name == "npg") {
+    res <- ggsci::pal_npg("nrc", alpha)(n)
+  } else if (name == "nejm") {
+    res <- ggsci::pal_nejm("default", alpha)(n)
+  } else if (name == "lancet") {
+    res <- ggsci::pal_lancet("lanonc", alpha)(n)
+  } else if (name == "d3") {
+    res <- ggsci::pal_d3("category20", alpha)(n)
   }
 
-  return (res)
+  return(res)
 }
 
 
@@ -106,10 +106,11 @@ plot_colors <- function(x, ncol = 10, show_name = TRUE) {
 #' @return tibble
 #' @export
 #'
-#' @examples assign_colors(mini_diamond, cut, colors=sci_colors('nejm', 8))
-assign_colors <- function(df, by, colors=sci_colors('npg', 10), na='#F5F5F5') {
+#' @examples assign_colors(mini_diamond, cut, colors = sci_colors("nejm", 8))
+assign_colors <- function(df, by, colors = sci_colors("npg", 10),
+                          na = "#F5F5F5") {
   by <- rlang::enquo(by)
-  by_col <- dplyr::pull(df, {{by}})
+  by_col <- dplyr::pull(df, {{ by }})
   # factor
   v_names <- levels(by_col)
   # non-factor
@@ -118,13 +119,13 @@ assign_colors <- function(df, by, colors=sci_colors('npg', 10), na='#F5F5F5') {
   }
 
   if (length(colors) < length(v_names)) {
-    cat(str_glue('input colors are not enough, fill na items by {na}'))
-    colors <- c(colors, rep(na, times=length(v_names) - length(colors)))
+    cat(str_glue("input colors are not enough, fill na items by {na}"))
+    colors <- c(colors, rep(na, times = length(v_names) - length(colors)))
   }
 
   names(colors) <- v_names
 
   assigned_colors <- colors[by_col]
   res <- df %>% dplyr::mutate(assigned_colors = assigned_colors)
-  return (res)
+  return(res)
 }

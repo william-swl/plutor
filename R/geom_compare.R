@@ -334,14 +334,14 @@ geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 
 
 
-#' extract the result of `geom_compare`
+#' extract the result of `geom_compare` from a `ggplot` object
 #'
 #' @param p ggplot object
 #'
 #' @return compare tibble
 #' @export
 #'
-#' @examples extract_compare(p)
+#' @examples # extract_compare(p)
 #'
 extract_compare <- function(p) {
   if (!is.ggplot(p)) {

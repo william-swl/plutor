@@ -22,13 +22,14 @@ test_that("StatCountPL", {
 
 test_that("StatFuncPL", {
   lab_func <- function(x) {
-    str_glue('mean = {round(mean(x))}\nn = {length(x)}')
+    str_glue("mean = {round(mean(x))}\nn = {length(x)}")
   }
   vdiffr::expect_doppelganger(
     title = "StatFuncPL",
     fig = mini_diamond %>% ggplot(aes(y = cut, x = price)) +
       geom_point() +
-      geom_text(aes(label = price), stat = "funcPL", lab_func=lab_func, lab_pos=25000) +
+      geom_text(aes(label = price), stat = "funcPL",
+                lab_func = lab_func, lab_pos = 25000) +
       xlim(0, 30000),
     writer = pl_svg
   )

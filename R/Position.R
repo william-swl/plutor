@@ -20,7 +20,14 @@ PositionFloatyPL <- ggproto("PositionFloatyPL", ggplot2::Position,
     return(data)
   }
 )
-
+#' a new Position object to create float y position
+#'
+#' @param float float range, a ratio according to the whole panel height
+#' @param cycle float cycle
+#'
+#' @return Position object
+#' @export
+#'
 position_floatyPL <- function(float = -0.05, cycle = 2) { # nolint
   ggproto(NULL, PositionFloatyPL, float = float, cycle = cycle)
 }
@@ -48,6 +55,14 @@ PositionFloatxPL <- ggproto("PositionFloatxPL", ggplot2::Position,
   }
 )
 
+#' a new Position object to create float x position
+#'
+#' @param float float range, a ratio according to the whole panel height
+#' @param cycle float cycle
+#'
+#' @return Position object
+#' @export
+#'
 position_floatxPL <- function(float = -0.05, cycle = 2) { # nolint
   ggproto(NULL, PositionFloatxPL, float = float, cycle = cycle)
 }

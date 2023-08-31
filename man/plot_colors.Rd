@@ -11,7 +11,7 @@ plot_colors(x, ncol = 10, show_name = TRUE)
 
 \item{ncol}{color number of each row}
 
-\item{show_name}{use vector names as label}
+\item{show_name}{use vector names as label, \code{FALSE} to show the color value}
 }
 \value{
 ggplot object

@@ -120,6 +120,21 @@ mini_diamond %>% ggplot(aes(x = cut, y = price)) +
   geom_text(aes(label = price), stat = "countPL")
 ```
 
+A new `Stat` class to add custom function labels on a plot
+
+```{r plots-StatCountPL, fig.width=4, fig.height=3, dpi=300 }
+lab_func <- function(x) {
+    str_glue('mean = {round(mean(x))}\nn = {length(x)}')
+}
+
+mini_diamond %>% ggplot(aes(y = cut, x = price)) +
+      geom_point() +
+      geom_text(aes(label = price), stat = "funcPL", 
+                lab_func=lab_func, lab_pos=25000) +
+      xlim(0, 30000)
+```
+
+
 A variant of `scale_y_log10()` to show axis minor breaks and better axis labels
 
 ```{r plots-scale_y_log10_pl, fig.width=4, fig.height=3, dpi=300 }

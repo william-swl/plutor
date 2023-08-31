@@ -13,6 +13,30 @@ brewer_colors <- function(name, n = 3, ...) {
 }
 
 
+#' select colors from `ggsci` package presets
+#'
+#' @param name presets name
+#' @param n number of colors
+#' @param alpha alpha
+#'
+#' @return colors
+#' @export
+#'
+#' @examples sci_colors("npg", 5)
+sci_colors <- function(name, n=3, alpha=1) {
+  if (name == 'npg') {
+    res <- ggsci::pal_npg('nrc', alpha)(n)
+  } else if (name == 'nejm') {
+    res <- ggsci::pal_nejm('default', alpha)(n)
+  } else if (name == 'lancet') {
+    res <- ggsci::pal_lancet('lanonc', alpha)(n)
+  } else if (name == 'd3') {
+    res <- ggsci::pal_d3('category20', alpha)(n)
+  }
+
+  return (res)
+}
+
 
 #' generate gradient colors
 #'
@@ -31,7 +55,7 @@ gradient_colors <- function(x, n) {
 #' show colors
 #'
 #' @param x color values
-#' @param show_name use vector names as label
+#' @param show_name use vector names as label, `FALSE` to show the color value
 #' @param ncol color number of each row
 #'
 #' @return ggplot object
@@ -67,4 +91,40 @@ plot_colors <- function(x, ncol = 10, show_name = TRUE) {
   }
 
   return(p)
+}
+
+
+
+#' assign colors by a column in a tibble, for the convenience to
+#' use `scale_color_identity()`
+#'
+#' @param df tibble
+#' @param by assign colors according to this column
+#' @param colors a vector of color values
+#' @param na if colors are not enough, fill na values
+#'
+#' @return tibble
+#' @export
+#'
+#' @examples assign_colors(mini_diamond, cut, colors=sci_colors('nejm', 8))
+assign_colors <- function(df, by, colors=sci_colors('npg', 10), na='#F5F5F5') {
+  by <- rlang::enquo(by)
+  by_col <- dplyr::pull(df, {{by}})
+  # factor
+  v_names <- levels(by_col)
+  # non-factor
+  if (is.null(v_names)) {
+    v_names <- unique(sort(by_col))
+  }
+
+  if (length(colors) < length(v_names)) {
+    cat(str_glue('input colors are not enough, fill na items by {na}'))
+    colors <- c(colors, rep(na, times=length(v_names) - length(colors)))
+  }
+
+  names(colors) <- v_names
+
+  assigned_colors <- colors[by_col]
+  res <- df %>% dplyr::mutate(assigned_colors = assigned_colors)
+  return (res)
 }

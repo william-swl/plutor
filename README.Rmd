@@ -203,6 +203,10 @@ use `scale_color_identity()`
 assign_colors(mini_diamond, cut, colors = sci_colors("nejm", 8))
 ```
 
+- colors of nucleotides and amino acids
+```{r color-bioletter_colors}
+# bioletter_colors
+```
 
 
 

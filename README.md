@@ -246,6 +246,12 @@ assign_colors(mini_diamond, cut, colors = sci_colors("nejm", 8))
 #> # … with 90 more rows
 ```
 
+- colors of nucleotides and amino acids
+
+``` r
+# bioletter_colors
+```
+
 ## theme
 
 - a custom flexible theme

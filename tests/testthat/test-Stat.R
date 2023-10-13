@@ -28,8 +28,10 @@ test_that("StatFuncPL", {
     title = "StatFuncPL",
     fig = mini_diamond %>% ggplot(aes(y = cut, x = price)) +
       geom_point() +
-      geom_text(aes(label = price), stat = "funcPL",
-                lab_func = lab_func, lab_pos = 25000) +
+      geom_text(aes(label = price),
+        stat = "funcPL",
+        lab_func = lab_func, lab_pos = 25000
+      ) +
       xlim(0, 30000),
     writer = pl_svg
   )

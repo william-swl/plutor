@@ -24,5 +24,5 @@ assign colors by a column in a tibble, for the convenience to
 use \code{scale_color_identity()}
 }
 \examples{
-assign_colors(mini_diamond, cut, colors=sci_colors('nejm', 8))
+assign_colors(mini_diamond, cut, colors = sci_colors("nejm", 8))
 }

@@ -88,10 +88,14 @@ layer <- function(...) ggplot2::layer(...)
     element_tree = list(
       ggh4x.facet.nestline = ggplot2::el_def("element_line", "line"),
       ggh4x.axis.nestline = ggplot2::el_def("element_line", "axis.ticks"),
-      ggh4x.axis.nestline.x = ggplot2::el_def("element_line",
-                                              "ggh4x.axis.nestline"),
-      ggh4x.axis.nestline.y = ggplot2::el_def("element_line",
-                                              "ggh4x.axis.nestline"),
+      ggh4x.axis.nestline.x = ggplot2::el_def(
+        "element_line",
+        "ggh4x.axis.nestline"
+      ),
+      ggh4x.axis.nestline.y = ggplot2::el_def(
+        "element_line",
+        "ggh4x.axis.nestline"
+      ),
       ggh4x.axis.nesttext.x = ggplot2::el_def("element_text", "axis.text.x"),
       ggh4x.axis.nesttext.y = ggplot2::el_def("element_text", "axis.text.y"),
       ggh4x.axis.ticks.length.minor = ggplot2::el_def(c("rel")),

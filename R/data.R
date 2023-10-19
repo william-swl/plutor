@@ -1,6 +1,7 @@
 #' width and height of built-in canvas
 #'
 #' @format ## `canvas_size`
+#' canvas sizes list
 #' @source according to the print format
 "canvas_size"
 
@@ -8,6 +9,7 @@
 #' colors of nucleotides and amino acids
 #'
 #' @format ## `bioletter_colors`
+#' colors for biological letters like amino acids or nucleotides
 #' @source according to the print format
 "bioletter_colors"
 

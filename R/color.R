@@ -52,7 +52,7 @@ gradient_colors <- function(x, n) {
 }
 
 
-#' show colors
+#' plot colors
 #'
 #' @param x color values
 #' @param show_name use vector names as label, `FALSE` to show the color value
@@ -61,7 +61,7 @@ gradient_colors <- function(x, n) {
 #' @return ggplot object
 #' @export
 #'
-#' @examples plot_colors(gradient_color(c("blue", "red"), 10))
+#' @examples plot_colors(gradient_colors(c("blue", "red"), 10))
 plot_colors <- function(x, ncol = 10, show_name = TRUE) {
   df <- as_tibble(x, rownames = "key") %>%
     dplyr::mutate(row = floor((seq_len(dplyr::n()) - 1) / ncol) + 1) %>%

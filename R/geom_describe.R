@@ -84,13 +84,12 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
 #' center symbol and error symbol. The center symbol can be mean, median or
 #' other custom functions, the error symbol can be sd, quantile or other custom
 #' functions.
-#' @inheritParams ggplot2::layer
+#' @inheritParams ggplot2::geom_point
+#' @inheritParams ggplot2::geom_segment
 #' @param na.rm If `FALSE`, the default, missing values are removed with
 #'   a warning. If `TRUE`, missing values are silently removed.
-#' @param ... Other arguments passed on to `layer()`. These are
-#'   often aesthetics, used to set an aesthetic to a fixed value, like
-#'   `colour = "red"` or `size = 3`. They may also be parameters
-#'   to the paired geom/stat.
+#' @param ... Other arguments passed on to `ggplot2::point()` or
+#' `ggplot2::geom_segment`.
 #' @param show_error show error symbol
 #' @param center_symbol one of `point, bar`
 #' @param center_width if `center_symbol='bar'`, the width of the bar

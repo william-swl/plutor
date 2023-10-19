@@ -9,9 +9,6 @@ ppt(x)
 \arguments{
 \item{x}{text point in geom}
 }
-\value{
-real point
-}
 \description{
 trans geom text or point to the real point
 }

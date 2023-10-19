@@ -9,9 +9,6 @@ mm2in(x)
 \arguments{
 \item{x}{mm value}
 }
-\value{
-inch value
-}
 \description{
 trans mm to inch
 }

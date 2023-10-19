@@ -72,6 +72,8 @@ rather than combining with them. This is most useful for helper functions
 that define both data and aesthetics and shouldn't inherit behaviour from
 the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
+\item{lineend}{Line end style (round, butt, square).}
+
 \item{show_error}{show error symbol}
 
 \item{center_symbol}{one of \verb{point, bar}}
@@ -86,10 +88,8 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 
 \item{high_func}{the high error function, \code{mean} plus \code{sd} as default}
 
-\item{...}{Other arguments passed on to \code{layer()}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{colour = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Other arguments passed on to \code{ggplot2::point()} or
+\code{ggplot2::geom_segment}.}
 }
 \description{
 The describe geom is used to create description values plot, including

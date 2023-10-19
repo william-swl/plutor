@@ -257,13 +257,10 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 
 #' add p value and fold change on a plot
 #'
-#' @inheritParams ggplot2::layer
+#' @inheritParams ggplot2::geom_segment
 #' @param na.rm If `FALSE`, the default, missing values are removed with
 #'   a warning. If `TRUE`, missing values are silently removed.
-#' @param ... Other arguments passed on to `layer()`. These are
-#'   often aesthetics, used to set an aesthetic to a fixed value, like
-#'   `colour = "red"` or `size = 3`. They may also be parameters
-#'   to the paired geom/stat.
+#' @param ... Other arguments passed on to `ggplot2::geom_segment()`.
 #' @param lab_pos position of the label brackets
 #' @param step_increase the increase height for next bracket,
 #' a ratio according to the whole panel height
@@ -292,6 +289,7 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 #' please refer to `extract_compare()`
 #' @param ns_symbol the symbol of non-significant, `NS` as default
 #' @param brackets_widen widen the brackets, can be a negative value
+#' @param cp_result comparation result tibble
 #'
 #' @export
 

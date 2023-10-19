@@ -6,6 +6,8 @@
 \title{colors of nucleotides and amino acids}
 \format{
 \subsection{\code{bioletter_colors}}{
+
+colors for biological letters like amino acids or nucleotides
 }
 }
 \source{

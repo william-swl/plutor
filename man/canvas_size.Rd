@@ -6,6 +6,8 @@
 \title{width and height of built-in canvas}
 \format{
 \subsection{\code{canvas_size}}{
+
+canvas sizes list
 }
 }
 \source{

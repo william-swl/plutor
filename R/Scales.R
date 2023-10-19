@@ -14,7 +14,7 @@ set_sec_axis <- function(sec.axis, scale) {
 
 #' A variant of `scale_y_log10()` to show axis minor breaks
 #' and better axis labels
-#' @inheritParams ggplot2::continuous_scale
+#' @inheritParams ggplot2::scale_y_log10
 #' @param expand use `expansion()` to dismiss the blank between y axis low limit
 #' and x axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -51,8 +51,10 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
   }
 
   sc <- ggplot2::continuous_scale(
-    ggplot2:::ggplot_global$y_aes,
-    "position_c", identity,
+    aesthetics = c("y", "ymin", "ymax", "yend", "yintercept",
+      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"),
+    scale_name = "scale_y_log10_pl",
+    palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,
@@ -68,7 +70,7 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
 
 #' A variant of `scale_y_continuous()` to show axis minor breaks
 #'
-#' @inheritParams ggplot2::continuous_scale
+#' @inheritParams ggplot2::scale_y_continuous
 #' @param expand use `expansion()` to dismiss the blank between y axis low limit
 #' and x axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -101,8 +103,10 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
   }
 
   sc <- ggplot2::continuous_scale(
-    ggplot2:::ggplot_global$y_aes,
-    "position_c", identity,
+    aesthetics = c("y", "ymin", "ymax", "yend", "yintercept",
+      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"),
+    scale_name = "scale_y_continuous_pl",
+    palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,
@@ -116,7 +120,7 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
 #' A variant of `scale_x_log10()` to show axis minor breaks and
 #' better axis labels
 #'
-#' @inheritParams ggplot2::continuous_scale
+#' @inheritParams ggplot2::scale_x_log10
 #' @param expand use `expansion()` to dismiss the blank between x axis low limit
 #' and y axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -153,8 +157,10 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
   }
 
   sc <- ggplot2::continuous_scale(
-    ggplot2:::ggplot_global$x_aes,
-    "position_c", identity,
+    aesthetics = c("x", "xmin", "xmax", "xend", "xintercept",
+      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"),
+    scale_name = "scale_x_log10_pl",
+    palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,
@@ -167,7 +173,7 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
 
 #' A variant of `scale_x_continuous()` to show axis minor breaks
 #'
-#' @inheritParams ggplot2::continuous_scale
+#' @inheritParams ggplot2::scale_x_continuous
 #' @param expand use `expansion()` to dismiss the blank between x axis low limit
 #' and y axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -200,8 +206,10 @@ scale_x_continuous_pl <- function(name = waiver(), breaks = waiver(),
   }
 
   sc <- ggplot2::continuous_scale(
-    ggplot2:::ggplot_global$x_aes,
-    "position_c", identity,
+    aesthetics = c("x", "xmin", "xmax", "xend", "xintercept",
+      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"),
+    scale_name = "scale_x_continuous_pl",
+    palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
     minor_breaks = minor_breaks, labels = labels, limits = limits,
     expand = expand, oob = oob, na.value = na.value, trans = trans,

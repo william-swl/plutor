@@ -2,7 +2,7 @@
 % Please edit documentation in R/color.R
 \name{plot_colors}
 \alias{plot_colors}
-\title{show colors}
+\title{plot colors}
 \usage{
 plot_colors(x, ncol = 10, show_name = TRUE)
 }
@@ -17,8 +17,8 @@ plot_colors(x, ncol = 10, show_name = TRUE)
 ggplot object
 }
 \description{
-show colors
+plot colors
 }
 \examples{
-plot_colors(gradient_color(c("blue", "red"), 10))
+plot_colors(gradient_colors(c("blue", "red"), 10))
 }

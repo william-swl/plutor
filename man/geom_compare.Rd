@@ -65,10 +65,7 @@ stat stripped of the \code{stat_} prefix (e.g. \code{"count"} rather than
 position adjustment function. Use the latter if you need to change the
 settings of the adjustment.}
 
-\item{...}{Other arguments passed on to \code{layer()}. These are
-often aesthetics, used to set an aesthetic to a fixed value, like
-\code{colour = "red"} or \code{size = 3}. They may also be parameters
-to the paired geom/stat.}
+\item{...}{Other arguments passed on to \code{ggplot2::geom_segment()}.}
 
 \item{na.rm}{If \code{FALSE}, the default, missing values are removed with
 a warning. If \code{TRUE}, missing values are silently removed.}
@@ -91,6 +88,8 @@ a ratio according to the whole panel height}
 
 \item{tip_length}{the length for tips at the ends of the brackets,
 a ratio according to the whole panel height}
+
+\item{lineend}{Line end style (round, butt, square).}
 
 \item{cp_label}{which values will be add on the plot, a character vector
 with some of \verb{psymbol, p, right_deno_fc, left_deno_fc} in it.
@@ -125,6 +124,8 @@ use mapping=aes(paired_by=col) to indicate pairs by an extra column}
 \item{brackets_widen}{widen the brackets, can be a negative value}
 
 \item{fc_digits}{fold change digits}
+
+\item{cp_result}{comparation result tibble}
 
 \item{cp_manual}{manual comparisons table,
 please refer to \code{extract_compare()}}

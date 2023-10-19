@@ -105,6 +105,8 @@ transformation with \code{\link[scales:trans_new]{scales::trans_new()}}.}
 \item{position}{For position scales, The position of the axis.
 \code{left} or \code{right} for y axes, \code{top} or \code{bottom} for x axes.}
 
+\item{sec.axis}{\code{\link[ggplot2:sec_axis]{sec_axis()}} is used to specify a secondary axis.}
+
 \item{show_minor_breaks}{show minor breaks or not}
 
 \item{minor_break_step}{the step of minor breaks}

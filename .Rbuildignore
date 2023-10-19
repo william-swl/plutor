@@ -18,3 +18,4 @@ package\.json
 ^cran-comments\.md$
 \.lintr
 \.chat
+^plutor\.Rproj$

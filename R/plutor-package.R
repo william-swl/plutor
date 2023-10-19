@@ -50,6 +50,7 @@
 #' @importFrom purrr map_dbl
 #' @importFrom purrr map_lgl
 #' @importFrom purrr map2
+#' @importFrom repr repr_option_defaults
 #' @importFrom rlang .data
 #' @importFrom rlang .env
 #' @importFrom rlang set_names
@@ -102,4 +103,4 @@ layer <- function(...) ggplot2::layer(...)
 
 
 
-repr_option_defaults <- repr::repr_option_defaults
+repr_option_defaults <- repr_option_defaults

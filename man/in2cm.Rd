@@ -6,6 +6,9 @@
 \usage{
 in2cm(x)
 }
+\arguments{
+\item{x}{inch value}
+}
 \description{
 trans inch to cm
 }

@@ -5,6 +5,8 @@
 
 <!-- badges: start -->
 
+[![Codecov test
+coverage](https://codecov.io/gh/william-swl/plutor/branch/master/graph/badge.svg)](https://app.codecov.io/gh/william-swl/plutor?branch=master)
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 

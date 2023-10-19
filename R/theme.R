@@ -56,6 +56,7 @@ inch2cm <- function(x) {
 }
 
 #' trans inch to cm
+#' @inheritParams inch2cm
 #' @export
 in2cm <- inch2cm
 

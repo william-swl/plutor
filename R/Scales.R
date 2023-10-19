@@ -41,7 +41,7 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
     breaks <- 10^c(floor(log10(y_lim[1])):ceiling(log10(y_lim[2])))
   }
   if (is.null(labels)) {
-    labels <- scales::trans_format("log10", scales::math_format(10^.x)) # nolint
+    labels <- scales::trans_format("log10", scales::math_format(~ 10^.x)) # nolint
   }
   if (is.null(minor_breaks) && show_minor_breaks) {
     minor_breaks <- baizer::adjacent_div(
@@ -51,8 +51,10 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
   }
 
   sc <- ggplot2::continuous_scale(
-    aesthetics = c("y", "ymin", "ymax", "yend", "yintercept",
-      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"),
+    aesthetics = c(
+      "y", "ymin", "ymax", "yend", "yintercept",
+      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"
+    ),
     scale_name = "scale_y_log10_pl",
     palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
@@ -103,8 +105,10 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
   }
 
   sc <- ggplot2::continuous_scale(
-    aesthetics = c("y", "ymin", "ymax", "yend", "yintercept",
-      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"),
+    aesthetics = c(
+      "y", "ymin", "ymax", "yend", "yintercept",
+      "ymin_final", "ymax_final", "lower", "middle", "upper", "y0"
+    ),
     scale_name = "scale_y_continuous_pl",
     palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
@@ -147,7 +151,7 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
     breaks <- 10^c(floor(log10(x_lim[1])):ceiling(log10(x_lim[2])))
   }
   if (is.null(labels)) {
-    labels <- scales::trans_format("log10", scales::math_format(10^.x)) # nolint
+    labels <- scales::trans_format("log10", scales::math_format(~ 10^.x)) # nolint
   }
   if (is.null(minor_breaks) && show_minor_breaks) {
     minor_breaks <- baizer::adjacent_div(
@@ -157,8 +161,10 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
   }
 
   sc <- ggplot2::continuous_scale(
-    aesthetics = c("x", "xmin", "xmax", "xend", "xintercept",
-      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"),
+    aesthetics = c(
+      "x", "xmin", "xmax", "xend", "xintercept",
+      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"
+    ),
     scale_name = "scale_x_log10_pl",
     palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,
@@ -206,8 +212,10 @@ scale_x_continuous_pl <- function(name = waiver(), breaks = waiver(),
   }
 
   sc <- ggplot2::continuous_scale(
-    aesthetics = c("x", "xmin", "xmax", "xend", "xintercept",
-      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"),
+    aesthetics = c(
+      "x", "xmin", "xmax", "xend", "xintercept",
+      "xmin_final", "xmax_final", "lower", "middle", "upper", "x0"
+    ),
     scale_name = "scale_x_continuous_pl",
     palette = identity,
     name = name, breaks = breaks, n.breaks = n.breaks,

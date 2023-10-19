@@ -1,9 +1,14 @@
 Package: plutor
-Title: plot using ggplot
-Version: 0.0.23
+Title: Useful Functions for Visualization
+Version: 0.1.0
 Authors@R: 
     person("William", "Song", , "william_swl@163.com", role = c("aut", "cre"))
-Description: plot using ggplot
+Description: In ancient Roman mythology, 'Pluto' was the ruler of the underworld
+  and presides over the afterlife. 'Pluto' was frequently conflated with 
+  'Plutus', the god of wealth, because mineral wealth was found underground. 
+  When plotting with R, you try once, twice, practice again and again, and finally 
+  you get a pretty figure you want. It's a 'plot tour', a tour about repetition 
+  and reward. Hope 'plutor' helps you on the tour!
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -11,13 +16,11 @@ RoxygenNote: 7.2.3
 Imports: 
     baizer,
     dplyr,
-    echarts4r,
     ggh4x,
     ggplot2,
     ggsci,
     grDevices,
     grid,
-    jsonlite,
     magrittr,
     methods,
     munsell,

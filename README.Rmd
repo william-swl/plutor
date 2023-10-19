@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 
-baizer::pkglib(tidyverse, baizer, echarts4r)
+baizer::pkglib(tidyverse, baizer)
 ```
 
 # plutor
@@ -22,7 +22,7 @@ baizer::pkglib(tidyverse, baizer, echarts4r)
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-- In ancient Greek mythology, `Pluto` was the ruler of the underworld and presides over the afterlife.
+- In ancient Roman mythology, `Pluto` was the ruler of the underworld and presides over the afterlife.
 
 - `Pluto` was frequently conflated with `Plutus`, the god of wealth, because mineral wealth was found underground.
 
@@ -53,7 +53,7 @@ pl_init()
 
 ## plots
 
-Description values plot: 
+Description values plot:
 
 - The describe geom is used to create description values plot, including center symbol and error symbol.
 
@@ -88,7 +88,6 @@ Add p value and fold change on a plot
 ```{r plots-geom_point, fig.width=4, fig.height=3, dpi=300 }
 p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
-  geom_describe(color = "red") +
   geom_compare(cp_label = c("psymbol", "right_deno_fc"), lab_pos = 25000, step_increase = 0.3) +
   ylim(0, 40000)
 p
@@ -98,7 +97,6 @@ p
 ```{r plots-geom_point_inline, fig.width=4, fig.height=3, dpi=300 }
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
-  geom_describe(color = "red") +
   geom_compare(cp_ref = "Good", cp_inline = TRUE, lab_pos = 22000, brackets_widen = 0.1) +
   geom_compare(cp_ref = "Ideal", cp_inline = TRUE, lab_pos = 25000, brackets_widen = 0.1) +
   ylim(0, 40000)
@@ -141,7 +139,7 @@ mini_diamond %>% ggplot(aes(y = cut, x = price)) +
   xlim(0, 30000)
 ```
 
-A new Position object to create float x/y position
+A new `Position` function to create float x/y position
 
 ```{r plots-, fig.width=4, fig.height=3, dpi=300 }
 mini_diamond %>% ggplot(aes(x = clarity, y = price)) +
@@ -234,7 +232,7 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 - a fixed mapping from size in `geom_xxx` to unit `pt` under 300 dpi
 ```{r theme-pt}
 # for text and points
-# geom_point(..., size = tpt(5))
+# geom_point(..., size = ppt(5))
 # geom_text(..., size = tpt(5))
 
 # for lines

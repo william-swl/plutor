@@ -1,3 +1,4 @@
+#' StatDescribe
 #' @export
 StatDescribe <- ggproto("StatDescribe", Stat,
   setup_params = function(self, data, params) {
@@ -25,7 +26,7 @@ StatDescribe <- ggproto("StatDescribe", Stat,
   required_aes = c("x", "y")
 )
 
-
+#' GeomDescribe
 #' @export
 GeomDescribe <- ggproto("GeomDescribe", Geom,
   required_aes = c("y|x", "ylow|xlow", "yhigh|xhigh"),
@@ -137,6 +138,7 @@ geom_describe <- function(mapping = NULL, data = NULL,
   )
 }
 
+#' geom2trace.GeomDescribe
 #' @export
 geom2trace.GeomDescribe <- function(data, params, plot) { # nolint
 }

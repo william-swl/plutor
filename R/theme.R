@@ -55,6 +55,7 @@ inch2cm <- function(x) {
   grid::convertUnit(unit(x, "inch"), "cm") %>% unclass()
 }
 
+#' trans inch to cm
 #' @export
 in2cm <- inch2cm
 
@@ -70,6 +71,7 @@ cm2inch <- function(x) {
   grid::convertUnit(unit(x, "cm"), "inch") %>% unclass()
 }
 
+#' trans cm to inch
 #' @export
 cm2in <- cm2inch
 
@@ -85,6 +87,7 @@ inch2mm <- function(x) {
   grid::convertUnit(unit(x, "inch"), "mm") %>% unclass()
 }
 
+#' trans inch to mm
 #' @export
 in2mm <- inch2mm
 
@@ -100,6 +103,7 @@ mm2inch <- function(x) {
   grid::convertUnit(unit(x, "mm"), "inch") %>% unclass()
 }
 
+#' trans mm to inch
 #' @export
 mm2in <- mm2inch
 
@@ -155,7 +159,7 @@ mm2pt <- function(x) {
 
 
 
-#' trans geom text point to the real point
+#' trans geom text or point to the real point
 #'
 #' @param x text point in geom
 #'
@@ -167,7 +171,7 @@ tpt <- function(x) {
   pt2mm(x)
 }
 
-
+#' trans geom text or point to the real point
 #' @export
 ppt <- tpt
 

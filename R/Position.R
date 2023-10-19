@@ -1,3 +1,4 @@
+#' PositionFloatyPL
 #' @export
 #'
 PositionFloatyPL <- ggproto("PositionFloatyPL", ggplot2::Position,
@@ -32,6 +33,7 @@ position_floatyPL <- function(float = -0.05, cycle = 2) { # nolint
   ggproto(NULL, PositionFloatyPL, float = float, cycle = cycle)
 }
 
+#' PositionFloatxPL
 #' @export
 #'
 PositionFloatxPL <- ggproto("PositionFloatxPL", ggplot2::Position,

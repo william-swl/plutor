@@ -1,3 +1,4 @@
+#' StatCompare
 #' @export
 StatCompare <- ggproto("StatCompare", Stat,
   required_aes = c("x", "y"),
@@ -165,7 +166,7 @@ StatCompare <- ggproto("StatCompare", Stat,
 
 
 
-
+#' GeomCompare
 #' @export
 GeomCompare <- ggproto("GeomCompare", Geom,
   required_aes = c("x", "y", "label"),
@@ -328,7 +329,7 @@ geom_compare <- function(mapping = NULL, data = NULL,
   )
 }
 
-
+#' geom2trace.GeomCompare
 #' @export
 geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 

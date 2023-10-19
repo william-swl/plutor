@@ -8,7 +8,7 @@
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-- In ancient Greek mythology, `Pluto` was the ruler of the underworld
+- In ancient Roman mythology, `Pluto` was the ruler of the underworld
   and presides over the afterlife.
 
 - `Pluto` was frequently conflated with `Plutus`, the god of wealth,
@@ -84,7 +84,6 @@ Add p value and fold change on a plot
 ``` r
 p <- ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
-  geom_describe(color = "red") +
   geom_compare(cp_label = c("psymbol", "right_deno_fc"), lab_pos = 25000, step_increase = 0.3) +
   ylim(0, 40000)
 p
@@ -95,7 +94,6 @@ p
 ``` r
 ggplot(data = mini_diamond, mapping = aes(x = cut, y = price)) +
   geom_point() +
-  geom_describe(color = "red") +
   geom_compare(cp_ref = "Good", cp_inline = TRUE, lab_pos = 22000, brackets_widen = 0.1) +
   geom_compare(cp_ref = "Ideal", cp_inline = TRUE, lab_pos = 25000, brackets_widen = 0.1) +
   ylim(0, 40000)
@@ -155,7 +153,7 @@ mini_diamond %>% ggplot(aes(y = cut, x = price)) +
 
 <img src="man/figures/README-plots-StatFuncPL-1.png" width="100%" />
 
-A new Position object to create float x/y position
+A new `Position` function to create float x/y position
 
 ``` r
 mini_diamond %>% ggplot(aes(x = clarity, y = price)) +
@@ -282,7 +280,7 @@ ggplot(mini_diamond, aes(x = x, y = y, color = clarity)) +
 
 ``` r
 # for text and points
-# geom_point(..., size = tpt(5))
+# geom_point(..., size = ppt(5))
 # geom_text(..., size = tpt(5))
 
 # for lines

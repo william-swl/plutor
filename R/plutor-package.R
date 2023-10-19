@@ -7,9 +7,6 @@
 #' @importFrom dplyr full_join
 #' @importFrom dplyr inner_join
 #' @importFrom dplyr left_join
-#' @importFrom echarts4r e_charts
-#' @importFrom echarts4r e_scatter
-#' @importFrom echarts4r e_theme_custom
 #' @importFrom ggplot2 %+replace%
 #' @importFrom ggplot2 aes
 #' @importFrom ggplot2 coord_fixed
@@ -47,7 +44,6 @@
 #' @importFrom ggplot2 xlim
 #' @importFrom ggplot2 ylim
 #' @importFrom grid unit
-#' @importFrom jsonlite toJSON
 #' @importFrom methods is
 #' @importFrom purrr map
 #' @importFrom purrr map_chr
@@ -104,6 +100,6 @@ layer <- function(...) ggplot2::layer(...)
   )
 }
 
-mini_diamond <- baizer::mini_diamond
+
 
 repr_option_defaults <- repr::repr_option_defaults

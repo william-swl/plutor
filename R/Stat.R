@@ -1,3 +1,4 @@
+#' StatMeanPL
 #' @export
 #'
 StatMeanPL <- ggproto("StatMeanPL", Stat,
@@ -58,6 +59,7 @@ StatMeanPL <- ggproto("StatMeanPL", Stat,
   }
 )
 
+#' StatCountPL
 #' @export
 #'
 StatCountPL <- ggproto("StatCountPL", Stat,
@@ -118,6 +120,7 @@ StatCountPL <- ggproto("StatCountPL", Stat,
   }
 )
 
+#' StatFuncPL
 #' @export
 #'
 StatFuncPL <- ggproto("StatFuncPL", Stat,

@@ -64,6 +64,7 @@
 #' @importFrom tibble tibble
 #' @importFrom tidyr pivot_longer
 #' @importFrom tidyr pivot_wider
+#' @importFrom utils globalVariables
 ## usethis namespace: end
 NULL
 

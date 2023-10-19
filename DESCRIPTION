@@ -32,16 +32,13 @@ Imports:
     stats,
     stringr,
     tibble,
-    tidyr,
-    utils
+    tidyr
 Suggests: 
     covr,
     svglite,
     testthat (>= 3.0.0),
     vdiffr
 Config/testthat/edition: 3
-Remotes: 
-    github::william-swl/baizer
 Depends: 
     R (>= 2.10)
 LazyData: true

@@ -6,7 +6,7 @@
 #' @param height plot height
 #' @param units units, 'in' for inch as default. Can be 'in', 'cm'
 #' @param canvas `NULL` as default, pass character to use
-#' built-in canvas ('A4', 'A4h'), or pass a numeric vector in 'c(width, heigh)'
+#' built-in canvas ('A4', 'A4v'), or pass a numeric vector in 'c(width, heigh)'
 #' form
 #' @param canvas_pos_x from 0 to 1, the horizontal position of plot in canvas
 #' @param canvas_pos_y from 0 to 1, the vertical position of plot in canvas

@@ -7,7 +7,8 @@
 
 [![Codecov test
 coverage](https://codecov.io/gh/william-swl/plutor/branch/master/graph/badge.svg)](https://app.codecov.io/gh/william-swl/plutor?branch=master)
-[![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/R-CMD-check.yaml)
+[![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/check-standard.yaml)
+[![](https://img.shields.io/badge/devel%20version-0.1.0-blue.svg)](https://github.com/william-swl/baizer)
 <!-- badges: end -->
 
 - In ancient Roman mythology, `Pluto` was the ruler of the underworld

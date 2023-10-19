@@ -28,7 +28,7 @@ pl_save(
 \item{units}{units, 'in' for inch as default. Can be 'in', 'cm'}
 
 \item{canvas}{\code{NULL} as default, pass character to use
-built-in canvas ('A4', 'A4h'), or pass a numeric vector in 'c(width, heigh)'
+built-in canvas ('A4', 'A4v'), or pass a numeric vector in 'c(width, heigh)'
 form}
 
 \item{canvas_pos_x}{from 0 to 1, the horizontal position of plot in canvas}

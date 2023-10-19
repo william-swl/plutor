@@ -257,6 +257,7 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 
 #' add p value and fold change on a plot
 #'
+#' @inheritParams ggplot2::layer
 #' @param na.rm If `FALSE`, the default, missing values are removed with
 #'   a warning. If `TRUE`, missing values are silently removed.
 #' @param ... Other arguments passed on to `layer()`. These are
@@ -330,6 +331,7 @@ geom_compare <- function(mapping = NULL, data = NULL,
 }
 
 #' geom2trace.GeomCompare
+#' @param data,params,plot params
 #' @export
 geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 

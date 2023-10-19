@@ -84,7 +84,7 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
 #' center symbol and error symbol. The center symbol can be mean, median or
 #' other custom functions, the error symbol can be sd, quantile or other custom
 #' functions.
-#'
+#' @inheritParams ggplot2::layer
 #' @param na.rm If `FALSE`, the default, missing values are removed with
 #'   a warning. If `TRUE`, missing values are silently removed.
 #' @param ... Other arguments passed on to `layer()`. These are
@@ -100,12 +100,6 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
 #' @param high_func the high error function, `mean` plus `sd` as default
 #'
 #' @export
-#'
-#' @examples
-#'
-#' mini_diamond %>% ggplot(aes(x = cut, y = price)) +
-#'   geom_point() +
-#'   geom_describe()
 #'
 geom_describe <- function(mapping = NULL, data = NULL,
                           stat = "describe", position = "identity",
@@ -139,6 +133,7 @@ geom_describe <- function(mapping = NULL, data = NULL,
 }
 
 #' geom2trace.GeomDescribe
+#' @param data,params,plot params
 #' @export
 geom2trace.GeomDescribe <- function(data, params, plot) { # nolint
 }

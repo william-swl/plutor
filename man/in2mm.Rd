@@ -6,6 +6,12 @@
 \usage{
 in2mm(x)
 }
+\arguments{
+\item{x}{inch value}
+}
+\value{
+mm value
+}
 \description{
 trans inch to mm
 }

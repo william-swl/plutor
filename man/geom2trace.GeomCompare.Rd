@@ -6,6 +6,9 @@
 \usage{
 geom2trace.GeomCompare(data, params, plot)
 }
+\arguments{
+\item{data, params, plot}{params}
+}
 \description{
 geom2trace.GeomCompare
 }

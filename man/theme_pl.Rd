@@ -34,14 +34,14 @@ theme_pl(
 size_scales}
 
 \item{plot_margin_factor}{factor to adjust the plot margins according to
-size_scales\link{3}}
+\code{size_scales[3]}}
 
 \item{legend_spacing_factor}{factor to adjust the space of legend items
-according to size_scales\link{2}}
+according to \code{size_scales[2]}}
 
 \item{font_family}{font family}
 
-\item{...}{arguments from ggplot::theme()}
+\item{...}{arguments from ggplot2::theme()}
 }
 \value{
 theme object of ggplot

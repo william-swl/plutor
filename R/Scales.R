@@ -1,7 +1,7 @@
 set_sec_axis <- function(sec.axis, scale) {
   if (!inherits(sec.axis, "waiver")) {
     if (inherits(sec.axis, "formula")) {
-      sec.axis <- ggplot::sec_axis(sec.axis)
+      sec.axis <- ggplot2::sec_axis(sec.axis)
     }
     if (!inherits(sec.axis, "AxisSecondary")) {
       cli::cli_abort("Secondary axes must be specified using {.fn sec_axis}")
@@ -14,7 +14,7 @@ set_sec_axis <- function(sec.axis, scale) {
 
 #' A variant of `scale_y_log10()` to show axis minor breaks
 #' and better axis labels
-#'
+#' @inheritParams ggplot2::continuous_scale
 #' @param expand use `expansion()` to dismiss the blank between y axis low limit
 #' and x axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -68,6 +68,7 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
 
 #' A variant of `scale_y_continuous()` to show axis minor breaks
 #'
+#' @inheritParams ggplot2::continuous_scale
 #' @param expand use `expansion()` to dismiss the blank between y axis low limit
 #' and x axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -115,6 +116,7 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
 #' A variant of `scale_x_log10()` to show axis minor breaks and
 #' better axis labels
 #'
+#' @inheritParams ggplot2::continuous_scale
 #' @param expand use `expansion()` to dismiss the blank between x axis low limit
 #' and y axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
@@ -165,6 +167,7 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
 
 #' A variant of `scale_x_continuous()` to show axis minor breaks
 #'
+#' @inheritParams ggplot2::continuous_scale
 #' @param expand use `expansion()` to dismiss the blank between x axis low limit
 #' and y axis
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which

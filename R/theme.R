@@ -71,7 +71,7 @@ cm2inch <- function(x) {
   grid::convertUnit(unit(x, "cm"), "inch") %>% unclass()
 }
 
-#' trans cm to inch
+#' @inheritParams cm2inch()
 #' @export
 cm2in <- cm2inch
 
@@ -88,6 +88,10 @@ inch2mm <- function(x) {
 }
 
 #' trans inch to mm
+#'
+#' @param x inch value
+#'
+#' @return mm value
 #' @export
 in2mm <- inch2mm
 
@@ -104,6 +108,10 @@ mm2inch <- function(x) {
 }
 
 #' trans mm to inch
+#'
+#' @param x mm value
+#'
+#' @return inch value
 #' @export
 mm2in <- mm2inch
 
@@ -172,6 +180,10 @@ tpt <- function(x) {
 }
 
 #' trans geom text or point to the real point
+#'
+#' @param x text point in geom
+#'
+#' @return real point
 #' @export
 ppt <- tpt
 
@@ -217,10 +229,10 @@ scale_ele <- function(level, base, ele_scales) {
 #' size_scales
 #' @param font_family font family
 #' @param plot_margin_factor factor to adjust the plot margins according to
-#' size_scales[3]
+#' `size_scales[3]`
 #' @param legend_spacing_factor factor to adjust the space of legend items
-#' according to size_scales[2]
-#' @param ... arguments from ggplot::theme()
+#' according to `size_scales[2]`
+#' @param ... arguments from ggplot2::theme()
 #'
 #' @return theme object of ggplot
 #' @export

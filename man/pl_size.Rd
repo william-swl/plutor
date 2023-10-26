@@ -17,6 +17,9 @@ pl_size(width = 4, height = 3, res = 300, w = NULL, h = NULL)
 
 \item{h}{alias of height}
 }
+\value{
+no return value
+}
 \description{
 set repr size and resolution
 }

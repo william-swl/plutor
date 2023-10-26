@@ -6,7 +6,7 @@
 \usage{
 theme_pl(
   base_size = 10,
-  base_line_size = lpt(1),
+  base_line_size = lpt(base_size/10),
   base_rect_size = lpt(1),
   size_scales = c(5, 6, 7),
   margin_factor = 0.25,

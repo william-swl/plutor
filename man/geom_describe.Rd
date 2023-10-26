@@ -91,6 +91,9 @@ the default plot specification, e.g. \code{\link[ggplot2:borders]{borders()}}.}
 \item{...}{Other arguments passed on to \code{ggplot2::point()} or
 \code{ggplot2::geom_segment}.}
 }
+\value{
+\code{ggplot} object
+}
 \description{
 The describe geom is used to create description values plot, including
 center symbol and error symbol. The center symbol can be mean, median or

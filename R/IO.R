@@ -12,11 +12,9 @@
 #' @param canvas_pos_y from 0 to 1, the vertical position of plot in canvas
 #' @param ... other arguments from `ggsave`
 #'
+#' @return no return value
 #' @export
 #'
-#' @examples
-#' # pl_save(p, 'plot.pdf', width=14,
-#' #   height=10, canvas='A4', units='cm')
 pl_save <- function(plot, filename, width, height, units = "in", canvas = NULL,
                     canvas_pos_x = 0.5, canvas_pos_y = 0.1, ...) {
   if (units == "inch") units <- "in"

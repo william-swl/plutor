@@ -26,6 +26,9 @@ pl_init(
 
 \item{theme}{default theme}
 }
+\value{
+no return value
+}
 \description{
 set size, resolution and default theme
 }

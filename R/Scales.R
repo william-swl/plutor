@@ -21,6 +21,8 @@ set_sec_axis <- function(sec.axis, scale) {
 #' will always consider the data points out of the limits
 #' @param show_minor_breaks show minor breaks or not
 #'
+#' @return scale object
+#'
 #' @export
 #'
 scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
@@ -80,6 +82,8 @@ scale_y_log10_pl <- function(name = waiver(), breaks = NULL,
 #' @param show_minor_breaks show minor breaks or not
 #' @param minor_break_step the step of minor breaks
 #'
+#' @return scale object
+#'
 #' @export
 #'
 scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
@@ -130,6 +134,8 @@ scale_y_continuous_pl <- function(name = waiver(), breaks = waiver(),
 #' @param oob use `scales::oob_keep` instead of `scales::oob_censor`, which
 #' will always consider the data points out of the limits
 #' @param show_minor_breaks show minor breaks or not
+#'
+#' @return scale object
 #'
 #' @export
 #'
@@ -186,6 +192,8 @@ scale_x_log10_pl <- function(name = waiver(), breaks = NULL,
 #' will always consider the data points out of the limits
 #' @param show_minor_breaks show minor breaks or not
 #' @param minor_break_step the step of minor breaks
+#'
+#' @return scale object
 #'
 #' @export
 #'

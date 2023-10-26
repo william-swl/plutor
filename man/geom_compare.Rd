@@ -130,6 +130,9 @@ use mapping=aes(paired_by=col) to indicate pairs by an extra column}
 \item{cp_manual}{manual comparisons table,
 please refer to \code{extract_compare()}}
 }
+\value{
+\code{ggplot} object
+}
 \description{
 add p value and fold change on a plot
 }

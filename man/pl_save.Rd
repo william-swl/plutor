@@ -37,10 +37,9 @@ form}
 
 \item{...}{other arguments from \code{ggsave}}
 }
+\value{
+no return value
+}
 \description{
 save plot, support save into a blank canvas
-}
-\examples{
-# pl_save(p, 'plot.pdf', width=14,
-#   height=10, canvas='A4', units='cm')
 }

@@ -111,6 +111,9 @@ transformation with \code{\link[scales:trans_new]{scales::trans_new()}}.}
 
 \item{minor_break_step}{the step of minor breaks}
 }
+\value{
+scale object
+}
 \description{
 A variant of \code{scale_x_continuous()} to show axis minor breaks
 }

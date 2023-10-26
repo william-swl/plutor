@@ -109,6 +109,9 @@ transformation with \code{\link[scales:trans_new]{scales::trans_new()}}.}
 
 \item{show_minor_breaks}{show minor breaks or not}
 }
+\value{
+scale object
+}
 \description{
 A variant of \code{scale_x_log10()} to show axis minor breaks and
 better axis labels

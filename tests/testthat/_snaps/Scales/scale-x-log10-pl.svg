@@ -169,14 +169,18 @@
 <polyline points='269.37,177.99 269.37,179.67 ' style='stroke-width: 1.00;' />
 <polyline points='273.74,177.99 273.74,179.67 ' style='stroke-width: 1.00;' />
 <polyline points='277.58,177.99 277.58,179.67 ' style='stroke-width: 1.00;' />
-<text x='46.73' y='193.16' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='59.46' y='187.97' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>2</text>
-<text x='121.96' y='193.16' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='134.69' y='187.97' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>3</text>
-<text x='197.20' y='193.08' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='209.93' y='187.88' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
-<text x='272.44' y='193.08' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
-<text x='285.17' y='187.88' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>5</text>
+<text x='45.14' y='193.16' style='font-size: 10.00px; font-family: "DejaVu Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='48.32' y='193.16' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='61.05' y='187.97' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>2</text>
+<text x='120.37' y='193.16' style='font-size: 10.00px; font-family: "DejaVu Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='123.56' y='193.16' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='136.29' y='187.97' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>3</text>
+<text x='195.61' y='193.08' style='font-size: 10.00px; font-family: "DejaVu Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='198.79' y='193.08' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='211.52' y='187.88' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>4</text>
+<text x='270.85' y='193.08' style='font-size: 10.00px; font-family: "DejaVu Sans";' textLength='3.18px' lengthAdjust='spacingAndGlyphs'> </text>
+<text x='274.03' y='193.08' style='font-size: 10.00px; font-family: "Liberation Sans";' textLength='12.73px' lengthAdjust='spacingAndGlyphs'>10</text>
+<text x='286.76' y='187.88' style='font-size: 7.00px; font-family: "Liberation Sans";' textLength='4.45px' lengthAdjust='spacingAndGlyphs'>5</text>
 <text x='168.17' y='206.53' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='29.87px' lengthAdjust='spacingAndGlyphs'>price</text>
 <text transform='translate(15.72,92.48) rotate(-90)' text-anchor='middle' style='font-size: 12.00px; font-family: "Liberation Sans";' textLength='18.92px' lengthAdjust='spacingAndGlyphs'>cut</text>
 </g>

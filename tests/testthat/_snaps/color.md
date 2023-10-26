@@ -16,8 +16,9 @@
     Code
       assign_colors(mini_diamond, clarity, colors = sci_colors("nejm", 3)) %>% dplyr::count(
         clarity, assigned_colors)
-    Output
+    Warning <simpleWarning>
       input colors are not enough, fill na items by #F5F5F5
+    Output
       # A tibble: 8 x 3
         clarity assigned_colors     n
         <chr>   <chr>           <int>

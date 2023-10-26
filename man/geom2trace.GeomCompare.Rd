@@ -9,6 +9,9 @@ geom2trace.GeomCompare(data, params, plot)
 \arguments{
 \item{data, params, plot}{params}
 }
+\value{
+no return value
+}
 \description{
 geom2trace.GeomCompare
 }

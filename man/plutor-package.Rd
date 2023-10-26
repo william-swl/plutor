@@ -8,6 +8,14 @@
 \description{
 In ancient Roman mythology, 'Pluto' was the ruler of the underworld and presides over the afterlife. 'Pluto' was frequently conflated with 'Plutus', the god of wealth, because mineral wealth was found underground. When plotting with R, you try once, twice, practice again and again, and finally you get a pretty figure you want. It's a 'plot tour', a tour about repetition and reward. Hope 'plutor' helps you on the tour!
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/william-swl/plutor}
+  \item Report bugs at \url{https://github.com/william-swl/plutor/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: William Song \email{william_swl@163.com}
 

@@ -2,9 +2,12 @@
 % Please edit documentation in R/theme.R
 \name{tpt}
 \alias{tpt}
+\alias{ppt}
 \title{trans geom text or point to the real point}
 \usage{
 tpt(x)
+
+ppt(x)
 }
 \arguments{
 \item{x}{text point in geom}

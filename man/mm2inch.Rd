@@ -2,9 +2,12 @@
 % Please edit documentation in R/theme.R
 \name{mm2inch}
 \alias{mm2inch}
+\alias{mm2in}
 \title{trans mm to inch}
 \usage{
 mm2inch(x)
+
+mm2in(x)
 }
 \arguments{
 \item{x}{mm value}

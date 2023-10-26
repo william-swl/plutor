@@ -9,6 +9,8 @@
 #'
 #' @export
 #'
+#' @return no return value
+#'
 #' @examples pl_init()
 pl_init <- function(width = 4, height = 3, res = 300, w = NULL, h = NULL,
                     theme = theme_pl()) {
@@ -28,9 +30,8 @@ pl_init <- function(width = 4, height = 3, res = 300, w = NULL, h = NULL,
 #' @param res resolution, 300 as default
 #' @param w alias of width
 #' @param h alias of height
-#'
+#' @return no return value
 #' @export
-#'
 #' @examples pl_size(width = 3, height = 2)
 pl_size <- function(width = 4, height = 3, res = 300, w = NULL, h = NULL) {
   width <- alias_arg(width, w, default = width)
@@ -55,10 +56,11 @@ inch2cm <- function(x) {
   grid::convertUnit(unit(x, "inch"), "cm") %>% unclass()
 }
 
-#' trans inch to cm
-#' @inheritParams inch2cm
+#' @rdname inch2cm
 #' @export
 in2cm <- inch2cm
+
+
 
 #' trans cm to inch
 #'
@@ -72,8 +74,7 @@ cm2inch <- function(x) {
   grid::convertUnit(unit(x, "cm"), "inch") %>% unclass()
 }
 
-#' trans cm to inch
-#' @inheritParams cm2inch
+#' @rdname inch2cm
 #' @export
 cm2in <- cm2inch
 
@@ -89,8 +90,7 @@ inch2mm <- function(x) {
   grid::convertUnit(unit(x, "inch"), "mm") %>% unclass()
 }
 
-#' trans inch to mm
-#' @inheritParams inch2mm
+#' @rdname inch2mm
 #' @export
 in2mm <- inch2mm
 
@@ -106,8 +106,7 @@ mm2inch <- function(x) {
   grid::convertUnit(unit(x, "mm"), "inch") %>% unclass()
 }
 
-#' trans mm to inch
-#' @inheritParams mm2inch
+#' @rdname mm2inch
 #' @export
 mm2in <- mm2inch
 
@@ -175,8 +174,7 @@ tpt <- function(x) {
   pt2mm(x)
 }
 
-#' trans geom text or point to the real point
-#' @inheritParams tpt
+#' @rdname tpt
 #' @export
 ppt <- tpt
 
@@ -232,7 +230,7 @@ scale_ele <- function(level, base, ele_scales) {
 #'
 #' @examples theme_pl()
 theme_pl <- function(base_size = 10,
-                     base_line_size = lpt(1),
+                     base_line_size = lpt(base_size / 10),
                      base_rect_size = lpt(1),
                      size_scales = c(5, 6, 7),
                      margin_factor = 0.25, plot_margin_factor = 0.5,

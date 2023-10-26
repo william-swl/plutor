@@ -291,6 +291,8 @@ GeomCompare <- ggproto("GeomCompare", Geom,
 #' @param brackets_widen widen the brackets, can be a negative value
 #' @param cp_result comparation result tibble
 #'
+#' @return `ggplot` object
+#'
 #' @export
 
 geom_compare <- function(mapping = NULL, data = NULL,
@@ -331,6 +333,7 @@ geom_compare <- function(mapping = NULL, data = NULL,
 #' geom2trace.GeomCompare
 #' @param data,params,plot params
 #' @export
+#' @return no return value
 geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 
 
@@ -341,8 +344,6 @@ geom2trace.GeomCompare <- function(data, params, plot) {} # nolint
 #'
 #' @return compare tibble
 #' @export
-#'
-#' @examples # extract_compare(p)
 #'
 extract_compare <- function(p) {
   if (!is.ggplot(p)) {

@@ -98,6 +98,7 @@ GeomDescribe <- ggproto("GeomDescribe", Geom,
 #' @param low_func the low error function, `mean` minus `sd` as default
 #' @param high_func the high error function, `mean` plus `sd` as default
 #'
+#' @return `ggplot` object
 #' @export
 #'
 geom_describe <- function(mapping = NULL, data = NULL,

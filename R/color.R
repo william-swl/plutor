@@ -119,7 +119,7 @@ assign_colors <- function(df, by, colors = sci_colors("npg", 10),
   }
 
   if (length(colors) < length(v_names)) {
-    cat(str_glue("input colors are not enough, fill na items by {na}"))
+    warning(str_glue("input colors are not enough, fill na items by {na}"))
     colors <- c(colors, rep(na, times = length(v_names) - length(colors)))
   }
 

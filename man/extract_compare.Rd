@@ -15,7 +15,3 @@ compare tibble
 \description{
 extract the result of \code{geom_compare} from a \code{ggplot} object
 }
-\examples{
-# extract_compare(p)
-
-}

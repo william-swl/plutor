@@ -8,7 +8,10 @@
 [![Codecov test
 coverage](https://codecov.io/gh/william-swl/plutor/branch/master/graph/badge.svg)](https://app.codecov.io/gh/william-swl/plutor?branch=master)
 [![R-CMD-check](https://github.com/william-swl/plutor/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/william-swl/plutor/actions/workflows/check-standard.yaml)
-[![](https://img.shields.io/badge/devel%20version-0.1.0-blue.svg)](https://github.com/william-swl/baizer)
+[![](https://www.r-pkg.org/badges/version/plutor?color=orange)](https://cran.r-project.org/package=plutor)
+[![](https://img.shields.io/badge/devel%20version-0.1.0-blue.svg)](https://github.com/william-swl/plutor)
+[![](http://cranlogs.r-pkg.org/badges/grand-total/plutor?color=blue)](https://cran.r-project.org/package=plutor)
+[![](http://cranlogs.r-pkg.org/badges/last-month/plutor?color=green)](https://cran.r-project.org/package=plutor)
 <!-- badges: end -->
 
 - In ancient Roman mythology, `Pluto` was the ruler of the underworld
